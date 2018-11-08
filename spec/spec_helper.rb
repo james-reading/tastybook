@@ -11,6 +11,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.use_transactional_fixtures = true
   config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
   config.order = :random
 
