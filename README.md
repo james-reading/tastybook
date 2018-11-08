@@ -19,3 +19,11 @@ yarn install
 Edit tmuxinator .yml file
 ln -s config/tmuxinator.yml .tmuxinator/app_name.yml
 
+
+## To be created in Heroku
+
+ENV['RAILS_SERVE_STATIC_FILES'].present?
+ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
+ENV["RACK_TIMEOUT"] || 10
+ENV['BUGSNAG_API_KEY']
+
