@@ -1,3 +1,8 @@
+require 'simplecov'
+SimpleCov.start do
+  add_filter 'config/'
+end
+
 ENV["RACK_ENV"] = "test"
 
 require File.expand_path("../../config/environment", __FILE__)

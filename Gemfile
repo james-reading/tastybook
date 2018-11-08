@@ -64,6 +64,7 @@ group :test do
   gem "launchy"
   gem 'email_spec'
   gem 'selenium-webdriver'
+  gem "simplecov", require: false
 end
 
 group :development do
