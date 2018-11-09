@@ -63,12 +63,12 @@ You should now be able to launch the project with
 
 You will need to create a few variables on your Heroku app instance.
 
-`APPLICATION_HOST` to receive something like `www.appdomain.com`
-`ASSET_HOST` to either receive something like `www.appdomain.com` or will use APPLICATION_HOST if not present
-`MAX_THREADS` default to 2
-`RAILS_SERVE_STATIC_FILES` default to `enabled`
-`WEB_CONCURRENCY` default to 2
-`BUGSNAG_API_KEY` to receive your Bugsnag's project API KEY
-`SKYLIGHT_AUTHENTICATION` to receive your Skylight authentication ID
-`SECRET_KEY_BASE` to generate with `rake secret`
+- `APPLICATION_HOST` to receive something like `www.appdomain.com`
+- `ASSET_HOST` to either receive something like `www.appdomain.com` or will use APPLICATION_HOST if not present
+- `MAX_THREADS` default to 2
+- `RAILS_SERVE_STATIC_FILES` default to `enabled`
+- `WEB_CONCURRENCY` default to 2
+- `BUGSNAG_API_KEY` to receive your Bugsnag's project API KEY
+- `SKYLIGHT_AUTHENTICATION` to receive your Skylight authentication ID
+- `SECRET_KEY_BASE` to generate with `rake secret`
 
