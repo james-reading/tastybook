@@ -40,6 +40,7 @@ gem "rack-canonical-host"
 gem "pundit"
 gem 'simple_form'
 gem 'bugsnag'
+gem 'skylight'
 
 
 
