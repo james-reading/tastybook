@@ -72,3 +72,9 @@ You will need to create a few variables on your Heroku app instance.
 - `SKYLIGHT_AUTHENTICATION` to receive your Skylight authentication ID
 - `SECRET_KEY_BASE` to generate with `rake secret`
 
+### Heroku setup
+
+If using Skylight, you will need to activate the dyno metadata feature
+
+    $ heroku labs:enable runtime-dyno-metadata -a <app name>
+
