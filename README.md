@@ -78,3 +78,7 @@ If using Skylight, you will need to activate the dyno metadata feature
 
     $ heroku labs:enable runtime-dyno-metadata -a <app name>
 
+You will need to add the following buildpacks:
+
+- heroku/nodejs
+- heroku/ruby
