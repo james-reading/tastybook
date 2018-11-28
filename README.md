@@ -53,7 +53,7 @@ Edit `config/tmuxinator.yml` and change the app name
 
 Then run
 
-    $ ln -s config/tmuxinator.yml .tmuxinator/[app_name].yml
+    $ ln -s config/tmuxinator.yml ~/.tmuxinator/[app_name].yml
 
 You should now be able to launch the project with
 
