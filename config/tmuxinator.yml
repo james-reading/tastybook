@@ -1,5 +1,5 @@
-name: questions-web-app
-root: ~/code/questions-web-app/
+name: base-rails-repo
+root: ~/code/base-rails-repo/
 
 # Optional tmux socket
 # socket_name: foo
