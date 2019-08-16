@@ -74,6 +74,10 @@ You will need to create a few variables on your Heroku app instance.
 
 ### Heroku setup
 
+Rails `assets:precompile` requires the dev dependencies to be installed for compiling the assets. By default, Heroku doesn't pull them and you need to set those two environment variables for that:
+
+    $ heroku config:set NPM_CONFIG_PRODUCTION=false YARN_PRODUCTION=false
+
 If using Skylight, you will need to activate the dyno metadata feature
 
     $ heroku labs:enable runtime-dyno-metadata -a <app name>
