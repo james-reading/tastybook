@@ -6,6 +6,9 @@ root: ~/code/base-rails-repo/
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
+pre_window:
+  # Export all variables from the .env so NPM can have access to tokens
+  - source .env && export $(grep --regexp ^[A-Z] .env | cut -d= -f1) > /dev/null
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
