@@ -43,29 +43,33 @@ gem 'bugsnag'
 gem 'skylight'
 
 
-
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-rails'
+  gem 'rb-readline'
 	gem 'rspec-rails', '~> 3.8'
   gem 'rspec-mocks'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'rails-controller-testing' # If you are using Rails 5.x
-  gem "bundler-audit", ">= 0.5.0", require: false
-  gem "dotenv-rails"
+  gem 'bundler-audit', '>= 0.5.0', require: false
+  gem 'dotenv-rails'
   gem 'guard'
   gem 'guard-rspec', require: false
-  gem "chromedriver-helper"
+  gem 'webdrivers', '~> 4.0'
+	gem 'ffaker'
 end
 
 group :test do
   gem 'webmock'
-  gem "formulaic"
-  gem "launchy"
+  gem 'formulaic'
+  gem 'launchy'
   gem 'email_spec'
   gem 'selenium-webdriver'
-  gem "simplecov", require: false
+  gem 'simplecov', require: false
+  gem 'timecop'
+  gem 'pundit-matchers', '~> 1.6.0'
 end
 
 group :development do
