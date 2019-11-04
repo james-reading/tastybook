@@ -86,3 +86,23 @@ You will need to add the following buildpacks:
 
 - heroku/nodejs
 - heroku/ruby
+
+## Front-end linting
+
+Linting helps ensure consistent code style and catch possible issues early. It is set up for both JavaScript and SCSS files.
+
+### JavaScript linting
+
+JS linting is done through `ESLint` with the help of `prettier` for consistent code formatting. Configuration is in `.eslintrc.js`, with `.eslintignore` to ignore specific files. A script is setup in the `package.json` to lint all JS files in the `app/webpack` folder:
+
+    $ yarn lint:js
+
+### SCSS linting
+
+SCSS linting, it is `Stylelint` that does the work. Configuration is in `.stylelintrc.js`, with `.stylelintignore` to ignore specific files. As for JS, a script is setup in `package.json` to lint all SCSS files in the `app/webpack` folder.
+
+    $ yarn lint:css
+
+### Linting on commit
+
+Installing the front-end dependencies through `yarn install` also sets up commit hooks that will lint the JS and SCSS files you commit. They'll try to autocorrect errors by default (so you don't have to worry about formatting issues for ex.). If there are manual fixes to apply, please fix and re-commit. If really you need to commit without caring about those linting issues ( :( )), you can use the `--no-verify` flag at the end of your commit, which will let the commit go through without linting.
