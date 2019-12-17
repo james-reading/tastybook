@@ -1,20 +1,20 @@
-%html{:lang => "en"}
+%html{ lang: 'en' }
   !!!
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:charset => "utf-8"}/
-    %meta{:content => "NOODP", :name => "ROBOTS"}/
-    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
-    %title= "CHANGE ME"
-    = stylesheet_pack_tag 'styles/vendor', media: "all", 'data-turbolinks-track': 'reload'
-    = stylesheet_pack_tag 'styles/theme', media: "all", 'data-turbolinks-track': 'reload'
-    = render "javascript"
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
+    %meta{ charset: 'utf-8' }
+    %meta{ content: 'NOODP', name: 'ROBOTS' }
+    %meta{ content: 'width=device-width, initial-scale=1, shrink-to-fit=no', name: 'viewport' }
+    %title= app_name
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'applications', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
     = csp_meta_tag
 
-  %body
-    = yield
-
+  %body.d-flex.flex-column
+    = render 'navbar' unless devise_controller?
+    = render 'flashes'
+    %main.container.flex-fill.d-flex.flex-column.flex-auto.flex-shrink-0.py-5{ class: content_for(:extra_container_class) }
+      = yield
     = yield :modals
     = yield :javascript
-

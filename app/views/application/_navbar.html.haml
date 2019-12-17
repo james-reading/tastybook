@@ -1,0 +1,5 @@
+%nav.navbar.navbar-light
+  %ul.navbar-nav.ml-auto
+    - if user_signed_in?
+      %li.nav-item
+        = button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-link nav-link mx-auto'

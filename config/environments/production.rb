@@ -24,18 +24,13 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
-  config.active_record.dump_schema_after_migration = false
 
-  if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
-    ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
-  end
+  config.active_record.dump_schema_after_migration = false
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
   config.middleware.use Rack::Deflater
-  config.public_file_server.headers = {
-    "Cache-Control" => "public, max-age=31557600",
-  }
+  config.middleware.insert_before Rack::Runtime, Rack::Timeout, service_timeout: (ENV["RACK_TIMEOUT"] || 10).to_i
+  config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=31557600' }
   config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST"), protocol: "https" }
   config.action_mailer.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
   config.force_ssl = true
 end
-Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i

@@ -19,8 +19,7 @@ require "action_text/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-#TODO change app_name
-module AppName
+module Recipes
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
@@ -32,10 +31,7 @@ module AppName
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
     config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
-
-
     config.generators do |generate|
       generate.test_framework :rspec
       generate.helper false
@@ -48,10 +44,8 @@ module AppName
 
     config.action_controller.action_on_unpermitted_parameters = :raise
 
-    %w[services validators notifiers].each do |dir|
+    %w[services].each do |dir|
       config.autoload_paths += Dir[Rails.root.join('app', dir, '{**/}')]
     end
-
-
   end
 end

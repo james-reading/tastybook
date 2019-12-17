@@ -20,6 +20,8 @@ module.exports = function(api) {
       isTestEnv && [
         require('@babel/preset-env').default,
         {
+          useBuiltIns: 'usage',
+          corejs: '3.4.0',
           targets: {
             node: 'current'
           }

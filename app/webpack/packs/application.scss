@@ -1,7 +1,4 @@
-//TODO: Split into only what we need from bootstrap
-
-@import 'variables/theme';
-@import 'variables/bootstrap';
+@import '../styles/variables/bootstrap';
 
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
@@ -36,6 +33,15 @@
 @import '~bootstrap/scss/tooltip';
 @import '~bootstrap/scss/popover';
 @import '~bootstrap/scss/carousel';
+@import '~bootstrap/scss/spinners';
 @import '~bootstrap/scss/utilities';
-
 @import '~bootstrap/scss/print';
+
+@import '../styles/modules/forms';
+@import '../styles/modules/cards';
+@import '../styles/modules/navbar';
+
+@import '../styles/utilities/appearance';
+@import '../styles/utilities/layout';
+
+@import '../styles/pages/devise';

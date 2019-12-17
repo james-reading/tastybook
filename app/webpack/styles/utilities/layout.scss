@@ -1,0 +1,18 @@
+html,
+body {
+  height: 100%;
+}
+
+@for $i from 1 through 5 {
+  .rythmy-#{$i} {
+    > * + * {
+      margin-top: map-get($spacers, $i);
+    }
+  }
+
+  .rythmx-#{$i} {
+    > * + * {
+      margin-left: map-get($spacers, $i);
+    }
+  }
+}
