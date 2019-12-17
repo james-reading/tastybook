@@ -1,0 +1,8 @@
+= simple_form_for @recipe do |f|
+  = f.input :name
+  = f.association :cuisine, collection: Cuisine.all, prompt: 'Please select'
+  = f.input :length, collection: Recipe::LENGTHS, prompt: 'Please select'
+  = f.input :link
+  .form-actions
+    = link_to 'Cancel', authenticated_root_path
+    = f.submit 'Save', class: 'btn btn-primary'
