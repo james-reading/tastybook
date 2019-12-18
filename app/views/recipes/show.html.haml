@@ -1,3 +1,6 @@
 = link_to 'All recipes', recipes_path
 
 %h1= @recipe.name
+
+- if @recipe.link.present?
+ = link_to "Go", @recipe.link, target: '_blank', class: 'btn btn-primary'
