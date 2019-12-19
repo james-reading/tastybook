@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_220732) do
     t.string "name", default: "", null: false
     t.bigint "cuisine_id", null: false
     t.string "length"
+    t.integer "servings"
     t.string "link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -5,6 +5,7 @@ class CreateRecipes < ActiveRecord::Migration[6.0]
       t.string :name, null: false, default: ''
       t.references :cuisine, null: false, foreign_key: true, index: true
       t.string :length
+      t.integer :servings
       t.string :link
 
       t.timestamps null: false

@@ -6,3 +6,9 @@ import Turbolinks from 'turbolinks';
 
 Rails.start();
 Turbolinks.start();
+
+import setupSidenav from '../javascript/modules/sideNav';
+
+$(function() {
+  setupSidenav();
+});

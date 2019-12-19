@@ -1,1 +1,25 @@
-%li= link_to recipe.name, recipe
+.card
+  .card-body
+
+    .dropdown.float-right.dropleft
+      %button.btn.btn-link{ id: "recipe-#{recipe.id}-dropdown", 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', type: 'button'}
+        %i.fas.fa-ellipsis-v.text-muted
+      .dropdown-menu{ 'aria-labelledby' => 'recipe-#{recipe.id}-dropdown' }
+        = link_to 'Edit', [:edit, recipe], class: 'dropdown-item'
+
+    %h2= recipe.name
+    .d-flex.flex-wrap.text-nowrap.mb-n1.small
+      .d-flex.align-items-center.mr-3.mb-1
+        %i.fas.fa-globe-europe.fa-lg.mr-2
+        %div= recipe.cuisine_name.upcase
+      .d-flex.align-items-center.mr-3.mb-1
+        %i.fas.fa-clock.fa-lg.mr-2
+        %div= recipe.length.upcase
+      .d-flex.align-items-center.mr-3.mb-1
+        %i.fas.fa-utensils.fa-lg.mr-2
+        %div SERVES #{recipe.servings}
+
+    - if recipe.link.present?
+      = link_to recipe.link, target: '_blank', class: 'btn btn-primary w-100 mt-3' do
+        %i.fas.fa-link.mr-1
+        %span= URI(recipe.link).host.gsub('www.', '')

@@ -12,7 +12,9 @@
     = csp_meta_tag
 
   %body.d-flex.flex-column
-    = render 'navbar' unless devise_controller?
+    - unless devise_controller?
+      = render 'navbar'
+      = render 'sidenav'
     = render 'flashes'
     %main.container.flex-fill.d-flex.flex-column.flex-auto.flex-shrink-0.py-5{ class: content_for(:extra_container_class) }
       = yield

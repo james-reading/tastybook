@@ -1,0 +1,8 @@
+.sidenav
+  - if user_signed_in?
+    = button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-link'
+
+%btn.btn.sidenav-toggle
+  %span
+  %span
+  %span

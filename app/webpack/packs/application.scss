@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Amaranth:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 @import '../styles/variables/bootstrap';
 
 @import '~bootstrap/scss/functions';
@@ -38,9 +38,13 @@
 @import '~bootstrap/scss/utilities';
 @import '~bootstrap/scss/print';
 
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
 @import '../styles/modules/forms';
 @import '../styles/modules/cards';
 @import '../styles/modules/navbar';
+@import '../styles/modules/sidenav';
 
 @import '../styles/utilities/appearance';
 @import '../styles/utilities/layout';
