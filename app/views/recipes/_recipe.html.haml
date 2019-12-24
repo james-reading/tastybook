@@ -6,6 +6,12 @@
         %i.fas.fa-ellipsis-v.text-muted
       .dropdown-menu{ 'aria-labelledby' => 'recipe-#{recipe.id}-dropdown' }
         = link_to 'Edit', [:edit, recipe], class: 'dropdown-item'
+        .dropdown-divider
+        = link_to 'Delete',
+          recipe,
+          class: 'dropdown-item text-danger',
+          method: :delete,
+          data: { confirm: 'Are you sure you want to delete this recipe?' }
 
     %h2= recipe.name
     .d-flex.flex-wrap.text-nowrap.mb-n1.small

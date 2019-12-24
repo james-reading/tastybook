@@ -37,3 +37,11 @@ en:
           attributes:
             link:
               http_url: 'is not valid'
+  flashes:
+    recipe:
+      create:
+        success: 'Recipe created successfully'
+      update:
+        success: 'Recipe updated successfully'
+      destroy:
+        success: 'Recipe has been deleted'

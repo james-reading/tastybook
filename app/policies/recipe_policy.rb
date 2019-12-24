@@ -8,6 +8,14 @@ class RecipePolicy < ApplicationPolicy
     show?
   end
 
+  def update?
+    edit?
+  end
+
+  def destroy?
+    edit?
+  end
+
   class Scope < Scope
     def resolve
       user.recipes

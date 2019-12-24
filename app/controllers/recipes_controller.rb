@@ -37,6 +37,8 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find params[:id]
 
+    authorize @recipe
+
     if @recipe.update_attributes(recipe_params)
       redirect_to recipes_path, flash: { success: t('flashes.recipe.update.success') }
     else
@@ -45,6 +47,13 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    @recipe = Recipe.find params[:id]
+
+    authorize @recipe
+
+    @recipe.destroy
+
+    redirect_to recipes_path, flash: { success: t('flashes.recipe.destroy.success') }
   end
 
   private
