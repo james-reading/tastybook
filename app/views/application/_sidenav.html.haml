@@ -1,6 +1,12 @@
-.sidenav
+.sidenav.d-flex.flex-column.justify-content-between
+  %ul
+    %li= link_to 'All recipes', recipes_path
+    %li= link_to 'New recipe', new_recipe_path
+
   - if user_signed_in?
-    = button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-link'
+    = button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary d-block mx-auto mb-4'
+
+
 
 %btn.btn.sidenav-toggle
   %span
