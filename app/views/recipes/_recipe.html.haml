@@ -20,6 +20,6 @@
         %div SERVES #{recipe.servings}
 
     - if recipe.link.present?
-      = link_to recipe.link, target: '_blank', class: 'btn btn-primary w-100 mt-3' do
+      = link_to recipe.link_uri.to_s, target: '_blank', class: 'btn btn-primary w-100 mt-3' do
         %i.fas.fa-link.mr-1
-        %span= URI(recipe.link).host.gsub('www.', '')
+        %span= recipe.link_host

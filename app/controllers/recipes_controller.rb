@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recipes = policy_scope(Recipe).order(:name)
+    @recipes = policy_scope(Recipe).includes(:cuisine).order(:name)
   end
 
   def show

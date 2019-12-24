@@ -44,7 +44,7 @@ module Recipes
 
     config.action_controller.action_on_unpermitted_parameters = :raise
 
-    %w[services].each do |dir|
+    %w[services validators].each do |dir|
       config.autoload_paths += Dir[Rails.root.join('app', dir, '{**/}')]
     end
   end
