@@ -8,7 +8,9 @@ Rails.start();
 Turbolinks.start();
 
 import setupSidenav from '../javascript/modules/sideNav';
+import setupAutoSubmit from '../javascript/modules/autoSubmit';
 
 $(function() {
   setupSidenav();
+  setupAutoSubmit();
 });

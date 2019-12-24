@@ -1,2 +1,8 @@
-.rythmy-3
+= simple_form_for @search, url: recipes_path, method: :get, remote: true, html: { class: 'js-form-autosubmit' } do |f|
+  = f.input :q,
+    autofocus: true,
+    placeholder: 'Search',
+    label_html: { class: 'sr-only' }
+
+.js-updateable-recipes.rythmy-3
   = render @recipes

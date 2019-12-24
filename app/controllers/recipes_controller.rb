@@ -2,7 +2,10 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recipes = policy_scope(Recipe).includes(:cuisine).order(:name)
+    @search = Recipe::Search.new(search_params.merge(user: current_user))
+    @recipes = @search.run
+
+    respond_to :html, :js
   end
 
   def show
@@ -48,5 +51,9 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :cuisine_id, :length, :servings, :link)
+  end
+
+  def search_params
+    params.fetch(:recipe_search, {}).permit(:q)
   end
 end

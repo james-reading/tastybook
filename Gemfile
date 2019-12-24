@@ -19,6 +19,8 @@ gem 'simple_form'
 gem 'bugsnag'
 gem 'skylight'
 gem 'devise'
+gem 'active_attr'
+gem 'searchkick'
 
 group :development, :test do
   gem 'pry'
