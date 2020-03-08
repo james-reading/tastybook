@@ -14,3 +14,5 @@ $(function() {
   setupSidenav();
   setupAutoSubmit();
 });
+
+console.log('yo');
