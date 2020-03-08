@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  searchkick word_middle: [:name]
+  searchkick word_start: [:name]
 
   belongs_to :user
   belongs_to :cuisine

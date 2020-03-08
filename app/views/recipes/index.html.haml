@@ -5,3 +5,6 @@
 
 .js-updateable-recipes.rythmy-3
   = render @recipes
+
+.js-infinite-scroll.text-center.mt-4{ 'data-pagination-endpoint': @endpoint, 'data-pagination-pages': @page_amount }
+  %i.fas.fa-spinner.fa-spin.fa-lg

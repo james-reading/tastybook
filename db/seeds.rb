@@ -66,3 +66,34 @@ cuisines.each do |name|
   end
 end
 puts "Cuisines created: #{i}"
+
+
+# create some random recipes
+cuisine_count = Cuisine.count
+user = User.last
+
+500.times do
+  name = begin
+    n = rand
+    if n > 0.66
+      "#{FFaker::Food.vegetable} and #{FFaker::Food.fruit}"
+    elsif n > 0.33
+      "#{FFaker::Food.meat} pie"
+    else
+      FFaker::Food.ingredient
+    end
+  end
+
+  cuisine = Cuisine.offset(rand(cuisine_count)).first
+
+  Recipe.find_or_initialize_by(name: name).tap do |recipe|
+    recipe.cuisine = cuisine
+    recipe.user = user
+    recipe.length =  Recipe::LENGTHS.sample
+    recipe.servings = [2,4,6].sample
+    recipe.link = 'https://www.bbcgoodfood.com/recipes/cottage-pie'
+
+    recipe.save!
+    pp "Created #{name}"
+  end
+end

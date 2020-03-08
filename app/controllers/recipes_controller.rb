@@ -2,10 +2,22 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @search = Recipe::Search.new(search_params.merge(user: current_user))
+    options = {
+      user: current_user,
+      page: params[:page]
+    }
+
+    @search = Recipe::Search.new(search_params.merge(options))
     @recipes = @search.run
 
-    respond_to :html, :js
+    @endpoint = recipes_path
+    @page_amount = 5000
+
+    if params[:page].to_i > 1 && request.xhr?
+      render @recipes
+    else
+      respond_to :html, :js
+    end
   end
 
   def show
