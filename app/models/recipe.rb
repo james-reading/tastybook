@@ -28,7 +28,9 @@ class Recipe < ApplicationRecord
 
   def link_validator
     begin
-      valid = link_uri.tap { |uri| uri.is_a?(URI::HTTP) && uri.host.present? }
+      valid = link_uri.instance_eval do |uri|
+        uri.is_a?(URI::HTTP) && uri.host.present?
+      end
     rescue URI::InvalidURIError
       valid = false
     end
