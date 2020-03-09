@@ -21,6 +21,7 @@ gem 'skylight'
 gem 'devise'
 gem 'active_attr'
 gem 'searchkick'
+gem 'ffaker'
 
 group :development, :test do
   gem 'pry'
@@ -36,7 +37,6 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'webdrivers', '~> 4.0'
-	gem 'ffaker'
 end
 
 group :test do
