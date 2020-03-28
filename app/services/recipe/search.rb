@@ -7,8 +7,6 @@ class Recipe
 
     attribute :q
     attribute :user
-    attribute :page, default: 1
-    attribute :per_page, default: 25
 
     def run
       prepare_where_object
@@ -18,9 +16,7 @@ class Recipe
         includes: [:cuisine],
         fields: [:name],
         match: :word_start,
-        order: order,
-        page: page,
-        per_page: per_page
+        order: order
       }
 
       r = Recipe.search query_string, options

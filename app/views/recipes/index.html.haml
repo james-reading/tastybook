@@ -1,10 +1,12 @@
-= simple_form_for @search, url: recipes_path, method: :get, remote: true, html: { class: 'js-form-autosubmit' } do |f|
+= simple_form_for @search,
+  url: recipes_path,
+  method: :get,
+  remote: true,
+  html: { class: 'js-form-autosubmit' } do |f|
+  
   = f.input :q,
     placeholder: 'Search',
     label_html: { class: 'sr-only' }
 
 .js-updateable-recipes.rythmy-3
   = render @recipes
-
-.js-infinite-scroll.text-center.mt-4{ 'data-pagination-endpoint': @endpoint, 'data-pagination-pages': @page_amount }
-  %i.fas.fa-spinner.fa-spin.fa-lg

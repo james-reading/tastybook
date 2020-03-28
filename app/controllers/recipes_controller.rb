@@ -3,21 +3,13 @@ class RecipesController < ApplicationController
 
   def index
     options = {
-      user: current_user,
-      page: params[:page]
+      user: current_user
     }
 
     @search = Recipe::Search.new(search_params.merge(options))
     @recipes = @search.run
 
-    @endpoint = recipes_path
-    @page_amount = 5000
-
-    if params[:page].to_i > 1 && request.xhr?
-      render @recipes
-    else
-      respond_to :html, :js
-    end
+    respond_to :html, :js
   end
 
   def show
