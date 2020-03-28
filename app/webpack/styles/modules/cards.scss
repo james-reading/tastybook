@@ -3,3 +3,16 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+.recipe-card {
+  $card-border-radius: 1rem;
+  border: none;
+  box-shadow: 0 0 6px 0 rgba($black, 0.15);
+  // @include border-radius(1rem);
+
+  .card-footer {
+    color: $white;
+    background-color: $blue;
+    border-top: none;
+  }
+}
