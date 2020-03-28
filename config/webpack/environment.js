@@ -1,13 +1,20 @@
 const { environment } = require('@rails/webpacker')
 
-
-const webpack = require('webpack');
-environment.loaders.append('expose', {
-  test: require.resolve('jquery'),
-  use: [{
-    loader: 'expose-loader',
-    options: '$'
-  }]
+Object.entries({
+  jquery: ['$', 'jQuery']
+}).forEach(([moduleName, exposedNames]) => {
+  exposedNames = Array.isArray(exposedNames) ? exposedNames : [exposedNames];
+  exposedNames.forEach(exposedName => {
+    environment.loaders.append(`expose-${moduleName}-${exposedName}`, {
+      test: require.resolve(moduleName),
+      use: [
+        {
+          loader: 'expose-loader',
+          options: exposedName
+        }
+      ]
+    });
+  });
 });
 
 // resolve-url-loader must be used before sass-loader

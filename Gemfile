@@ -22,6 +22,8 @@ gem 'devise'
 gem 'active_attr'
 gem 'searchkick'
 gem 'ffaker'
+gem 'acts_as_list'
+gem 'cocoon'
 
 group :development, :test do
   gem 'pry'

@@ -3,6 +3,8 @@ class Recipe < ApplicationRecord
 
   belongs_to :user
   belongs_to :cuisine
+  has_many :ingredients
+  has_many :steps, -> { order(position: :asc) }
 
   LENGTHS = ['Quick', 'Medium', 'Long'].freeze
 
@@ -10,6 +12,8 @@ class Recipe < ApplicationRecord
   validates :length, presence: true
   validates :length, inclusion: { in: LENGTHS }, unless: -> { length.blank? }
   validate :link_validator, unless: -> { link.blank? }
+
+  accepts_nested_attributes_for :ingredients, :steps, reject_if: :all_blank, allow_destroy: true
 
   delegate :name, to: :cuisine, prefix: true
 

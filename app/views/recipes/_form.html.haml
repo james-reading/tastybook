@@ -4,6 +4,11 @@
   = f.input :length, collection: Recipe::LENGTHS, prompt: 'Please select'
   = f.input :servings
   = f.input :link
+  #ingredients
+    = f.simple_fields_for :ingredients do |ingredient|
+      = render 'ingredient_fields', f: ingredient
+    .ingredients
+      = link_to_add_association 'add ingredient', f, :ingredients
   .form-actions
     = link_to 'Cancel', authenticated_root_path
     = f.submit 'Save', class: 'btn btn-primary'
