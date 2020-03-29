@@ -1,5 +1,7 @@
 class Step < ApplicationRecord
   belongs_to :recipe
 
-   acts_as_list scope: :recipe
+  validates_presence_of :description
+
+  acts_as_list scope: :recipe
 end

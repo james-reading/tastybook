@@ -1,0 +1,14 @@
+- if [recipe.cuisine_name, recipe.length, recipe.servings].any?
+  .d-flex.flex-wrap.small.text-nowrap.text-muted.mb-n1
+    - if recipe.cuisine_name
+      .d-flex.align-items-center.mr-2.mb-1
+        %i.fas.fa-globe-europe.mr-1
+        %div= recipe.cuisine_name.upcase
+    - if recipe.length
+      .d-flex.align-items-center.mr-2.mb-1
+        %i.fas.fa-clock.mr-1
+        %div= recipe.length.upcase
+    - if recipe.servings
+      .d-flex.align-items-center.mr-2.mb-1
+        %i.fas.fa-utensils.mr-1
+        %div SERVES #{recipe.servings}

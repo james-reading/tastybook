@@ -23,7 +23,7 @@
   right: 1rem;
   z-index: 2;
   width: 2rem;
-  height: 3.125rem;
+  height: 42.5px;
 }
 
 .sidenav-toggle span {
@@ -33,18 +33,18 @@
   display: block;
   width: 100%;
   height: 2px;
-  margin-top: -2px;
+  margin-top: -1px;
   background-color: $body-color;
   border-radius: 3px;
   transition: all 0.3s;
 }
 
 .sidenav-toggle span:first-child {
-  margin-top: -12px;
+  margin-top: -11px;
 }
 
 .sidenav-toggle span:last-child {
-  margin-top: 8px;
+  margin-top: 9px;
 }
 
 .sidenav.open + .sidenav-toggle {

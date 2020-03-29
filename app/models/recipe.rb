@@ -2,14 +2,13 @@ class Recipe < ApplicationRecord
   searchkick word_start: [:name]
 
   belongs_to :user
-  belongs_to :cuisine
+  belongs_to :cuisine, optional: true
   has_many :ingredients
   has_many :steps, -> { order(position: :asc) }
 
   LENGTHS = ['Quick', 'Medium', 'Long'].freeze
 
   validates :name, presence: true
-  validates :length, presence: true
   validates :length, inclusion: { in: LENGTHS }, unless: -> { length.blank? }
   validate :link_validator, unless: -> { link.blank? }
 

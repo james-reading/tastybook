@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_03_15_170158) do
 
   create_table "steps", force: :cascade do |t|
     t.bigint "recipe_id", null: false
-    t.string "description"
+    t.text "description"
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

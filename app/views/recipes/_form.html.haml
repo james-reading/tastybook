@@ -1,14 +1,32 @@
 = simple_form_for recipe do |f|
-  = f.input :name
-  = f.association :cuisine, collection: Cuisine.all, prompt: 'Please select'
-  = f.input :length, collection: Recipe::LENGTHS, prompt: 'Please select'
-  = f.input :servings
-  = f.input :link
-  #ingredients
-    = f.simple_fields_for :ingredients do |ingredient|
-      = render 'ingredient_fields', f: ingredient
-    .ingredients
-      = link_to_add_association 'add ingredient', f, :ingredients
+  .card.mb-4
+    .card-body
+      %legend Details
+
+      = f.input :name
+      = f.association :cuisine, collection: Cuisine.all
+      = f.input :length, collection: Recipe::LENGTHS
+      = f.input :servings
+      = f.input :link
+
+  .card.mb-4
+    .card-body
+      %legend Ingredients
+      #ingredients
+        = f.simple_fields_for :ingredients do |ingredient|
+          = render 'ingredient_fields', f: ingredient
+        .ingredients
+          = link_to_add_association 'add ingredient', f, :ingredients
+
+  .card.mb-4
+    .card-body
+      %legend Steps
+      #steps
+        = f.simple_fields_for :steps do |step|
+          = render 'step_fields', f: step
+        .steps
+          = link_to_add_association 'add step', f, :steps
+
   .form-actions
-    = link_to 'Cancel', authenticated_root_path
+    = link_to 'Cancel', recipe
     = f.submit 'Save', class: 'btn btn-primary'

@@ -1,3 +1,14 @@
-= link_to 'All recipes', recipes_path
+.d-flex.justify-content-between
+  %h1= @recipe.name
+  = render 'dropdown'
 
-%h1= @recipe.name
+.mb-4
+  = render 'information', recipe: @recipe
+
+= render 'instructions',
+  ingredients: @recipe.ingredients.load,
+  steps: @recipe.steps.load
+
+= render 'notes'
+
+= render 'comments'

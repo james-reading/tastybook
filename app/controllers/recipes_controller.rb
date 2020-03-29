@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.new(recipe_params)
 
     if @recipe.save
-      redirect_to recipes_path, flash: { success: t('flashes.recipe.create.success') }
+      redirect_to @recipe, flash: { success: t('flashes.recipe.create.success') }
     else
       render :new
     end
@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
     authorize @recipe
 
     if @recipe.update_attributes(recipe_params)
-      redirect_to recipes_path, flash: { success: t('flashes.recipe.update.success') }
+      redirect_to @recipe, flash: { success: t('flashes.recipe.update.success') }
     else
       render :edit
     end
@@ -64,7 +64,11 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :cuisine_id, :length, :servings, :link)
+    params.require(:recipe).permit(
+      :name, :cuisine_id, :length, :servings, :link,
+      ingredients_attributes: [:id, :name, :_destroy],
+      steps_attributes: [:id, :description, :_destroy]
+    )
   end
 
   def search_params

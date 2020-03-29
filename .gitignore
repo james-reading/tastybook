@@ -25,6 +25,8 @@
 /.bundle
 /.env.local
 
+.env
+
 /config/database.yml
 
 # Ignore master key for decrypting credentials and more.

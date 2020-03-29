@@ -1,0 +1,35 @@
+- unless ingredients.empty? && steps.empty?
+  .card.mb-4
+    .card-header
+      %ul.nav.nav-tabs.instructions-tabs.card-header-tabs#intructions-tabs{ role: 'tablist'}
+        %li.nav-item.w-50.text-center
+          %a.nav-link#ingredients-tab{ data: { toggle: "tab" },
+            class: "#{ingredients.empty? ? 'disabled' : 'active'}",
+            href: '#ingredients',
+            role: 'tab',
+            aria: { controls: 'ingredients', selected: 'true' } } Ingredients
+        %li.nav-item.w-50.text-center
+          %a.nav-link#steps-tab{ data: { toggle: 'tab' },
+            class: "#{'active' if ingredients.empty?} #{'disabled' if steps.empty?}",
+            href: '#steps',
+            role: 'tab',
+            aria: { controls: 'steps', selected: 'true' } } Steps
+
+    .card-body.tab-content.recipe-instructions
+      - unless ingredients.empty?
+        .tab-pane#ingredients{ role: 'tabpanel',
+          class: "#{'active' unless ingredients.empty?}",
+          aria: { labelledby: 'ingredients-tab' } }
+          %ul
+            - ingredients.each do |ingredient|
+              %li= ingredient.name
+
+      - unless steps.empty?
+        .tab-pane#steps{ role: 'tabpanel',
+          class: "#{'active' if ingredients.empty?}",
+          aria: { labelledby: 'steps-tab' } }
+          %ol
+            - steps.each.with_index(1) do |step, i|
+              %li
+                %span.h4.mb-0.font-weight-bold.mr-1 #{i}.
+                %span= step.description
