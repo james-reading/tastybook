@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Cuisine, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:cuisine) { build_stubbed :cuisine }
+
+  describe 'factory' do
+    subject { cuisine }
+
+    it { should be_valid }
+  end
 end

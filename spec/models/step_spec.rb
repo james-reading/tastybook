@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Step, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:step) { build_stubbed :step }
+
+  describe 'factory' do
+    subject { step }
+    
+    it { should be_valid }
+  end
 end

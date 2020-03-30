@@ -6,6 +6,7 @@ RSpec.describe Recipe, type: :model do
 
   describe 'factory' do
     subject { recipe }
+
     it { should be_valid }
   end
 

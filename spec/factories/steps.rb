@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :step do
-    recipe { nil }
-    description { "MyString" }
+    recipe
+    description { 'Cook it' }
   end
 end

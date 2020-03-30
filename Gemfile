@@ -48,7 +48,6 @@ group :test do
   gem 'email_spec'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
-  gem 'timecop'
   gem 'pundit-matchers', '~> 1.6.0'
 end
 
