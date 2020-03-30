@@ -5,5 +5,5 @@
 
   - if recipe.link.present?
     = link_to recipe.link_uri.to_s, target: '_blank', class: 'card-footer' do
-      %i.fas.fa-link.mr-1
+      %i.fas.fa-external-link-alt.mr-1
       %span= recipe.link_host
