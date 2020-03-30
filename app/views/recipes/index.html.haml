@@ -3,10 +3,11 @@
   method: :get,
   remote: true,
   html: { class: 'js-form-autosubmit' } do |f|
-  
+
   = f.input :q,
     placeholder: 'Search',
-    label_html: { class: 'sr-only' }
+    label_html: { class: 'sr-only' },
+    wrapper_html: { class: 'mb-4' }
 
 .js-updateable-recipes.rythmy-3
   = render @recipes

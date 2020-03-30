@@ -16,7 +16,7 @@
       = render 'navbar'
       = render 'sidenav'
     = render 'flashes'
-    %main.container.flex-fill.d-flex.flex-column.flex-auto.flex-shrink-0.py-5{ class: content_for(:extra_container_class) }
+    %main.container.flex-fill.d-flex.flex-column.flex-auto.flex-shrink-0.py-4.py-lg-5{ class: content_for(:extra_container_class) }
       = yield
     = yield :modals
     = yield :javascript

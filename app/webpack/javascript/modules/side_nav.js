@@ -1,9 +1,9 @@
-export default function setupSideNav() {
-  $(document).on('click', '.sidenav-toggle', function() {
-    $('.sidenav').toggleClass('open');
-  });
+const OPEN_CLASS = 'sidenav-open';
 
-  $(document).on('turbolinks:before-cache', function() {
-    $('.sidenav').removeClass('open');
-  });
-}
+$(document).on('click', '.sidenav-toggle', function() {
+  $('body').toggleClass(OPEN_CLASS);
+});
+
+$(document).on('turbolinks:before-cache', function() {
+  $('body').removeClass(OPEN_CLASS);
+});

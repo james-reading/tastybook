@@ -1,20 +1,24 @@
+$sidenav-width: 250px;
 /* The side navigation menu */
 .sidenav {
   position: fixed;
   top: 0;
+  bottom: -56px; // to avoid gap when android chrome addressbar closes
   right: 0;
   z-index: 1;
   width: 0;
-  height: 100%;
-  padding-top: 3.125rem;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: $white;
   border-left: 1px solid $gray-400;
   transition: 0.2s;
-}
+  padding-top: 15vh;
 
-.sidenav.open {
-  width: 250px;
+  .sidenav--bottom-center {
+    position: fixed;
+    bottom: 0;
+    margin-left: 0.5 * $sidenav-width;
+    transform: translateX(-50%);
+  }
 }
 
 .sidenav-toggle {
@@ -22,43 +26,28 @@
   top: 0;
   right: 1rem;
   z-index: 2;
-  width: 2rem;
+  width: 1.75rem;
   height: 42.5px;
 }
 
 .sidenav-toggle span {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 1px);
   left: 0%;
   display: block;
   width: 100%;
   height: 2px;
-  margin-top: -1px;
   background-color: $body-color;
   border-radius: 3px;
   transition: all 0.3s;
 }
 
 .sidenav-toggle span:first-child {
-  margin-top: -11px;
+  margin-top: -9px;
 }
 
 .sidenav-toggle span:last-child {
   margin-top: 9px;
-}
-
-.sidenav.open + .sidenav-toggle {
-  span:nth-child(2) {
-    background-color: transparent;
-  }
-  span:last-child {
-    margin-top: -2px;
-    transform: rotate(45deg);
-  }
-  span:first-child {
-    margin-top: -2px;
-    transform: rotate(-45deg);
-  }
 }
 
 .sidenav ul {
@@ -74,5 +63,31 @@
     a {
       color: $body-color;
     }
+  }
+}
+
+.sidenav-open {
+  .sidenav {
+    width: $sidenav-width;
+
+    + .sidenav-toggle {
+      right: 0.8rem;
+
+      span:nth-child(2) {
+        background-color: transparent;
+      }
+      span:last-child {
+        margin-top: -2px;
+        transform: rotate(45deg);
+      }
+      span:first-child {
+        margin-top: -2px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  .sidenav-toggle {
+    position: fixed;
   }
 }
