@@ -2,12 +2,19 @@
   url: recipes_path,
   method: :get,
   remote: true,
-  html: { class: 'js-form-autosubmit' } do |f|
+  html: { class: 'form-inline mb-4' } do |f|
 
   = f.input :q,
     placeholder: 'Search',
     label_html: { class: 'sr-only' },
-    wrapper_html: { class: 'mb-4' }
+    wrapper_html: { class: 'flex-fill' },
+    input_html: { class: 'flex-fill mr-2' }
+
+  = f.button :button,
+    type: :submit,
+    class: 'btn btn-primary flex-center search-button',
+    data: { 'disable-with': "<i class='fa fa-spinner fa-spin'></i>".html_safe } do
+    %i.fas.fa-search
 
 .js-updateable-recipes.rythmy-3
   = render @recipes
