@@ -14,7 +14,7 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :ingredients, :steps, reject_if: :all_blank, allow_destroy: true
 
-  delegate :name, to: :cuisine, prefix: true
+  delegate :name, to: :cuisine, prefix: true, allow_nil: true
 
   def link_host
     link_uri.host.gsub('www.', '') if link.present?

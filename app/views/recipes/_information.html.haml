@@ -4,7 +4,7 @@
       .d-flex.align-items-center.mr-2.mb-1
         %i.fas.fa-globe-europe.mr-1
         %div= recipe.cuisine_name.upcase
-    - if recipe.length
+    - if recipe.length.present?
       .d-flex.align-items-center.mr-2.mb-1
         %i.fas.fa-clock.mr-1
         %div= recipe.length.upcase
