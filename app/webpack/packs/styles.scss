@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
 @import '../styles/variables/bootstrap';
 
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/root';
 @import '~bootstrap/scss/reboot';
@@ -37,6 +36,7 @@
 @import '~bootstrap/scss/spinners';
 @import '~bootstrap/scss/utilities';
 @import '~bootstrap/scss/print';
+@import '~bootstrap/scss/toasts';
 
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
@@ -46,6 +46,7 @@
 @import '../styles/modules/navbar';
 @import '../styles/modules/sidenav';
 @import '../styles/modules/buttons';
+@import '../styles/modules/flashes';
 
 @import '../styles/utilities/appearance';
 @import '../styles/utilities/layout';

@@ -1,0 +1,18 @@
+.flashes {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+@each $name, $color in $theme-colors {
+  .toast-#{$name} {
+    color: darken($color, 20%);
+    background-color: rgba($color, 0.2);
+    border-color: darken($color, 10%);
+
+    .close {
+      color: darken($color, 20%);
+      text-shadow: none;
+    }
+  }
+}

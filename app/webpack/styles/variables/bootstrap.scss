@@ -24,7 +24,8 @@ $body-color: $gray-700;
 
 // fonts
 
-$font-family-sans-serif: 'Raleway', sans-serif;
+$font-family-sans-serif: 'Inconsolata', sans-serif;
+$headings-font-family: 'Montserrat', sans-serif;
 
 $text-muted: $gray-500;
 
@@ -54,3 +55,9 @@ $enable-validation-icons: false;
 // tabs
 
 $nav-tabs-link-active-bg: $white;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+// Disable highlighting of valid state
+$form-validation-states: map-remove($form-validation-states, 'valid');
