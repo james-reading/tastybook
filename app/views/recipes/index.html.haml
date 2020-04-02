@@ -13,12 +13,12 @@
     = f.input :q,
       placeholder: 'Search',
       label_html: { class: 'sr-only' },
-      wrapper_html: { class: 'flex-fill mr-2 mb-0' },
+      wrapper_html: { class: 'flex-fill mr-2 mb-0 shadow-sm' },
       input_html: { class: 'flex-fill' }
 
     = f.button :button,
       type: :submit,
-      class: 'btn btn-primary flex-center search-button',
+      class: 'btn btn-primary flex-center search-button shadow-sm',
       data: { 'disable-with': "<i class='fa fa-spinner fa-spin'></i>".html_safe } do
       %i.fas.fa-search
 

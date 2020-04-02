@@ -71,8 +71,6 @@ $sidenav-width: 250px;
     width: $sidenav-width;
 
     + .sidenav-toggle {
-      // right: 0.8rem;
-
       span:nth-child(2) {
         background-color: transparent;
       }
