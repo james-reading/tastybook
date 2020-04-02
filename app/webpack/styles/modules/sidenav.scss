@@ -9,7 +9,7 @@ $sidenav-width: 250px;
   width: 0;
   overflow: hidden;
   background-color: $white;
-  border-left: 1px solid $gray-400;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   transition: 0.2s;
   padding-top: 15vh;
 
@@ -71,17 +71,17 @@ $sidenav-width: 250px;
     width: $sidenav-width;
 
     + .sidenav-toggle {
-      right: 0.8rem;
+      // right: 0.8rem;
 
       span:nth-child(2) {
         background-color: transparent;
       }
       span:last-child {
-        margin-top: -2px;
+        margin-top: 0;
         transform: rotate(45deg);
       }
       span:first-child {
-        margin-top: -2px;
+        margin-top: 0;
         transform: rotate(-45deg);
       }
     }

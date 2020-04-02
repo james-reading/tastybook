@@ -2,12 +2,13 @@
   - content_for :extra_container_class, 'justify-content-center align-items-center'
   %h2.mb-4 Nothing here!
   = link_to 'New recipe', [:new, :recipe], class: 'btn btn-primary'
+
 - else
   = simple_form_for @search,
     url: recipes_path,
     method: :get,
     remote: true,
-    html: { class: 'form-inline mb-4' } do |f|
+    html: { class: 'form-inline tb-form-no-border mb-4' } do |f|
 
     = f.input :q,
       placeholder: 'Search',

@@ -1,6 +1,6 @@
 .card.recipe-card
   = link_to recipe, class: 'card-body' do
-    %h2= recipe.name
+    %h2.mb-0= recipe.name
     = render 'information', recipe: recipe
 
   - if recipe.link.present?

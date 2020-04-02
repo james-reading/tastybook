@@ -12,3 +12,9 @@ form {
   color: $text-muted;
   content: ' - optional';
 }
+
+.tb-form-no-border {
+  input {
+    border: none;
+  }
+}

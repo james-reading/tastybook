@@ -1,3 +1,7 @@
+.card {
+  border: none;
+}
+
 .devise-card {
   max-width: 600px;
   margin-right: auto;
@@ -5,13 +9,9 @@
 }
 
 .recipe-card {
-  // $card-border-radius: 1rem;
-  // border: none;
-  // box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
-
   .card-footer {
     color: $white;
-    background-color: $blue;
+    background-color: $primary;
     border-top: none;
   }
 
@@ -21,5 +21,11 @@
     &:hover {
       text-decoration: none;
     }
+  }
+}
+
+.instructions-card {
+  .card-header {
+    background-color: rgba($green, 0.125);
   }
 }

@@ -1,14 +1,16 @@
-.d-flex.justify-content-between
-  %h1= @recipe.name
-  = render 'dropdown'
+.card
+  .card-body
+    .d-flex.justify-content-between
+      %h1.mb-0= @recipe.name
+      = render 'dropdown'
 
-.mb-4
-  = render 'information', recipe: @recipe
+    .mb-4
+      = render 'information', recipe: @recipe
 
-= render 'instructions',
-  ingredients: @recipe.ingredients.load,
-  steps: @recipe.steps.load
+    = render 'instructions',
+      ingredients: @recipe.ingredients.load,
+      steps: @recipe.steps.load
 
-= render 'notes'
+    = render 'notes'
 
-= render 'comments'
+    = render 'comments'

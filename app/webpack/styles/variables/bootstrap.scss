@@ -11,15 +11,16 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black: #000;
 
-$blue: #238ec8;
+$green: #749927;
+$yellow: #fde15d;
 
-$primary: $blue;
+$primary: $green;
 
 $spacer: 1rem;
 
 // Body
 
-$body-bg: $gray-100;
+$body-bg: rgba($yellow, 0.5);
 $body-color: $gray-700;
 
 // fonts
