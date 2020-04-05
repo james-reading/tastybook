@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
   searchkick word_start: [:name], searchable: [:name]
+  has_rich_text :notes
 
   belongs_to :user
   belongs_to :cuisine, optional: true

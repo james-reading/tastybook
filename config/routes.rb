@@ -9,5 +9,9 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-  resources :recipes
+  resources :recipes do
+    member do
+      resource :notes, only: [:edit], module: 'recipes'
+    end
+  end
 end

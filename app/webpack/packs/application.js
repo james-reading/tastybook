@@ -8,4 +8,7 @@ import Turbolinks from 'turbolinks';
 Rails.start();
 Turbolinks.start();
 
+import 'trix';
+import '@rails/actiontext';
+
 import '../javascript/modules/side_nav';

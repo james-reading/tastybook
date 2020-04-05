@@ -11,6 +11,6 @@
       ingredients: @recipe.ingredients.load,
       steps: @recipe.steps.load
 
-    = render 'notes'
+    = render 'notes', recipe: @recipe
 
     = render 'comments'

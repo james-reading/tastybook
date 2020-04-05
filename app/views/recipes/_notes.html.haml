@@ -1,5 +1,8 @@
 .mb-4
-  %h4 Notes
+  .d-flex.justify-content-between.align-items-baseline
+    %h4 Notes
+    = link_to edit_notes_path do
+      %i.fas.fa-pencil-alt
   .card.border
     .card-body
-      %i WIP
+      = recipe.notes

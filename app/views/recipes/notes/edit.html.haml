@@ -1,0 +1,10 @@
+= simple_form_for @recipe, html: { class: 'tb-recipe-notes' } do |f|
+  .card.mb-4
+    .card-body
+      %legend Notes
+
+      = f.rich_text_area :notes
+
+  .form-actions
+    = link_to 'Cancel', @recipe, class: 'btn btn-link'
+    = f.submit 'Save', class: 'btn btn-primary'
