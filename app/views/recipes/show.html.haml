@@ -1,4 +1,4 @@
-.card.shadow-sm
+.card.shadow-sm.mb-4
   .card-body
     .d-flex.justify-content-between
       %h1.mb-0= @recipe.name
@@ -13,4 +13,6 @@
 
     = render 'notes', recipe: @recipe
 
+.card.shadow-sm
+  .card-body
     = render 'comments'

@@ -17,5 +17,5 @@
       = f.input :current_password, autocomplete: "current-password", hint: 'We need your current password to confirm your changes'
 
   .form-actions
-    = link_to 'Cancel', authenticated_root_path, class: 'btn btn-link'
+    = link_to 'Cancel', :back, class: 'btn btn-link'
     = f.submit 'Save', class: 'btn btn-primary'

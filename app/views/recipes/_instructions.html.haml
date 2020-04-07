@@ -1,33 +1,37 @@
 - unless ingredients.empty? && steps.empty?
-  .card.instructions-card.border.mb-4
+  .card.instructions-card.mb-4
     .card-header
       %ul.nav.nav-tabs.instructions-tabs.card-header-tabs#intructions-tabs{ role: 'tablist'}
         %li.nav-item.w-50.text-center
-          %a.nav-link#ingredients-tab{ data: { toggle: "tab" },
-            class: "#{ingredients.empty? ? 'disabled' : 'active'}",
+          %a.nav-link.h5.mb-0#ingredients-tab{ data: { toggle: "tab" },
+            class: "#{'active' unless ingredients.empty?}",
             href: '#ingredients',
             role: 'tab',
             aria: { controls: 'ingredients', selected: 'true' } } Ingredients
         %li.nav-item.w-50.text-center
-          %a.nav-link#steps-tab{ data: { toggle: 'tab' },
-            class: "#{'active' if ingredients.empty?} #{'disabled' if steps.empty?}",
+          %a.nav-link.h5.mb-0#steps-tab{ data: { toggle: 'tab' },
+            class: "#{'active' if ingredients.empty?}",
             href: '#steps',
             role: 'tab',
             aria: { controls: 'steps', selected: 'true' } } Steps
 
     .card-body.tab-content.recipe-instructions
-      - unless ingredients.empty?
-        .tab-pane#ingredients{ role: 'tabpanel',
-          class: "#{'active' unless ingredients.empty?}",
-          aria: { labelledby: 'ingredients-tab' } }
+      .tab-pane#ingredients{ role: 'tabpanel',
+        class: "#{'active' unless ingredients.empty?}",
+        aria: { labelledby: 'ingredients-tab' } }
+        - if ingredients.empty?
+          %i.text-muted No ingredients
+        - else
           %ul
             - ingredients.each do |ingredient|
               %li= ingredient.name
 
-      - unless steps.empty?
-        .tab-pane#steps{ role: 'tabpanel',
-          class: "#{'active' if ingredients.empty?}",
-          aria: { labelledby: 'steps-tab' } }
+      .tab-pane#steps{ role: 'tabpanel',
+        class: "#{'active' if ingredients.empty?}",
+        aria: { labelledby: 'steps-tab' } }
+        - if steps.empty?
+          %i.text-muted No steps
+        - else
           %ol
             - steps.each.with_index(1) do |step, i|
               %li

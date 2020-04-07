@@ -25,7 +25,27 @@
 }
 
 .instructions-card {
+  border: 1px solid $green;
+
   .card-header {
-    background-color: rgba($green, 0.125);
+    background-color: $green;
+    border-bottom-color: $green;
+
+    .nav-tabs .nav-link.active {
+      border-color: transparent;
+    }
+
+    .nav-tabs .nav-link:not(.active) {
+      color: $white;
+      // border-color: transparent;
+      // background-color: lighten($green, 10%);
+
+      &:hover {
+        border-color: transparent;
+        background-color: lighten($green, 10%);
+      }
+    }
+
+
   }
 }

@@ -9,3 +9,8 @@ abbr[title] {
 .line-height-base {
   line-height: $line-height-base;
 }
+
+hr {
+  border-color: $primary;
+  border-style: dashed;
+}

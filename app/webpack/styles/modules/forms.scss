@@ -21,6 +21,7 @@ form {
 
 .tb-recipe-notes {
   trix-toolbar [data-trix-attribute='quote'],
+  trix-toolbar [data-trix-attribute='code'],
   trix-toolbar [data-trix-button-group='file-tools'] {
     display: none;
   }
