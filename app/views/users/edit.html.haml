@@ -1,0 +1,21 @@
+= simple_form_for current_user do |f|
+  .card.mb-4.shadow-sm
+    .card-body
+      %legend Settings
+
+      = f.input :username
+      = f.input :email, autocomplete: 'email'
+
+  .card.mb-4.shadow-sm
+    .card-body
+      %legend Change password
+      = f.input :password, autocomplete: 'new-password', label: 'New password'
+      = f.input :password_confirmation, autocomplete: 'new-password'
+
+  .card.mb-4.shadow-sm
+    .card-body
+      = f.input :current_password, autocomplete: "current-password", hint: 'We need your current password to confirm your changes'
+
+  .form-actions
+    = link_to 'Cancel', authenticated_root_path, class: 'btn btn-link'
+    = f.submit 'Save', class: 'btn btn-primary'

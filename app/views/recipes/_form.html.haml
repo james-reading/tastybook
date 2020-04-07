@@ -1,5 +1,5 @@
 = simple_form_for recipe, html: { class: 'optional-flag' } do |f|
-  .card.mb-4
+  .card.mb-4.shadow-sm
     .card-body
       %legend Details
 
@@ -9,7 +9,7 @@
       = f.input :servings
       = f.input :link
 
-  .card.mb-4
+  .card.mb-4.shadow-sm
     .card-body
       %legend Ingredients
       #ingredients
@@ -18,7 +18,7 @@
         .ingredients
           = link_to_add_association 'add ingredient', f, :ingredients
 
-  .card.mb-4
+  .card.mb-4.shadow-sm
     .card-body
       %legend Steps
       #steps
