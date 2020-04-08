@@ -1,6 +1,6 @@
 const OPEN_CLASS = 'sidenav-open';
 
-$(document).on('click', '.sidenav-toggle', function() {
+$(document).on('click', '.hamburger', function() {
   $('body').toggleClass(OPEN_CLASS);
 });
 
