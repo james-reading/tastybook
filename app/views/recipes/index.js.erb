@@ -1,1 +1,1 @@
-$('.js-updateable-recipes').html("<%= j render @recipes %>")
+$('.js-updateable-recipes').html("<%= j render(@recipes) || render('no_results') %>")

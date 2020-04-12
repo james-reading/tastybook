@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
 @import '../styles/variables/bootstrap';
 
 @import '~bootstrap/scss/mixins';
@@ -43,11 +43,13 @@
 @import '../styles/actiontext';
 
 @import '../styles/modules/forms';
+@import '../styles/modules/check_boxes';
 @import '../styles/modules/cards';
 @import '../styles/modules/navbar';
 @import '../styles/modules/sidenav';
 @import '../styles/modules/buttons';
 @import '../styles/modules/flashes';
+@import '../styles/modules/links';
 
 @import '../styles/utilities/appearance';
 @import '../styles/utilities/layout';

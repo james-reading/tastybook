@@ -1,0 +1,47 @@
+.form-check {
+  position: relative;
+  padding-left: 1.5rem;
+  cursor: pointer;
+}
+
+.form-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.form-check label:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  border: $input-border-width solid $input-border-color;
+  @include border-radius($input-border-radius, 0);
+}
+
+/* When the checkbox is checked, add a blue background */
+.form-check input:checked ~ label:before  {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.form-check label:after {
+  content: '\f00c';
+  position: absolute;
+  display: none;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  top: 0px;
+  left: 3px;
+  color: $white;
+}
+
+/* Show the checkmark when checked */
+.form-check input:checked ~ label:after {
+  display: block;
+}

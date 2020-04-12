@@ -8,9 +8,11 @@ class Recipe < ApplicationRecord
   has_many :steps, -> { order(position: :asc) }
 
   LENGTHS = ['Quick', 'Medium', 'Long'].freeze
+  COURSES = ['Starter', 'Main', 'Dessert', 'Side', 'Other'].freeze
 
-  validates :name, presence: true
+  validates :name, :length, :course, presence: true
   validates :length, inclusion: { in: LENGTHS }, unless: -> { length.blank? }
+  validates :course, inclusion: { in: COURSES }, unless: -> { course.blank? }
   validate :link_validator, unless: -> { link.blank? }
 
   accepts_nested_attributes_for :ingredients, :steps, reject_if: :all_blank, allow_destroy: true
@@ -29,6 +31,15 @@ class Recipe < ApplicationRecord
   end
 
   private
+
+  def search_data
+    {
+      name: name,
+      length: length,
+      course: course,
+      user_id: user_id
+    }
+  end
 
   def link_validator
     begin

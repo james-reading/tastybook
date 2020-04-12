@@ -1,7 +1,7 @@
 - content_for :extra_container_class, 'justify-content-center'
 
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .card.devise-card
+  .card.devise-card.shadow-sm
     .card-body
       .form-inputs
         = f.input :email, autofocus: true, input_html: { autocomplete: "email" }
@@ -11,4 +11,4 @@
         = f.button :submit, 'Log in', class: 'btn btn-primary float-right'
 
 .mt-3
-  = render "devise/shared/links"
+  = render 'devise/shared/links'

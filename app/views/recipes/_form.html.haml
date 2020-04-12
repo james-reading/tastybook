@@ -6,6 +6,7 @@
       = f.input :name
       = f.association :cuisine, collection: Cuisine.all
       = f.input :length, collection: Recipe::LENGTHS
+      = f.input :course, collection: Recipe::COURSES
       = f.input :servings
 
   .card.mb-4.shadow-sm

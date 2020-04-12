@@ -2,11 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    options = {
-      user: current_user
-    }
-
-    @search = Recipe::Search.new(search_params.merge(options))
+    @search = Recipe::Search.new(search_options)
     @recipes = @search.run
 
     respond_to :html, :js
@@ -60,17 +56,38 @@ class RecipesController < ApplicationController
     redirect_to recipes_path, flash: { success: t('flashes.recipe.destroy.success') }
   end
 
+  def im_feeling_lucky
+    @recipe = Recipe::Randomizer.new(search_options).run
+
+    respond_to do |format|
+      format.html { redirect_to feeling_lucky_path }
+      format.js { render 'shared/turbolinks_visit', locals: { path: feeling_lucky_path } }
+    end
+  end
+
   private
 
   def recipe_params
     params.require(:recipe).permit(
-      :name, :cuisine_id, :length, :servings, :link, :notes,
+      :name, :cuisine_id, :length, :servings, :link, :notes, :course,
       ingredients_attributes: [:id, :name, :_destroy],
       steps_attributes: [:id, :description, :_destroy]
     )
   end
 
   def search_params
-    params.fetch(:recipe_search, {}).permit(:q)
+    params.fetch(:recipe_search, {}).permit(:q, length: [], course: [])
+  end
+
+  def search_options
+    search_params.merge(user: current_user)
+  end
+
+  def feeling_lucky_path
+    if @recipe
+      recipe_path @recipe
+    else
+      recipes_path recipe_search: search_params
+    end
   end
 end

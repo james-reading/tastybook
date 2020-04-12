@@ -1,7 +1,7 @@
 - content_for :extra_container_class, 'justify-content-center'
 
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  .card.devise-card
+  .card.devise-card.shadow-sm
     .card-body
       .form-inputs
         = f.input :email,

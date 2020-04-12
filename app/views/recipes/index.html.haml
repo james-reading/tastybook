@@ -1,17 +1,12 @@
-- if @recipes.empty?
-  - content_for :extra_container_class, 'justify-content-center align-items-center'
-  %h2.mb-4 Nothing here!
-  = link_to 'New recipe', [:new, :recipe], class: 'btn btn-primary'
+.card.mb-4.shadow-sm
+  .card-body
+    = simple_form_for @search,
+      url: recipes_path,
+      method: :get,
+      remote: true,
+      html: { class: 'form-inline-' } do |f|
 
-- else
-  .card.mb-4.shadow-sm
-    .card-body
-      = simple_form_for @search,
-        url: recipes_path,
-        method: :get,
-        remote: true,
-        html: { class: 'form-inline' } do |f|
-
+      .d-flex
         = f.input :q,
           placeholder: 'Search',
           label_html: { class: 'sr-only' },
@@ -21,8 +16,28 @@
         = f.button :button,
           type: :submit,
           class: 'btn btn-primary flex-center search-button',
-          data: { 'disable-with': "<i class='fa fa-spinner fa-spin'></i>".html_safe } do
-          %i.fas.fa-search
+          data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
+          %i.fas.fa-search.fa-fw
 
-  .js-updateable-recipes.rythmy-4
-    = render @recipes
+      = link_to 'More filters',
+        '#filterCollpase',
+        'aria-controls': 'filterCollpase',
+        'aria-expanded': 'false',
+        'data-toggle': 'collapse',
+        role: 'button',
+        class: 'mt-1 d-inline-block chevron-toggle'
+
+      #filterCollpase.collapse
+        .d-flex.rythmx-3.mt-3
+          = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS
+          = f.input :course, as: :check_boxes, collection: Recipe::COURSES
+          .flex-fill
+            = f.button :button,
+              formaction: im_feeling_lucky_recipes_path,
+              type: :submit,
+              class: 'btn btn-primary flex-center search-button ml-auto',
+              data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
+              %i.fas.fa-dice.fa-fw
+
+.js-updateable-recipes.rythmy-4
+  = render(@recipes) || render('no_results')
