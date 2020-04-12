@@ -1,17 +1,17 @@
 .chevron-toggle {
   &::after {
-    content: '\f078';
-    font-family: 'Font Awesome 5 Free';
-    margin-left: 0.5rem;
     display: inline-block;
-    transition: transform 0.4s
+    margin-left: 0.5rem;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f078';
+    transition: transform 0.4s;
   }
 
   &:hover {
     text-decoration: none;
   }
 
-  &[aria-expanded='true']:after {
+  &[aria-expanded='true']::after {
     transform: rotate(180deg);
   }
 }
