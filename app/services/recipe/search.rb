@@ -50,7 +50,6 @@ class Recipe
     end
 
     def limit_by_length
-      pp length.present?
       if length.present?
         where[:length] = length
       end

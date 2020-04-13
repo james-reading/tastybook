@@ -1,0 +1,6 @@
+<% if @recipe %>
+  Turbolinks.visit("<%= recipe_path(@recipe) %>", { 'action': 'advance' });
+<% else %>
+  $('#filterCollapse').collapse('hide');
+  $('.js-updateable-recipes').html("<%= j render 'no_results' %>")
+<% end %>

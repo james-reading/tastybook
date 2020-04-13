@@ -19,15 +19,15 @@
           data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
           %i.fas.fa-search.fa-fw
 
-      = link_to 'More filters',
-        '#filterCollpase',
-        'aria-controls': 'filterCollpase',
+      = link_to 'Options',
+        '#filterCollapse',
+        'aria-controls': 'filterCollapse',
         'aria-expanded': 'false',
         'data-toggle': 'collapse',
         role: 'button',
         class: 'mt-1 d-inline-block chevron-toggle'
 
-      #filterCollpase.collapse
+      #filterCollapse.collapse
         .d-flex.rythmx-3.mt-3
           = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS
           = f.input :course, as: :check_boxes, collection: Recipe::COURSES

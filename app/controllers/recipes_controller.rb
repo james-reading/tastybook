@@ -60,8 +60,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe::Randomizer.new(search_options).run
 
     respond_to do |format|
-      format.html { redirect_to feeling_lucky_path }
-      format.js { render 'shared/turbolinks_visit', locals: { path: feeling_lucky_path } }
+      format.html { redirect_to(@recipe ? recipe_path(@recipe) : recipes_path(recipe_search: search_params)) }
+      format.js
     end
   end
 
