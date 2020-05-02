@@ -12,6 +12,7 @@ import '@rails/actiontext';
 import 'bootstrap/js/src/collapse';
 import 'bootstrap/js/src/dropdown';
 import 'bootstrap/js/src/tab';
+import 'bootstrap/js/src/alert';
 
 import '../javascript/modules/sideNav';
 import '../javascript/modules/confirmExitForm';

@@ -15,8 +15,8 @@
     - unless devise_controller?
       = render 'navbar'
       = render 'sidenav'
-    = render 'flashes'
     %main.container.flex-fill.d-flex.flex-column.flex-auto.flex-shrink-0.py-4.py-lg-5{ class: content_for(:extra_container_class) }
+      = render 'flashes'
       = yield
     = yield :modals
     = yield :javascript

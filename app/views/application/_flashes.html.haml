@@ -1,8 +1,7 @@
 - if flash.any?
   .flashes
     - user_facing_flashes.each do |key, value|
-      .toast{"aria-atomic" => "true", "aria-live" => "assertive", :role => "alert", 'data-delay': 2000, class: bootstrap_class_for(key) }
-        .toast-body.d-flex.align-items-center
-          .mr-3= value
-          %button.close{"aria-label" => "Close", "data-dismiss" => "toast", :type => "button"}
-            %i.fas.fa-times-circle.fa-sm{"aria-hidden" => "true"}
+      .alert.alert-dismissible.fade.show{ role: 'alert', class: bootstrap_class_for(key) }
+        .mr-3= value
+        %button.close{ 'aria-label': 'Close', 'data-dismiss': 'alert', type: 'button'}
+          %i.fas.fa-times-circle.fa-sm{ 'aria-hidden': 'true' }

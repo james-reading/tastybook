@@ -1,8 +1,14 @@
 .card.shadow-sm.mb-4
   .card-body
     .d-flex.justify-content-between
-      %h1.mb-0= @recipe.name
-      = render 'dropdown'
+      .d-flex.align-items-center
+        %h1.mb-0= @recipe.name
+        - if @recipe.link.present?
+          = link_to @recipe.link_uri.to_s, target: '_blank', class: '' do
+            %i.fas.fa-external-link-alt.fa-lg.ml-2
+            .sr-only External link to recipe
+
+      = render 'dropdown', recipe: @recipe
 
     .mb-4
       = render 'information', recipe: @recipe

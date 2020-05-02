@@ -1,9 +1,8 @@
-.d-flex.justify-content-between.align-items-baseline
-  %h4 Notes
-  = link_to edit_notes_path do
-    %i.fas.fa-pencil-alt.fa-sm
-%hr.mt-0
-- if recipe.notes.present?
-  = recipe.notes.presence
-- else
-  %i.text-muted No notes
+- if @recipe.notes.present?
+  - if edit?(recipe)
+    = link_to edit_notes_path, class: 'float-right p-1' do
+      .sr-only Edit notes
+      %i.fas.fa-pencil-alt.fa-sm
+  = recipe.notes
+- elsif edit?(recipe)
+  = link_to 'Add a note', edit_notes_path
