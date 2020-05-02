@@ -11,16 +11,15 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black: #000;
 
-$green: #749927;
-$yellow: #fde15d;
+$candy-pink: #e7717d;
 
-$primary: $green;
+$primary: $candy-pink;
 
 $spacer: 1rem;
 
 // Body
 
-$body-bg: rgba($yellow, 0.5);
+$body-bg: #f4f5f7;
 $body-color: $gray-700;
 
 // fonts
@@ -47,6 +46,7 @@ $navbar-padding-y: $spacer / 4;
 // forms
 
 $label-margin-bottom: 0.25rem;
+$input-border-color: $candy-pink;
 
 // settings
 

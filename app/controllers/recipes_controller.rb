@@ -60,7 +60,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe::Randomizer.new(search_options).run
 
     respond_to do |format|
-      format.html { redirect_to(@recipe ? recipe_path(@recipe) : recipes_path(recipe_search: search_params)) }
+      format.html { redirect_to feeling_lucky_path(@recipe) }
       format.js
     end
   end
@@ -83,9 +83,9 @@ class RecipesController < ApplicationController
     search_params.merge(user: current_user)
   end
 
-  def feeling_lucky_path
-    if @recipe
-      recipe_path @recipe
+  def feeling_lucky_path(result)
+    if result
+      recipe_path result
     else
       recipes_path recipe_search: search_params
     end

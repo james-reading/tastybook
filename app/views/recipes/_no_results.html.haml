@@ -1,4 +1,7 @@
-.text-center
+.text-center.mt-5
   %h3.mb-4
-    Your search did not match any recipes :(
+    - if params[:recipe_search]
+      Your search did not match any recipes :(
+    - else
+      You have no recipes yet!
   = link_to 'New recipe', [:new, :recipe], class: 'btn btn-primary'
