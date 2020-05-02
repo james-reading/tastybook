@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
   has_many :ingredients
   has_many :steps, -> { order(position: :asc) }
 
+  has_one_attached :image
+
   LENGTHS = ['Quick', 'Medium', 'Long'].freeze
   COURSES = ['Starter', 'Main', 'Dessert', 'Side', 'Other'].freeze
 

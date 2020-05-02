@@ -1,2 +1,8 @@
-$('#filterCollapse').collapse('hide');
-$('.js-updateable-recipes').html("<%= j render(@recipes) || render('no_results') %>")
+<% if params[:page] %>
+  $('.js-updateable-recipes').append("<%= j render @recipes  %>")
+<% else %>
+  $('#filterCollapse').collapse('hide');
+  $('.js-updateable-recipes').html("<%= j render(@recipes) || render('no_results') %>")
+<% end %>
+
+$('.js-load-more-recipes').replaceWith("<%= j render 'recipes/load_more_link' %>")

@@ -1,17 +1,25 @@
 class Recipe
   class Search
-    include ActiveAttr::Attributes
-    include ActiveAttr::AttributeDefaults
-    include ActiveAttr::BasicModel
-    include ActiveAttr::MassAssignment
+    include ActiveModel::Model
+    include ActiveModel::Attributes
 
     attribute :q
     attribute :user
     attribute :length, default: Recipe::LENGTHS
     attribute :course, default: Recipe::COURSES
+    attribute :page, :integer, default: 1
+    attribute :per_page, :integer, default: 25
 
     def run
-      Recipe.search query_string, options
+      @recipes = Recipe.search query_string, options
+    end
+
+    def page
+      super || 1
+    end
+
+    def last_page?
+      page >= total_pages
     end
 
     private
@@ -21,10 +29,12 @@ class Recipe
 
       {
         where: where,
-        includes: [:cuisine],
         fields: [:name],
         match: :word_start,
-        order: order
+        order: order,
+        page: page,
+        per_page: per_page,
+        includes: [{ image_attachment: :blob }, :cuisine]
       }
     end
 
@@ -68,6 +78,14 @@ class Recipe
       else
         { _score: :desc }
       end
+    end
+
+    def total_count
+      @recipes.total_count
+    end
+
+    def total_pages
+      (total_count.to_f / per_page).ceil
     end
   end
 end

@@ -1,3 +1,6 @@
+- title 'Recipes'
+- description 'Search for a recipe'
+
 = simple_form_for @search,
   url: recipes_path,
   method: :get,
@@ -16,6 +19,7 @@
       class: 'btn btn-primary flex-center search-button',
       data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
       %i.fas.fa-search.fa-fw
+      .sr-only Search
 
   = link_to 'Options',
     '#filterCollapse',
@@ -36,6 +40,9 @@
           class: 'btn btn-primary flex-center search-button ml-auto',
           data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
           %i.fas.fa-dice.fa-fw
+          .sr-only I'm feeling lucky
 
-.js-updateable-recipes.rythmy-4
+.js-updateable-recipes.row
   = render(@recipes) || render('no_results')
+
+= render 'load_more_link'

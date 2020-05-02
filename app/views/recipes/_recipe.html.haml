@@ -1,9 +1,16 @@
-.card.recipe-card.shadow-sm
-  = link_to recipe, class: 'card-body' do
-    %h2.mb-0= recipe.name
-    = render 'information', recipe: recipe
+.col-md-6.col-lg-4.d-flex
+  .card.recipe-card.shadow-sm.mb-4.flex-fill
+    = link_to recipe, class: 'card-img-top embed-responsive embed-responsive-21by9' do
+      - if recipe.image.attached?
+        = image_tag url_for(recipe.image), class: 'embed-responsive-item object-fit-cover', alt: 'Recipe image'
+      - else
+        = image_pack_tag 'media/images/placeholder-recipe.png', class: 'embed-responsive-item object-fit-cover', alt: 'Recipe placeholder image'
+      .sr-only View recipe
+    = link_to recipe, class: 'card-body' do
+      %h2.mb-0= recipe.name
+      = render 'information', recipe: recipe
 
-  - if recipe.link.present?
-    = link_to recipe.link_uri.to_s, target: '_blank', class: 'card-footer' do
-      %i.fas.fa-external-link-alt.mr-1
-      %span= recipe.link_host
+    - if recipe.link.present?
+      = link_to recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer', class: 'card-footer' do
+        %i.fas.fa-external-link-alt.mr-1
+        %span= recipe.link_host

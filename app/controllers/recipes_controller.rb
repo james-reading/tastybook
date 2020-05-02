@@ -69,7 +69,7 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-      :name, :cuisine_id, :length, :servings, :link, :notes, :course,
+      :name, :cuisine_id, :length, :servings, :link, :notes, :course, :image,
       ingredients_attributes: [:id, :name, :_destroy],
       steps_attributes: [:id, :description, :_destroy]
     )
@@ -80,7 +80,10 @@ class RecipesController < ApplicationController
   end
 
   def search_options
-    search_params.merge(user: current_user)
+    search_params.merge(
+      user: current_user,
+      page: params[:page]
+    )
   end
 
   def feeling_lucky_path(result)

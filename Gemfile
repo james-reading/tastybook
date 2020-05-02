@@ -19,11 +19,12 @@ gem 'simple_form'
 gem 'bugsnag'
 gem 'skylight'
 gem 'devise'
-gem 'active_attr'
 gem 'searchkick'
 gem 'ffaker'
 gem 'acts_as_list'
 gem 'cocoon'
+gem 'aws-sdk-s3', require: false
+gem 'meta-tags'
 
 group :development, :test do
   gem 'pry'

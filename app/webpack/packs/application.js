@@ -16,3 +16,5 @@ import 'bootstrap/js/src/alert';
 
 import '../javascript/modules/sideNav';
 import '../javascript/modules/confirmExitForm';
+
+require.context('../images', true);
