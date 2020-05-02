@@ -16,5 +16,6 @@ import 'bootstrap/js/src/alert';
 
 import '../javascript/modules/sideNav';
 import '../javascript/modules/confirmExitForm';
+import '../javascript/modules/emptyBeforeCache';
 
 require.context('../images', true);

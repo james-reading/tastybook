@@ -8,6 +8,12 @@
       %i.fas.fa-ellipsis-v.text-primary
     .dropdown-menu{ 'aria-labelledby' => 'dropdown' }
       = link_to 'Edit', [:edit, recipe], class: 'dropdown-item'
+      - if recipe.image.attached?
+        = link_to 'Remove image',
+          recipe_image_path,
+          class: 'dropdown-item',
+          method: :delete,
+          data: { confirm: 'Are you sure you want to remove the image?' }
       .dropdown-divider
       = link_to 'Delete',
         recipe,

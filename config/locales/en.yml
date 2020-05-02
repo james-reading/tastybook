@@ -45,3 +45,6 @@ en:
         success: 'Recipe updated successfully'
       destroy:
         success: 'Recipe has been deleted'
+      image:
+        destroy:
+          success: 'Recipe image has been removed'
