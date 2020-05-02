@@ -1,4 +1,4 @@
-= simple_form_for recipe, html: { class: 'optional-flag' } do |f|
+= simple_form_for recipe, html: { class: 'optional-flag js-confirm-exit' } do |f|
   .card.mb-4.shadow-sm
     .card-body
       %legend Details
@@ -32,5 +32,6 @@
           = link_to_add_association 'add step', f, :steps
 
   .form-actions
-    = link_to 'Cancel', :back, class: 'btn btn-link'
-    = f.submit 'Save', class: 'btn btn-primary'
+    - unless request.url == request.referer
+      = link_to 'Cancel', :back, class: 'btn btn-link'
+    = f.submit 'Save', class: 'btn btn-primary btn-lg ml-auto'

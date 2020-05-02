@@ -25,11 +25,11 @@
 }
 
 .instructions-card {
-  border: 1px solid $green;
+  border: 1px solid $primary;
 
   .card-header {
-    background-color: $green;
-    border-bottom-color: $green;
+    background-color: $primary;
+    border-bottom-color: $primary;
 
     .nav-link.active {
       border-color: transparent;
@@ -37,11 +37,9 @@
 
     .nav-link:not(.active) {
       color: $white;
-      // border-color: transparent;
-      // background-color: lighten($green, 10%);
 
       &:hover {
-        background-color: lighten($green, 10%);
+        background-color: lighten($primary, 10%);
         border-color: transparent;
       }
     }
