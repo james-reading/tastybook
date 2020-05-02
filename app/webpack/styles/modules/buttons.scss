@@ -3,3 +3,11 @@
     line-height: 1.5;
   }
 }
+
+.btn-link-secondary {
+  color: $secondary;
+
+  @include hover {
+    color: darken($secondary, 15%);
+  }
+}

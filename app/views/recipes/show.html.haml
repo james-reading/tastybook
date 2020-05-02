@@ -1,10 +1,13 @@
 = form_with model: @recipe, class: 'ml-auto' do |f|
   = f.file_field :image, onchange: 'form.submit()', accept: 'image/*', class: 'd-none'
-  = f.label :image do
+  = f.label :image, class: 'btn btn-link btn-link-secondary p-0' do
     %i.fas.fa-camera.fa-2x.pb-1.px-2
     .sr-only Upload image
 
 .card.shadow-sm.mb-4
+  - if @recipe.image.attached?
+    .card-img-top.embed-responsive.embed-responsive-21by9
+      .embed-responsive-item.recipe-image{ style: "background-image:url(#{url_for(@recipe.image)});" }
   .card-body
     .d-flex.justify-content-between
       %h1.mb-0= title @recipe.name
