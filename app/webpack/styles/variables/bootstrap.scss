@@ -55,6 +55,11 @@ $enable-validation-icons: false;
 
 $nav-tabs-link-active-bg: $white;
 
+// cards
+
+$card-border-width: 2px;
+$card-border-color: $primary;
+
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 

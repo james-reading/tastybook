@@ -9,7 +9,7 @@
     .card.shadow-sm.mb-4
       - if @recipe.image.attached?
         .card-img-top.embed-responsive.embed-responsive-21by9
-          .embed-responsive-item.recipe-image{ style: "background-image:url(#{rails_blob_url(@recipe.image)});" }
+          .embed-responsive-item.recipe-image{ style: "background-image:url(#{rails_representation_url(@recipe.image.variant(resize_to_fill: [1200, 514]))});" }
       .card-body
         .d-flex.justify-content-between
           %h1.mb-0= title @recipe.name

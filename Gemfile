@@ -25,6 +25,7 @@ gem 'acts_as_list'
 gem 'cocoon'
 gem 'aws-sdk-s3', require: false
 gem 'meta-tags'
+gem 'image_processing'
 
 group :development, :test do
   gem 'pry'
