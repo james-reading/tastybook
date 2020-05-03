@@ -1,6 +1,6 @@
 :ruby
   image_url = if recipe.image.attached?
-    url_for recipe.image
+    rails_blob_url recipe.image
   else
     asset_pack_path 'media/images/placeholder-recipe.svg'
   end
@@ -8,7 +8,7 @@
 .col-md-6.col-lg-4.d-flex
   .card.recipe-card.shadow-sm.mb-4.flex-fill
     = link_to recipe, class: 'card-img-top embed-responsive embed-responsive-21by9' do
-      .embed-responsive-item.recipe-image{ style: "background-image:url('#{image_url}');" }
+      .embed-responsive-item.recipe-image{ style: "background-image:url(#{image_url});" }
       .sr-only View recipe
     = link_to recipe, class: 'card-body' do
       %h2.mb-0= recipe.name
