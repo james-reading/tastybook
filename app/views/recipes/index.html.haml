@@ -9,6 +9,14 @@
       remote: true,
       html: { class: 'form-inline-' } do |f|
 
+      .recipe-filter--top-options.mb-3
+        .top-options--liked-only
+          = f.check_box :liked_only, class: 'js-auto-submit'
+          = f.label :liked_only, 'Favourites'
+        .top-options--exclude-friends
+          = f.check_box :exclude_friends, disabled: true, class: 'js-auto-submit'
+          = f.label :exclude_friends, 'My recipes only'
+
       .d-flex
         = f.input :q,
           placeholder: 'Search',
@@ -16,36 +24,32 @@
           wrapper_html: { class: 'flex-fill mr-2 mb-0' },
           input_html: { class: 'flex-fill' }
 
-        = f.button :button,
-          type: :submit,
-          class: 'btn btn-primary flex-center search-button',
-          data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
-          %i.fas.fa-search.fa-fw
-          .sr-only Search
+        = render 'filter_submit', f: f
 
-      = link_to 'Options',
+      = link_to 'More options',
         '#filterCollapse',
         'aria-controls': 'filterCollapse',
         'aria-expanded': 'false',
         'data-toggle': 'collapse',
         role: 'button',
-        class: 'mt-1 d-inline-block chevron-toggle mb-3'
+        class: 'mt-1 d-inline-block chevron-toggle mb-4'
 
       #filterCollapse.collapse.js-turbolinks-collapse-before-cache
         .card.border-0.mb-4
           .card-body
-            = f.input :liked_only, as: :boolean, label: 'Favourited'
             .d-flex.rythmx-3
               = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
               = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
-              .flex-fill
+              .flex-fill.d-flex.flex-column.align-items-end.justify-content-between
                 = f.button :button,
                   formaction: im_feeling_lucky_recipes_path,
                   type: :submit,
-                  class: 'btn btn-primary flex-center search-button ml-auto',
-                  data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
-                  %i.fas.fa-dice.fa-fw
+                  class: 'btn btn-link no-underline flex-center px-1 pt-0',
+                  data: { disable: true } do
+                  %i.fas.fa-dice.fa-2x
                   .sr-only I'm feeling lucky
+
+                = render 'filter_submit', f: f
 
 .js-updateable-recipes.row
   = render(@recipes) || render('no_results')

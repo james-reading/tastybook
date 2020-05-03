@@ -6,7 +6,7 @@ $sidenav-width: 250px;
   top: 0;
   right: 0;
   bottom: -56px; // to avoid gap when android chrome addressbar closes
-  z-index: 2;
+  z-index: 100;
   width: 0;
   padding-top: 15vh;
   overflow: hidden;
@@ -26,7 +26,7 @@ $sidenav-width: 250px;
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 1;
+  z-index: 101;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -24,5 +24,6 @@ import 'bootstrap/js/src/alert';
 import '../javascript/modules/sideNav';
 import '../javascript/modules/confirmExitForm';
 import '../javascript/modules/turbolinksBeforeCache';
+import '../javascript/modules/autoSubmit';
 
 require.context('../images', true);

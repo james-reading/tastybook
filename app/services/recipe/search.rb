@@ -8,6 +8,7 @@ class Recipe
     attribute :length, default: Recipe::LENGTHS
     attribute :course, default: Recipe::COURSES
     attribute :liked_only, :boolean, default: false
+    attribute :exclude_friends, :boolean, default: false
     attribute :page, :integer, default: 1
     attribute :per_page, :integer, default: 25
 
