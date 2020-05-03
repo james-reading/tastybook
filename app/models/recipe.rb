@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  include Likeable
+  
   searchkick word_start: [:name], searchable: [:name]
   has_rich_text :notes
 

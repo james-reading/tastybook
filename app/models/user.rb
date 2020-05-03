@@ -7,4 +7,12 @@ class User < ApplicationRecord
   has_many :recipes
 
   validates :username, presence: true, uniqueness: true
+
+  def like(likeable)
+    likeable.likes.find_or_create_by(user: self)
+  end
+
+  def unlike(likeable)
+    likeable.likes.where(user: self).destroy_all
+  end
 end

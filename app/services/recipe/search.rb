@@ -34,7 +34,7 @@ class Recipe
         order: order,
         page: page,
         per_page: per_page,
-        includes: [{ image_attachment: :blob }, :cuisine]
+        includes: [{ image_attachment: :blob }, :cuisine, :likes]
       }
     end
 

@@ -4,6 +4,13 @@ import Turbolinks from 'turbolinks';
 Rails.start();
 Turbolinks.start();
 
+import { Application } from 'stimulus';
+import { definitionsFromContext } from 'stimulus/webpack-helpers';
+
+const application = Application.start();
+const context = require.context('../javascript/controllers', true, /\.js$/);
+application.load(definitionsFromContext(context));
+
 import 'jquery';
 import 'cocoon';
 import 'trix';
