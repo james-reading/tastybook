@@ -7,6 +7,7 @@ class Recipe
     attribute :user
     attribute :length, default: Recipe::LENGTHS
     attribute :course, default: Recipe::COURSES
+    attribute :liked_only, :boolean, default: false
     attribute :page, :integer, default: 1
     attribute :per_page, :integer, default: 25
 
@@ -51,6 +52,7 @@ class Recipe
       limit_to_user
       limit_by_length
       limit_by_course
+      limit_by_liked_only
     end
 
     def limit_to_user
@@ -71,6 +73,11 @@ class Recipe
       end
     end
 
+    def limit_by_liked_only
+      if liked_only
+        where[:liked_user_ids] = user.id
+      end
+    end
 
     def order
       if query_string == '*'

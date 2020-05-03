@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Recipe::Search do
 
+  let(:user) { create :user }
   let(:options) { {} }
   let(:service) { Recipe::Search.new(options) }
 
@@ -50,6 +51,22 @@ RSpec.describe Recipe::Search do
       end
 
       it { should be true }
+    end
+  end
+
+  describe '#run' do
+    describe 'limiting by liked recipes' do
+      let(:options) { { liked_only: true, user: user } }
+
+      it 'returns liked recipes' do
+        unliked = create :recipe, user: user
+        liked_by_user = create :recipe, user: user, likes: [create(:like, user: user)]
+        liked_by_other = create :recipe, user: user, likes: [create(:like)]
+
+        Recipe.reindex
+
+        expect(service.run.results).to eq [liked_by_user]
+      end
     end
   end
 end

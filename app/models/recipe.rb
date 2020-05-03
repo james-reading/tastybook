@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   include Likeable
-  
+
   searchkick word_start: [:name], searchable: [:name]
   has_rich_text :notes
 
@@ -20,6 +20,8 @@ class Recipe < ApplicationRecord
   validate :link_validator, unless: -> { link.blank? }
 
   accepts_nested_attributes_for :ingredients, :steps, reject_if: :all_blank, allow_destroy: true
+
+  scope :search_import, -> { includes(:likes) }
 
   delegate :name, to: :cuisine, prefix: true, allow_nil: true
 
@@ -41,7 +43,8 @@ class Recipe < ApplicationRecord
       name: name,
       length: length,
       course: course,
-      user_id: user_id
+      user_id: user_id,
+      liked_user_ids: likes.pluck(:user_id)
     }
   end
 

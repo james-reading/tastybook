@@ -33,17 +33,19 @@
 
       #filterCollapse.collapse.js-turbolinks-collapse-before-cache
         .card.border-0.mb-4
-          .card-body.d-flex.rythmx-3
-            = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
-            = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
-            .flex-fill
-              = f.button :button,
-                formaction: im_feeling_lucky_recipes_path,
-                type: :submit,
-                class: 'btn btn-primary flex-center search-button ml-auto',
-                data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
-                %i.fas.fa-dice.fa-fw
-                .sr-only I'm feeling lucky
+          .card-body
+            = f.input :liked_only, as: :boolean, label: 'Favourited'
+            .d-flex.rythmx-3
+              = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
+              = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
+              .flex-fill
+                = f.button :button,
+                  formaction: im_feeling_lucky_recipes_path,
+                  type: :submit,
+                  class: 'btn btn-primary flex-center search-button ml-auto',
+                  data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
+                  %i.fas.fa-dice.fa-fw
+                  .sr-only I'm feeling lucky
 
 .js-updateable-recipes.row
   = render(@recipes) || render('no_results')
