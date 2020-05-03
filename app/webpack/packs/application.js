@@ -16,6 +16,6 @@ import 'bootstrap/js/src/alert';
 
 import '../javascript/modules/sideNav';
 import '../javascript/modules/confirmExitForm';
-import '../javascript/modules/emptyBeforeCache';
+import '../javascript/modules/turbolinksBeforeCache';
 
 require.context('../images', true);

@@ -1,46 +1,49 @@
 - title 'All recipes'
 - description 'Search for a recipe'
 
-= simple_form_for @search,
-  url: recipes_path,
-  method: :get,
-  remote: true,
-  html: { class: 'form-inline-' } do |f|
+.row
+  .col-lg-4
+    = simple_form_for @search,
+      url: recipes_path,
+      method: :get,
+      remote: true,
+      html: { class: 'form-inline-' } do |f|
 
-  .d-flex
-    = f.input :q,
-      placeholder: 'Search',
-      label_html: { class: 'sr-only' },
-      wrapper_html: { class: 'flex-fill mr-2 mb-0' },
-      input_html: { class: 'flex-fill' }
+      .d-flex
+        = f.input :q,
+          placeholder: 'Search',
+          label_html: { class: 'sr-only' },
+          wrapper_html: { class: 'flex-fill mr-2 mb-0' },
+          input_html: { class: 'flex-fill' }
 
-    = f.button :button,
-      type: :submit,
-      class: 'btn btn-primary flex-center search-button',
-      data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
-      %i.fas.fa-search.fa-fw
-      .sr-only Search
-
-  = link_to 'Options',
-    '#filterCollapse',
-    'aria-controls': 'filterCollapse',
-    'aria-expanded': 'false',
-    'data-toggle': 'collapse',
-    role: 'button',
-    class: 'mt-1 d-inline-block chevron-toggle mb-3'
-
-  #filterCollapse.collapse.card.border-0
-    .card-body.d-flex.rythmx-3
-      = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
-      = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
-      .flex-fill
         = f.button :button,
-          formaction: im_feeling_lucky_recipes_path,
           type: :submit,
-          class: 'btn btn-primary flex-center search-button ml-auto',
+          class: 'btn btn-primary flex-center search-button',
           data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
-          %i.fas.fa-dice.fa-fw
-          .sr-only I'm feeling lucky
+          %i.fas.fa-search.fa-fw
+          .sr-only Search
+
+      = link_to 'Options',
+        '#filterCollapse',
+        'aria-controls': 'filterCollapse',
+        'aria-expanded': 'false',
+        'data-toggle': 'collapse',
+        role: 'button',
+        class: 'mt-1 d-inline-block chevron-toggle mb-3'
+
+      #filterCollapse.collapse.js-turbolinks-collapse-before-cache
+        .card.border-0.mb-4
+          .card-body.d-flex.rythmx-3
+            = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
+            = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
+            .flex-fill
+              = f.button :button,
+                formaction: im_feeling_lucky_recipes_path,
+                type: :submit,
+                class: 'btn btn-primary flex-center search-button ml-auto',
+                data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
+                %i.fas.fa-dice.fa-fw
+                .sr-only I'm feeling lucky
 
 .js-updateable-recipes.row
   = render(@recipes) || render('no_results')

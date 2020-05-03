@@ -1,32 +1,34 @@
-= form_with model: @recipe, class: 'ml-auto' do |f|
-  = f.file_field :image, onchange: 'form.submit()', accept: 'image/*', class: 'd-none'
-  = f.label :image, class: 'btn btn-link btn-link-secondary p-0' do
-    %i.fas.fa-camera.fa-2x.pb-1.px-2
-    .sr-only Upload image
+.row
+  .col-lg-6.offset-lg-3
+    = form_with model: @recipe, class: 'text-right' do |f|
+      = f.file_field :image, onchange: 'form.submit()', accept: 'image/*', class: 'd-none'
+      = f.label :image, class: 'btn btn-link btn-link-secondary p-0' do
+        %i.fas.fa-camera.fa-2x.pb-1.px-2
+        .sr-only Upload image
 
-.card.shadow-sm.mb-4
-  - if @recipe.image.attached?
-    .card-img-top.embed-responsive.embed-responsive-21by9
-      .embed-responsive-item.recipe-image{ style: "background-image:url('#{url_for(@recipe.image)}');" }
-  .card-body
-    .d-flex.justify-content-between
-      %h1.mb-0= title @recipe.name
-      - if @recipe.link.present?
-        = link_to @recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer', class: 'btn btn-link mr-auto' do
-          %i.fas.fa-external-link-alt.fa-lg.ml-2
-          .sr-only External link to recipe
+    .card.shadow-sm.mb-4
+      - if @recipe.image.attached?
+        .card-img-top.embed-responsive.embed-responsive-21by9
+          .embed-responsive-item.recipe-image{ style: "background-image:url('#{url_for(@recipe.image)}');" }
+      .card-body
+        .d-flex.justify-content-between
+          %h1.mb-0= title @recipe.name
+          - if @recipe.link.present?
+            = link_to @recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer', class: 'btn btn-link mr-auto' do
+              %i.fas.fa-external-link-alt.fa-lg.ml-2
+              .sr-only External link to recipe
 
-      = render 'dropdown', recipe: @recipe
+          = render 'dropdown', recipe: @recipe
 
-    .mb-4
-      = render 'information', recipe: @recipe
+        .mb-4
+          = render 'information', recipe: @recipe
 
-    = render 'instructions',
-      ingredients: @recipe.ingredients.load,
-      steps: @recipe.steps.load
+        = render 'instructions',
+          ingredients: @recipe.ingredients.load,
+          steps: @recipe.steps.load
 
-    = render 'notes', recipe: @recipe
+        = render 'notes', recipe: @recipe
 
-.card.shadow-sm
-  .card-body
-    = render 'comments'
+    .card.shadow-sm
+      .card-body
+        = render 'comments'
