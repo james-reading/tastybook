@@ -1,6 +1,6 @@
 :ruby
   image_url = if recipe.image.attached?
-    rails_blob_url recipe.image
+    url_for recipe.image
   else
     asset_pack_path 'media/images/placeholder-recipe.svg'
   end
