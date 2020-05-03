@@ -1,6 +1,6 @@
 - if @recipe.notes.present?
   - if edit?(recipe)
-    = link_to edit_recipe_notes_path, class: 'float-right p-1' do
+    = link_to edit_recipe_notes_path, class: 'btn btn-link float-right pr-0 pt-0' do
       .sr-only Edit notes
       %i.fas.fa-pencil-alt.fa-sm
   = recipe.notes
