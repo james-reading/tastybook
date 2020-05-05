@@ -22,22 +22,39 @@
 }
 
 .like-btn {
+  transition: none;
+  color: $primary;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.recipe-card .like-btn {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 1;
-  color: $white;
-  -webkit-text-stroke: 2px $primary;
-  transition: none;
+  padding: 1em;
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -0.0667em;
+}
 
-  &:hover {
-    color: $white;
+.recipe-show .like-btn {
+  padding: 0;
+
+  i {
+    font-size: 2em;
   }
 }
 
 .like-btn--liked {
   color: $yellow;
-  -webkit-text-stroke: 0;
+
+  i {
+    font-weight: 700;
+  }
 
   &:hover {
     color: $yellow;

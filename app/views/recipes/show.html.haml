@@ -1,10 +1,12 @@
-.row
+.row.recipe-show
   .col-lg-6.offset-lg-3
-    = form_with model: @recipe, class: 'text-right' do |f|
-      = f.file_field :image, onchange: 'form.submit()', accept: 'image/*', class: 'd-none'
-      = f.label :image, class: 'btn btn-link btn-link-secondary p-0' do
-        %i.fas.fa-camera.fa-2x.pb-1.px-2
-        .sr-only Upload image
+    .d-flex.justify-content-end.align-items-center.mb-2
+      = render 'like_button', recipe: @recipe
+      = form_with model: @recipe, class: 'ml-2' do |f|
+        = f.file_field :image, onchange: 'form.submit()', accept: 'image/*', class: 'd-none'
+        = f.label :image, class: 'btn btn-link btn-link-secondary p-0 mb-0' do
+          %i.fas.fa-camera.fa-2x.px-2
+          .sr-only Upload image
 
     .card.shadow-sm.mb-4
       - if @recipe.image.attached?
