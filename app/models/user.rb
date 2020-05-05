@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
 
+  attribute :friends, default: []
+
   def like(likeable)
     likeable.likes.find_or_create_by(user: self)
   end
