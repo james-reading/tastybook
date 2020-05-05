@@ -5,10 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :recipes
+  has_many :friendships
+  has_many :friends, through: :friendships, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
-
-  attribute :friends, default: []
 
   def like(likeable)
     likeable.likes.find_or_create_by(user: self)

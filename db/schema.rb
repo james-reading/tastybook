@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_112119) do
+ActiveRecord::Schema.define(version: 2020_05_05_200535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(version: 2020_05_03_112119) do
     t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "friend_id"
+    t.string "invitation_token"
+    t.string "invitation_email"
+    t.datetime "accepted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["invitation_token"], name: "index_friendships_on_invitation_token", unique: true
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -108,6 +121,8 @@ ActiveRecord::Schema.define(version: 2020_05_03_112119) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "ingredients", "recipes"
   add_foreign_key "likes", "users"
   add_foreign_key "recipes", "cuisines"

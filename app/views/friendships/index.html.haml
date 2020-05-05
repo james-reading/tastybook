@@ -1,0 +1,7 @@
+.d-flex.justify-content-between.align-items-start
+  %h1 Friends
+  = link_to 'Add', new_friendship_path, class: 'btn btn-primary'
+
+%table.table.mt-4
+  %tbody
+    = render @friendships

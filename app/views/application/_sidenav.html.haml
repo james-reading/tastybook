@@ -2,8 +2,8 @@
   %ul
     %li= link_to 'All recipes', recipes_path
     %li= link_to 'New recipe', new_recipe_path
-    - if user_signed_in?
-      %li= link_to 'Settings', edit_user_path
+    %li= link_to 'Friends', friendships_path
+    %li= link_to 'Settings', edit_user_path
 
   - if user_signed_in?
     = button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary d-block mb-4 sidenav--bottom-center'

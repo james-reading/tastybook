@@ -22,4 +22,6 @@ Rails.application.routes.draw do
       resource :likes, only: [:create, :destroy], module: 'recipes', as: 'recipe_likes'
     end
   end
+
+  resources :friendships, except: [:show, :destroy], path: 'friends'
 end

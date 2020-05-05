@@ -1,0 +1,4 @@
+= simple_form_for @friendship do |f|
+  = f.error_notification message: 'Please review the problems below'
+  = f.input :invitation_email
+  = f.submit 'Send request', class: 'btn btn-primary'

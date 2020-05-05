@@ -1,0 +1,4 @@
+%tr
+  %td= friendship.username || friendship.invitation_email
+  - unless friendship.accepted?
+    %td.font-italic.text-mutet.w-100 Pending
