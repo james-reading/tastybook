@@ -6,8 +6,8 @@ class Friendship < ApplicationRecord
   before_create :set_uuid
   after_destroy :destroy_reciprocal_friendship
 
-  validates :friend, presence: true, if: -> { accepted? }
-  validate :cannot_beforend_self
+  validates :friend, presence: true, if: :accepted?
+  validate :cannot_befriend_self
 
   with_options unless: :accepted? do
     before_create :set_friend
@@ -24,9 +24,11 @@ class Friendship < ApplicationRecord
   scope :accepted, -> { where.not(accepted_at: nil) }
 
   def accept!
-    touch :accepted_at
+    self.accepted_at = Time.now
 
-    create_reciprocal_friendship
+    if save
+      create_reciprocal_friendship
+    end
   end
 
   def accepted?
@@ -74,9 +76,13 @@ class Friendship < ApplicationRecord
     end
   end
 
-  def cannot_beforend_self
+  def cannot_befriend_self
     if invitation_email == user.email
       errors.add(:invitation_email, :is_self)
+    end
+
+    if friend == user
+      errors.add(:friend, :is_self)
     end
   end
 end

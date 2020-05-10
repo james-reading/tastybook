@@ -43,6 +43,8 @@ en:
         friendship:
           attributes:
             invitation_email:
+              friend: 'is you!'
+            invitation_email:
               is_self: 'is your own!'
               taken: 'already belongs to one of your friends'
   flashes:
