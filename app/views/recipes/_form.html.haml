@@ -6,7 +6,7 @@
       %legend Details
 
       = f.input :name
-      = f.association :cuisine, collection: Cuisine.all
+      = f.association :cuisine, collection: Cuisine.all.order(:name)
       = f.input :length, collection: Recipe::LENGTHS
       = f.input :course, collection: Recipe::COURSES
       = f.input :servings
