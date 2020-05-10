@@ -15,6 +15,10 @@
       %h2.mb-0.pr-5= recipe.name
       = render 'information', recipe: recipe
 
+      - unless recipe.user == current_user
+        .text-right.small.text-muted
+          %span by #{recipe.user.username}
+
     - if recipe.link.present?
       = link_to recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer', class: 'card-footer' do
         %i.fas.fa-external-link-alt.mr-1

@@ -36,7 +36,7 @@ class Recipe
         order: order,
         page: page,
         per_page: per_page,
-        includes: [{ image_attachment: :blob }, :cuisine, :likes]
+        includes: [{ image_attachment: :blob }, :cuisine, :likes, :user]
       }
     end
 
@@ -58,7 +58,11 @@ class Recipe
 
     def limit_to_user
       if user.present?
-        where[:user_id] = user.id
+        where[:user_id] = [user.id]
+
+        unless exclude_friends
+          where[:user_id] += user.friends.pluck(:friend_id)
+        end
       end
     end
 

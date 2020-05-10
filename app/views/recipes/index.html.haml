@@ -43,8 +43,8 @@
                   = f.check_box :liked_only, class: 'recipe-filter--liked'
                   = f.label :liked_only, 'Favourites'
                 %fieldset
-                  = f.check_box :exclude_friends, class: 'recipe-filter--friends', disabled: true
-                  = f.label :exclude_friends, 'My recipes', class: 'text-muted'
+                  = f.check_box :exclude_friends, class: 'recipe-filter--friends', disabled: !current_user.friends.exists?
+                  = f.label :exclude_friends, 'My recipes'
 
             .d-flex.justify-content-around.mt-3.border-top
               = f.submit 'RANDOM',

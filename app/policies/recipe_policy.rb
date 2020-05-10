@@ -1,11 +1,12 @@
 class RecipePolicy < ApplicationPolicy
 
   def show?
-    record.user == user
+    (record.user == user) ||
+      user.friends.where(id: record.user).exists?
   end
 
   def edit?
-    show?
+    record.user == user
   end
 
   def update?
