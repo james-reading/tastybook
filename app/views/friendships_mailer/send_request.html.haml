@@ -1,0 +1,15 @@
+- if @friendship.friend
+  %p Hi #{@friendship.friend.username}!
+
+  %p #{@friendship.user.username} wants to be your friend on #{app_name}.
+
+  %p Click the link below to accept the request and start sharing recipes!
+
+- else
+  %p Hi,
+
+  %p #{@friendship.user.username} wants to be your friend on #{app_name}.
+
+  %p Click the link below to create an account and start sharing recipes!
+
+%p= link_to nil, accept_friendship_url(@friendship)

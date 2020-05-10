@@ -16,17 +16,23 @@ RSpec.describe User, type: :model do
 
     it { should have_many(:friends) }
 
-    it 'creates a reciprical friendship' do
-      user.friends << friend
+    specify 'destroying the friendship destroys the reciprocal friendship' do
+      friendship = create :friendship, user: user, friend: friend
+      friendship.accept!
 
-      expect(friend.friends).to include(user)
-    end
-
-    it 'removes the reciprical friendship on destory' do
-      user.friends << friend
       user.friends = []
 
       expect(friend.friends).to_not include(user)
+    end
+
+    specify 'destroying the user destroys the friendships but not the friend' do
+      friendship = create :friendship, user: user, friend: friend
+      friendship.accept!
+
+      expect {
+        user.destroy!
+      }.to change(Friendship, :count).by(-2)
+      .and change(User, :count).by(-1)
     end
   end
 end

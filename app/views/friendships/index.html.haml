@@ -2,6 +2,9 @@
   %h1 Friends
   = link_to 'Add', new_friendship_path, class: 'btn btn-primary'
 
-%table.table.mt-4
-  %tbody
-    = render @friendships
+- if @friendships.any?
+  %table.table.mt-4
+    %tbody
+      = render @friendships
+- else
+  .text-muted.font-italic You have no friends :(

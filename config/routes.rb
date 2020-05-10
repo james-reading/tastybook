@@ -23,5 +23,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :friendships, except: [:show, :destroy], path: 'friends'
+  resources :friendships, except: [:show], path: 'friends', param: :uuid do
+    member do
+      get :accept
+    end
+  end
 end

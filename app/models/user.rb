@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def unlike(likeable)
     likeable.likes.where(user: self).destroy_all
   end
+
+  def friends
+    super.merge(friendships.accepted)
+  end
 end

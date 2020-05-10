@@ -40,6 +40,11 @@ en:
           attributes:
             link:
               http_url: 'is not valid'
+        friendship:
+          attributes:
+            invitation_email:
+              is_self: 'is your own!'
+              taken: 'already belongs to one of your friends'
   flashes:
     recipe:
       create:
@@ -54,3 +59,7 @@ en:
     friendship:
       create:
         success: 'Friend request sent'
+
+  friendships_mailer:
+    send_request:
+      subject: 'You have a friend request'

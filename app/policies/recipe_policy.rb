@@ -1,7 +1,7 @@
 class RecipePolicy < ApplicationPolicy
 
   def show?
-    record.user_id = user.id
+    record.user == user
   end
 
   def edit?

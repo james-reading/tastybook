@@ -1,4 +1,9 @@
 %tr
-  %td= friendship.username || friendship.invitation_email
-  - unless friendship.accepted?
-    %td.font-italic.text-mutet.w-100 Pending
+  %td= friendship.name
+  %td
+    - unless friendship.accepted?
+      .font-italic.text-muted Pending
+  %td.w-100.text-right
+    = link_to friendship, method: :delete, class: 'text-nowrap', data: { confirm: "Are you sure you want to unfriend #{friendship.name}?" } do
+      %i.fas.fa-user-slash
+      .d-none.d-md-inline Unfriend
