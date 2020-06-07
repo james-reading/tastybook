@@ -16,7 +16,8 @@
       %legend.mb-3
         Link
         %span.text-muted.font-italic.small - optional
-      = f.input :link, label_html: { class: 'sr-only' }, hint: 'Bookmark your favourite recipes so you can easily find them again.'
+      %p Save a bookmark to your favourite recipes.
+      = f.input :link, label_html: { class: 'sr-only' }, placeholder: 'e.g. https://www.bbcgoodfood.com/recipes/cottage-pie'
 
   .card.mb-4.shadow-sm
     .card-body
@@ -42,5 +43,5 @@
 
   .form-actions
     - unless request.url == request.referer
-      = link_to 'Cancel', :back, class: 'btn btn-link'
+      = link_to 'Cancel', :back, class: 'btn btn-link text-dark'
     = f.submit 'Save', class: 'btn btn-primary btn-lg ml-auto'

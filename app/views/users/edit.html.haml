@@ -1,4 +1,5 @@
 = simple_form_for current_user do |f|
+  = f.error_notification message: 'Please review the problems below'
   .card.mb-4.shadow-sm
     .card-body
       %legend= title 'Settings'
@@ -14,8 +15,9 @@
 
   .card.mb-4.shadow-sm
     .card-body
-      = f.input :current_password, autocomplete: "current-password", hint: 'We need your current password to confirm your changes'
+      %legend Current password
+      = f.input :current_password, autocomplete: "current-password", hint: 'We need your current password to confirm your changes', label_html: { class: 'sr-only' }
 
   .form-actions
-    = link_to 'Cancel', :back, class: 'btn btn-link'
+    = link_to 'Cancel', :back, class: 'btn btn-link text-dark'
     = f.submit 'Save', class: 'btn btn-primary'
