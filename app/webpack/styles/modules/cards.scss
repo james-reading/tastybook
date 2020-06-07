@@ -5,9 +5,12 @@
 }
 
 .recipe-card {
+  border: none;
+
   .card-footer {
-    color: $white;
-    background-color: $primary;
+    padding: 0 1rem 1rem;
+    color: $primary;
+    background-color: $white;
     border-top: none;
   }
 
@@ -25,7 +28,7 @@
 
   .card-header {
     background-color: $primary;
-    border-bottom-color: $primary;
+    border-bottom: none;
 
     .nav-link.active {
       border-color: transparent;

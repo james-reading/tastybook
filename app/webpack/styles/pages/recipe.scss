@@ -22,8 +22,8 @@
 }
 
 .like-btn {
-  transition: none;
   color: $primary;
+  transition: none;
 
   &:hover {
     color: $primary;
@@ -32,13 +32,16 @@
 
 .recipe-card .like-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -21px;
+  right: 1rem;
   z-index: 1;
-  padding: 1em;
+  padding: 0.7em;
   font-size: 1.33333em;
   line-height: 0.75em;
   vertical-align: -0.0667em;
+  background-color: $white;
+  border-radius: 50%;
+  box-shadow: $box-shadow-sm;
 }
 
 .recipe-show .like-btn {

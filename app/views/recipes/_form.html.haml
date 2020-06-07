@@ -6,18 +6,23 @@
       %legend Details
 
       = f.input :name
-      = f.association :cuisine, collection: Cuisine.all.order(:name)
       = f.input :length, collection: Recipe::LENGTHS
       = f.input :course, collection: Recipe::COURSES
+      = f.association :cuisine, collection: Cuisine.all.order(:name)
       = f.input :servings
 
   .card.mb-4.shadow-sm
     .card-body
-      = f.input :link
+      %legend.mb-3
+        Link
+        %span.text-muted.font-italic.small - optional
+      = f.input :link, label_html: { class: 'sr-only' }, hint: 'Bookmark your favourite recipes so you can easily find them again.'
 
   .card.mb-4.shadow-sm
     .card-body
-      %legend.mb-3 Ingredients
+      %legend.mb-3
+        Ingredients
+        %span.text-muted.font-italic.small - optional
       #ingredients
         = f.simple_fields_for :ingredients do |ingredient|
           = render 'ingredient_fields', f: ingredient
@@ -26,7 +31,9 @@
 
   .card.mb-4.shadow-sm
     .card-body
-      %legend.mb-3 Steps
+      %legend.mb-3
+        Steps
+        %span.text-muted.font-italic.small - optional
       #steps
         = f.simple_fields_for :steps do |step|
           = render 'step_fields', f: step
