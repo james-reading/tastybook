@@ -30,5 +30,9 @@ module Recipes
     # the framework and any gems in your application.
 
     config.action_controller.action_on_unpermitted_parameters = :raise
+
+    config.to_prepare do
+      Devise::Mailer.layout 'mailer'
+    end
   end
 end
