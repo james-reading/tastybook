@@ -8,7 +8,11 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships, dependent: :destroy
 
-  validates :username, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
+
+  def remember_me
+    true
+  end
 
   def like(likeable)
     likeable.likes.find_or_create_by(user: self)

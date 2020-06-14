@@ -1,6 +1,10 @@
 - content_for :extra_container_class, 'justify-content-center'
 
-%h1.text-center.mb-3= title 'Sign up'
+.d-flex.justify-content-center.align-items-center.mb-5
+  .mr-2 Already have an account?
+  = link_to "Log in", new_session_path(resource_name), class: 'btn btn-outline-primary'
+
+%h1.text-center.mb-3= title 'Sign up for FREE'
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   .card.devise-card.shadow-sm
     .card-body
@@ -8,9 +12,6 @@
         = f.input :username,  autofocus: true, input_html: { autocomplete: 'username' }
         = f.input :email,  autofocus: true, input_html: { autocomplete: 'email' }
         = f.input :password, input_html: { autocomplete: 'new-password' }
-        = f.input :password_confirmation, input_html: { autocomplete: 'new-password' }
+        = f.input :password_confirmation, input_html: { autocomplete: 'new-password' }, label: 'Confirm password'
       .form-actions
-        = f.button :submit, 'Sign up', class: 'btn btn-primary float-right'
-
-.mt-3
-  = render 'devise/shared/links'
+        = f.button :submit, 'Sign up', class: 'btn btn-primary w-100'
