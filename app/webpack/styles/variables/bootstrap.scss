@@ -66,6 +66,8 @@ $border-color: $gray-200;
 
 // shadow
 
+$box-shadow-sm: 0 0.125rem 0.25rem darken($body-bg, 15%);
+
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
