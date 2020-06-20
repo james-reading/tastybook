@@ -1,5 +1,5 @@
 .d-flex.justify-content-between.align-items-start
-  %h1 Friends
+  %h1= title 'My friends'
   = link_to 'Add', new_friendship_path, class: 'btn btn-primary'
 
 - if @friendships.any?

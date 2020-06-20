@@ -6,7 +6,7 @@
   end
 
 .col-md-6.col-lg-4.d-flex
-  .card.recipe-card.shadow-sm.mb-4.flex-fill
+  .card.recipe-card.mb-4.flex-fill
     = link_to recipe, class: 'card-img-top embed-responsive embed-responsive-21by9' do
       .embed-responsive-item.recipe-image{ style: "background-image:url(#{image_url});" }
       .sr-only View recipe
@@ -20,6 +20,7 @@
           %span by #{recipe.user.username}
 
     - if recipe.link.present?
-      = link_to recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer', class: 'card-footer' do
-        %i.fas.fa-external-link-alt.mr-1
-        %span= recipe.link_host
+      .card-footer
+        = link_to recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer' do
+          %i.fas.fa-external-link-alt.mr-1
+          %span= recipe.link_host

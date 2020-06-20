@@ -14,16 +14,16 @@
   .card.mb-4.shadow-sm
     .card-body
       %legend.mb-3
-        Link
-        %span.text-muted.font-italic.small - optional
-      %p Save a bookmark to your favourite recipes.
+        Bookmark
+        %span.text-muted.small - optional
+      %p Found a recipe that you love on another website? Just paste the link here and keep all your favourite recipes in one place. Smart!
       = f.input :link, label_html: { class: 'sr-only' }, placeholder: 'e.g. https://www.bbcgoodfood.com/recipes/cottage-pie'
 
   .card.mb-4.shadow-sm
     .card-body
       %legend.mb-3
         Ingredients
-        %span.text-muted.font-italic.small - optional
+        %span.text-muted.small - optional
       #ingredients
         = f.simple_fields_for :ingredients do |ingredient|
           = render 'ingredient_fields', f: ingredient
@@ -34,7 +34,7 @@
     .card-body
       %legend.mb-3
         Steps
-        %span.text-muted.font-italic.small - optional
+        %span.text-muted.small - optional
       #steps
         = f.simple_fields_for :steps do |step|
           = render 'step_fields', f: step
