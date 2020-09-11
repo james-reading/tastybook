@@ -1,6 +1,4 @@
 = simple_form_for recipe, html: { class: 'optional-flag js-confirm-exit' } do |f|
-  .alert.alert-info
-    = recipe.errors.inspect
   = f.error_notification message: 'Please review the problems below'
 
   .card.mb-4.shadow-sm
