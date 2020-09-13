@@ -35,7 +35,7 @@
       %legend.mb-3
         Steps
         %span.text-muted.small - optional
-      #steps
+      #steps.js-sortable-fields
         = f.simple_fields_for :steps do |step|
           = render 'step_fields', f: step
         .steps

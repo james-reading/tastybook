@@ -1,10 +1,13 @@
 .nested-fields
-  .d-flex.mb-3
-    %button.text-muted.mr-3.tb-button-reset.js-sortable-handle{ draggable: 'true', style: 'margin-top: 10px' }
+  .d-flex.mb-4
+    %button.text-muted.pr-3.tb-button-reset.js-sortable-handle{ draggable: 'true', style: 'padding-top: 10px' }
       %i.fas.fa-sort
       %span.sr-only Remove step
-    = f.hidden_field :position, class: 'js-step-position-input'
-    = f.input :description, wrapper_class: 'flex-fill', label_html: { class: 'sr-only' }
+    = f.hidden_field :position, class: 'js-position-input'
+    = f.input :description,
+      wrapper_class: 'flex-fill',
+      label_html: { class: 'sr-only' },
+      input_html: { rows: '3' }
     = link_to_remove_association f do
       %i.fas.fa-trash-alt.text-dark.ml-3{ style: 'margin-top: 10px' }
       .sr-only Remove step
