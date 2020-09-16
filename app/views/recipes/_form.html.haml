@@ -24,7 +24,7 @@
       %legend.mb-3
         Ingredients
         %span.text-muted.small - optional
-      #ingredients
+      #ingredients.js-sortable-fields
         = f.simple_fields_for :ingredients do |ingredient|
           = render 'ingredient_fields', f: ingredient
         .ingredients
