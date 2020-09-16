@@ -1,8 +1,26 @@
 .recipe-instructions {
+  // border: 1px solid $primary;
+  // border-top: none;
+  // border-bottom-left-radius: $border-radius;
+  // border-bottom-right-radius: $border-radius;
+  // padding: 1rem;
+
   ul {
+    display: flex;
+    flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
-    list-style-position: inside;
+
+    li {
+      position: relative;
+      display: block;
+      padding-bottom: 0.25rem;
+      font-size: 1.2em;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
   }
 
   ol {
@@ -13,6 +31,7 @@
 
     li {
       margin-bottom: 1rem;
+      font-size: 1.2em;
     }
 
     li:last-child {
@@ -35,13 +54,23 @@
   top: -21px;
   right: 1rem;
   z-index: 1;
-  padding: 0.7em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  padding: 0;
   font-size: 1.33333em;
   line-height: 0.75em;
   vertical-align: -0.0667em;
   background-color: $white;
   border-radius: 50%;
   box-shadow: $box-shadow-sm;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .recipe-show .like-btn {

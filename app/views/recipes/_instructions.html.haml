@@ -1,5 +1,5 @@
 - unless ingredients.empty? && steps.empty?
-  .card.instructions-card.mb-4
+  .card.instructions-card.mt-4
     .card-header
       %ul.nav.nav-tabs.instructions-tabs.card-header-tabs#intructions-tabs{ role: 'tablist'}
         %li.nav-item.w-50.text-center
@@ -20,7 +20,8 @@
         class: "#{'active' unless ingredients.empty?}",
         aria: { labelledby: 'ingredients-tab' } }
         - if ingredients.empty?
-          %i.text-muted No ingredients
+          .text-center.py-3
+            %i.text-muted No ingredients
         - else
           %ul
             - ingredients.each do |ingredient|
@@ -30,7 +31,8 @@
         class: "#{'active' if ingredients.empty?}",
         aria: { labelledby: 'steps-tab' } }
         - if steps.empty?
-          %i.text-muted No steps
+          .text-center.py-3
+            %i.text-muted No steps
         - else
           %ol
             - steps.each.with_index(1) do |step, i|

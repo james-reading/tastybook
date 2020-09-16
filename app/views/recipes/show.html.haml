@@ -16,15 +16,16 @@
       .card-body
         .d-flex.justify-content-between
           %h1.mb-0= title @recipe.name
-          - if @recipe.link.present?
-            = link_to @recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer', class: 'btn btn-link mr-auto' do
-              %i.fas.fa-external-link-alt.fa-lg.ml-2
-              .sr-only External link to recipe
-
           = render 'dropdown', recipe: @recipe
 
-        .mb-4
-          = render 'information', recipe: @recipe
+        = render 'information', recipe: @recipe
+
+        - if @recipe.link.present?
+          .mt-4
+            = link_to @recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer' do
+              %i.fas.fa-external-link-alt.mr-1
+              %span= @recipe.link_host
+
 
         = render 'instructions',
           ingredients: @recipe.ingredients.load,

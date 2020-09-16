@@ -18,9 +18,3 @@
       - unless recipe.user == current_user
         .text-right.small.text-muted
           %span by #{recipe.user.username}
-
-    - if recipe.link.present?
-      .card-footer
-        = link_to recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer' do
-          %i.fas.fa-external-link-alt.mr-1
-          %span= recipe.link_host
