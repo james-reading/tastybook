@@ -10,6 +10,10 @@ abbr[title] {
   line-height: $line-height-base;
 }
 
+.line-height-sm {
+  line-height: $line-height-sm;
+}
+
 hr {
   border-color: $primary;
   border-style: dashed;

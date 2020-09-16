@@ -34,7 +34,7 @@
         = render 'notes', recipe: @recipe
 
         - unless @recipe.user == current_user
-          .text-right.small.text-muted
+          .text-right.small.text-muted.mt-4
             %span by #{@recipe.user.username}
 
     = render 'comments'
