@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:friends) }
 
     specify 'destroying the friendship destroys the reciprocal friendship' do
-      friendship = create :friendship, user: user, friend: friend
+      friendship = create :friendship, user: user, friend: friend, invitation_email: friend.email
       friendship.accept!
 
       user.friends = []

@@ -28,7 +28,7 @@ RSpec.describe Friendship, type: :model do
     it 'establishes a reciprocal friendship' do
       user = create :user
       friend = create :user
-      friendship = create :friendship, user: user, friend: friend, accepted_at: nil
+      friendship = create :friendship, user: user, friend: friend, accepted_at: nil, invitation_email: friend.email
 
       expect(user.friends).to_not include(friend)
       expect(friend.friends).to_not include(user)

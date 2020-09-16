@@ -56,7 +56,7 @@ RSpec.describe Recipe::Search do
 
   describe '#run' do
     describe 'limiting by liked recipes' do
-      let(:options) { { liked_only: true, user: user } }
+      let(:options) { { liked_by_user: true, user: user } }
 
       it 'returns liked recipes' do
         unliked = create :recipe, user: user

@@ -38,13 +38,6 @@
             .d-flex.rythmx-3
               = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
               = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
-              .text-center.flex-fill.d-flex.flex-column.border-left.pt-2.rythmy-2
-                %fieldset
-                  = f.check_box :liked_only, class: 'recipe-filter--liked'
-                  = f.label :liked_only, 'Favourites'
-                %fieldset
-                  = f.check_box :exclude_friends, class: 'recipe-filter--friends', disabled: !current_user.friends.exists?
-                  = f.label :exclude_friends, 'My recipes'
 
             .d-flex.justify-content-around.mt-3.border-top
               = f.submit 'RANDOM',
@@ -57,6 +50,6 @@
                 data: { disable: true }
 
 .js-updateable-recipes.row
-  = render(@recipes) || render('no_results')
+  = render(partial: 'recipes/recipe', collection: @recipes) || render('no_results')
 
 = render 'load_more_link'

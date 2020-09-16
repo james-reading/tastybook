@@ -1,7 +1,16 @@
 .text-center.my-5.col-12
-  %h3.mb-4
-    - if params[:recipe_search]
-      Your search did not match any recipes :(
-    - else
-      You have no recipes yet!
-  = link_to 'New recipe', [:new, :recipe], class: 'btn btn-primary'
+  - if params[:recipe_search]
+    %h3.mb-4 Your search didn't match any recipes 😞
+    = link_to 'New recipe', [:new, :recipe], class: 'btn btn-primary'
+
+  - elsif params[:controller] == 'recipes/friends'
+    %h3.mb-4 Your friends don't have any recipes 😞
+    = link_to 'Go to my recipes', :recipes, class: 'btn btn-primary'
+
+  - else
+    %h3.mb-4 You have no recipes yet!
+    %p= link_to 'Create my first recipe', [:new, :recipe], class: 'btn btn-primary'
+
+    - if user_signed_in? && current_user.friends_recipes.exists?
+      %p OR
+      %div= link_to "Go to my friends' recipes", [:friends, :recipes]

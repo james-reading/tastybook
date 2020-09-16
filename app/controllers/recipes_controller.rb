@@ -76,7 +76,7 @@ class RecipesController < ApplicationController
   end
 
   def search_params
-    params.fetch(:recipe_search, {}).permit(:q, :liked_only, :exclude_friends, length: [], course: [])
+    params.fetch(:recipe_search, {}).permit(:q, length: [], course: [])
   end
 
   def search_options

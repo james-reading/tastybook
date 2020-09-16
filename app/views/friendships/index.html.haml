@@ -1,10 +1,12 @@
 .d-flex.justify-content-between.align-items-start
   %h1= title 'My friends'
-  = link_to 'Add', new_friendship_path, class: 'btn btn-primary'
+  = link_to 'Invite a friend', new_friendship_path, class: 'btn btn-primary'
 
 - if @friendships.any?
   %table.table.mt-4
     %tbody
       = render @friendships
 - else
-  .text-muted.font-italic You have no friends :(
+  %div
+    %span.text-muted.font-italic You have no friends
+    %span 😞

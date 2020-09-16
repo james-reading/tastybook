@@ -7,8 +7,8 @@ class Recipe
     attribute :user
     attribute :length, default: Recipe::LENGTHS
     attribute :course, default: Recipe::COURSES
-    attribute :liked_only, :boolean, default: false
-    attribute :exclude_friends, :boolean, default: false
+    attribute :liked_by_user, :boolean, default: false
+    attribute :friends_of_user, :boolean, default: false
     attribute :page, :integer, default: 1
     attribute :per_page, :integer, default: 25
 
@@ -53,16 +53,16 @@ class Recipe
       limit_to_user
       limit_by_length
       limit_by_course
-      limit_by_liked_only
+      limit_by_liked_by_user
     end
 
     def limit_to_user
-      if user.present?
-        where[:user_id] = [user.id]
+      if friends_of_user
+        raise ArgumentError 'Please provide a user if using include_friends option' unless user.present?
 
-        unless exclude_friends
-          where[:user_id] += user.friends.pluck(:friend_id)
-        end
+        where[:user_id] = user.friends.pluck(:friend_id)
+      elsif user.present?
+        where[:user_id] = user.id
       end
     end
 
@@ -78,8 +78,10 @@ class Recipe
       end
     end
 
-    def limit_by_liked_only
-      if liked_only
+    def limit_by_liked_by_user
+      if liked_by_user
+        raise ArgumentError 'Please provide a user if using liked_by_user option' unless user.present?
+
         where[:liked_user_ids] = user.id
       end
     end

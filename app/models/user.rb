@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :friendships
   has_many :friends, through: :friendships, dependent: :destroy
+  has_many :friends_recipes, through: :friends, source: :recipes
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
