@@ -106,3 +106,31 @@
     color: $blue;
   }
 }
+
+body {
+  counter-reset: recipe-step;
+}
+
+.tb-recipe-description-field {
+  position: relative;
+
+  .tb-recipe-description-field--textarea {
+    padding-left: 1.75rem;
+  }
+
+  .tb-recipe-description-field--span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 0.375rem;
+    padding-left: 0.75rem;
+    margin: 0;
+    color: inherit !important;
+    counter-increment: recipe-step;
+    border: 1px solid transparent;
+
+    &::after {
+      content: counter(recipe-step) '.';
+    }
+  }
+}

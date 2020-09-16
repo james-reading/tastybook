@@ -1,13 +1,17 @@
 .nested-fields
   .d-flex.mb-4
-    %button.text-muted.pr-3.tb-button-reset.js-sortable-handle{ draggable: 'true', style: 'padding-top: 10px' }
+    %button.text-muted.pr-3.tb-button-reset.js-sortable-handle{ type: 'button', draggable: 'true', style: 'padding-top: 10px' }
       %i.fas.fa-sort
       %span.sr-only Remove step
     = f.hidden_field :position, class: 'js-position-input'
     = f.input :description,
       wrapper_class: 'flex-fill',
       label_html: { class: 'sr-only' },
-      input_html: { rows: '3' }
+      input_html: { rows: '3', class: 'tb-recipe-description-field--textarea' },
+      wrapper_html: { class: 'tb-recipe-description-field' },
+      hint_html: { class: 'tb-recipe-description-field--span' },
+      hint_tag: 'span',
+      hint: ''
     = link_to_remove_association f do
       %i.fas.fa-trash-alt.text-dark.ml-3{ style: 'margin-top: 10px' }
       .sr-only Remove step
