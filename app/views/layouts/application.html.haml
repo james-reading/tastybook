@@ -9,7 +9,7 @@
     = render 'favicon'
     = display_meta_tags site: 'Tastybook'
     = stylesheet_pack_tag 'styles', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', async: Rails.env.production?
     = csrf_meta_tags
     = csp_meta_tag
 
