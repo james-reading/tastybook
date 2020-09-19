@@ -1,21 +1,21 @@
 - unless ingredients.empty? && steps.empty?
-  .card.instructions-card.mt-4
-    .card-header
-      %ul.nav.nav-tabs.instructions-tabs.card-header-tabs#intructions-tabs{ role: 'tablist'}
-        %li.nav-item.w-50.text-center
-          %a.nav-link.h5.mb-0#ingredients-tab{ data: { toggle: "tab" },
+  .mt-4
+    .d-flex.justify-content-center
+      %ul.nav.nav-tabs.tb-instructions-tabs#intructions-tabs{ role: 'tablist'}
+        %li.nav-item
+          %a.nav-link#ingredients-tab{ data: { toggle: "tab" },
             class: "#{'active' unless ingredients.empty?}",
             href: '#ingredients',
             role: 'tab',
             aria: { controls: 'ingredients', selected: 'true' } } Ingredients
-        %li.nav-item.w-50.text-center
-          %a.nav-link.h5.mb-0#steps-tab{ data: { toggle: 'tab' },
+        %li.nav-item
+          %a.nav-link#steps-tab{ data: { toggle: 'tab' },
             class: "#{'active' if ingredients.empty?}",
             href: '#steps',
             role: 'tab',
             aria: { controls: 'steps', selected: 'true' } } Steps
 
-    .card-body.tab-content.recipe-instructions
+    .tab-content.tb-recipe-instructions.mt-3
       .tab-pane#ingredients{ role: 'tabpanel',
         class: "#{'active' unless ingredients.empty?}",
         aria: { labelledby: 'ingredients-tab' } }
@@ -23,7 +23,7 @@
           .text-center.py-3
             %i.text-muted No ingredients
         - else
-          %ul.line-height-sm
+          %ul
             - ingredients.each do |ingredient|
               %li= ingredient.name
 

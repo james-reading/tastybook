@@ -15,13 +15,13 @@
           .embed-responsive-item.recipe-image{ style: "background-image:url(#{rails_representation_url(@recipe.image.variant(resize_to_fill: [1200, 514]))});" }
       .card-body
         .d-flex.justify-content-between
-          %h1.mb-0= title @recipe.name
+          %h1= title @recipe.name
           = render 'dropdown', recipe: @recipe
 
         = render 'information', recipe: @recipe
 
         - if @recipe.link.present?
-          .mt-4
+          .mt-3
             = link_to @recipe.link_uri.to_s, target: '_blank', rel: 'noopener noreferrer' do
               %i.fas.fa-external-link-alt.mr-1
               %span= @recipe.link_host

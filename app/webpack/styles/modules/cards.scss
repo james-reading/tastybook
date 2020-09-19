@@ -23,25 +23,3 @@
     }
   }
 }
-
-.instructions-card {
-  border: 1px solid $primary;
-
-  .card-header {
-    background-color: $primary;
-    border-bottom: none;
-
-    .nav-link.active {
-      border-color: transparent;
-    }
-
-    .nav-link:not(.active) {
-      color: $white;
-
-      &:hover {
-        background-color: lighten($primary, 10%);
-        border-color: transparent;
-      }
-    }
-  }
-}

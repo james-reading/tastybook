@@ -1,4 +1,4 @@
-.recipe-instructions {
+.tb-recipe-instructions {
   ul {
     display: flex;
     flex-direction: column;
@@ -8,11 +8,13 @@
     li {
       position: relative;
       display: block;
-      padding-bottom: 0.25rem;
+      padding: 0.25rem 0;
       font-size: 1.2em;
+      border-bottom: 1px solid $gray-200;
 
       &:last-child {
-        padding-bottom: 0;
+        // padding-bottom: 0;
+        border-bottom: 0;
       }
     }
   }
@@ -148,12 +150,51 @@ body {
     padding-top: 0.375rem;
     padding-left: 0.75rem;
     margin: 0;
-    color: inherit !important;
+    color: inherit !important; //* stylelint-disable-line declaration-no-important
     counter-increment: recipe-step;
     border: 1px solid transparent;
 
     &::after {
       content: counter(recipe-step) '.';
     }
+  }
+}
+
+.nav-tabs.tb-instructions-tabs {
+  border-bottom: 0;
+
+  .nav-item {
+    margin-bottom: 0;
+
+    &:not(:first-of-type) .nav-link {
+      margin-left: -1px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(:last-of-type) .nav-link {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .nav-link {
+    width: 120px;
+    text-align: center;
+    border: $btn-border-width solid $primary;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    @include button-size(
+      $btn-padding-y,
+      $btn-padding-x,
+      $btn-font-size,
+      $btn-line-height,
+      $btn-border-radius
+    );
+  }
+
+  .nav-link.active {
+    color: color-yiq($primary);
+    background-color: $primary;
   }
 }
