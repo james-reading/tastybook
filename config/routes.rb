@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     collection do
       get :im_feeling_lucky
       resources :friends, only: :index, module: :recipes, as: :friends_recipes
+      resources :favourites, only: :index, module: :recipes, as: :favourite_recipes
     end
 
     member do

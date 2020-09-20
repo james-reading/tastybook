@@ -8,7 +8,7 @@ class Recipe
     attribute :length, default: Recipe::LENGTHS
     attribute :course, default: Recipe::COURSES
     attribute :liked_by_user, :boolean, default: false
-    attribute :friends_of_user, :boolean, default: false
+    attribute :include_friends, :boolean, default: false
     attribute :page, :integer, default: 1
     attribute :per_page, :integer, default: 25
 
@@ -36,7 +36,7 @@ class Recipe
         order: order,
         page: page,
         per_page: per_page,
-        includes: [{ image_attachment: :blob }, :cuisine, :likes, :user]
+        includes: [{ image_attachment: :blob }, :cuisine, :user]
       }
     end
 
@@ -57,12 +57,14 @@ class Recipe
     end
 
     def limit_to_user
-      if friends_of_user
+      if user.present?
+        where[:user_id] = [user.id]
+      end
+
+      if include_friends
         raise ArgumentError 'Please provide a user if using include_friends option' unless user.present?
 
-        where[:user_id] = user.friends.pluck(:friend_id)
-      elsif user.present?
-        where[:user_id] = user.id
+        where[:user_id] += user.friends.pluck(:friend_id)
       end
     end
 

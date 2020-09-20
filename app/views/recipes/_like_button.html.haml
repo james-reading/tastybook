@@ -1,6 +1,6 @@
 :ruby
-  liked = recipe.likes.find { |like| like.user == current_user }.present?
-
+  liked = liked?(recipe)
+  
 %div{ data: { controller: 'like' } }
   %button.btn.btn-link.like-btn{ data: { action: 'click->like#toggle', url: recipe_likes_path(recipe) }, class: "#{'like-btn--liked' if liked}" }
     %i.far.fa-star
