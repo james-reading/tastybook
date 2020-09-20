@@ -1,0 +1,6 @@
+- if @recipes.total_count.zero?
+  = render 'recipes/no_results'
+- else
+  .col-12.text-center
+    .h5.mb-3.text-primary #{recipe_count_heading}: #{search.total_count}
+  = render partial: 'recipes/recipe', collection: @recipes

@@ -13,7 +13,7 @@ class Recipe
     attribute :per_page, :integer, default: 25
 
     def run
-      @recipes = Recipe.search query_string, options
+      @results = Recipe.search query_string, options
     end
 
     def page
@@ -24,7 +24,13 @@ class Recipe
       page >= total_pages
     end
 
+    def total_count
+      results.total_count
+    end
+
     private
+
+    attr_reader :results
 
     def options
       prepare_where
@@ -94,10 +100,6 @@ class Recipe
       else
         { _score: :desc }
       end
-    end
-
-    def total_count
-      @recipes.total_count
     end
 
     def total_pages
