@@ -142,7 +142,7 @@
       }
 
       a {
-        color: #3498db;
+        color: #e7717d;
         text-decoration: underline;
       }
 
@@ -164,10 +164,10 @@
       }
         .btn a {
           background-color: #ffffff;
-          border: solid 1px #3498db;
+          border: solid 1px #e7717d;
           border-radius: 5px;
           box-sizing: border-box;
-          color: #3498db;
+          color: #e7717d;
           cursor: pointer;
           display: inline-block;
           font-size: 14px;
@@ -179,12 +179,12 @@
       }
 
       .btn-primary table td {
-        background-color: #3498db;
+        background-color: #e7717d;
       }
 
       .btn-primary a {
-        background-color: #3498db;
-        border-color: #3498db;
+        background-color: #e7717d;
+        border-color: #e7717d;
         color: #ffffff;
       }
 
@@ -242,6 +242,10 @@
         margin: 20px 0;
       }
 
+      p + p:last-of-type {
+        margin-bottom: 0
+      }
+
       /* -------------------------------------
           RESPONSIVE AND MOBILE FRIENDLY STYLES
       ------------------------------------- */
@@ -277,12 +281,18 @@
       ------------------------------------- */
       @media all {
         .btn-primary table td:hover {
-          background-color: #34495e !important;
+          background-color: #e1505f !important;
         }
         .btn-primary a:hover {
-          background-color: #34495e !important;
-          border-color: #34495e !important;
+          background-color: #e1505f !important;
+          border-color: #e1505f !important;
         }
+      }
+
+      .card {
+        padding: 1.25rem;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
       }
   %body
     -# %span.preheader This is preheader text. Some clients will show this text as a preview.

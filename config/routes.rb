@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resource :notes, only: [:edit], module: 'recipes', as: 'recipe_notes'
       resource :image, only: [:update, :destroy], module: 'recipes', as: 'recipe_image'
       resource :likes, only: [:create, :destroy], module: 'recipes', as: 'recipe_likes'
+      resources :comments, only: [:create, :destroy], module: 'recipes', shallow: true
     end
   end
 

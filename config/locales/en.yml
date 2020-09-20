@@ -63,6 +63,11 @@ en:
     friendship:
       create:
         success: 'Friend request sent'
+    comment:
+      create:
+        success: 'Your comment has been added'
+      destroy:
+        success: 'Your comment has been deleted'
 
   friendships_mailer:
     send_request:

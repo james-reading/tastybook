@@ -16,6 +16,6 @@ class Recipes::LikesController < ApplicationController
   private
 
   def recipe
-    @recipe = Recipe.find params[:id]
+    Recipe.find params[:id]
   end
 end

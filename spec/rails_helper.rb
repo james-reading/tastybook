@@ -22,6 +22,7 @@ end
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.include RequestSpecHelper, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
 
   config.before(:suite) do
     Recipe.reindex

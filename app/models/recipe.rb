@@ -8,6 +8,7 @@ class Recipe < ApplicationRecord
   belongs_to :cuisine, optional: true
   has_many :ingredients, -> { order(position: :asc) }, inverse_of: :recipe
   has_many :steps, -> { order(position: :asc) }, inverse_of: :recipe
+  has_many :comments, dependent: :destroy
 
   has_one_attached :image
 

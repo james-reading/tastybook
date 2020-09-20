@@ -1,2 +1,24 @@
-%h4 Comments
-%i.text-muted Coming soon
+.mb-4
+  .d-flex.justify-content-between
+    %h3 Comments
+
+    = link_to 'Add a comment',
+      '#commentCollapse',
+      'aria-controls': 'commentCollapse',
+      'aria-expanded': 'false',
+      'data-toggle': 'collapse',
+      role: 'button',
+    class: 'mt-1 d-inline-block chevron-toggle'
+
+  #commentCollapse.collapse.js-turbolinks-collapse-before-cache
+    = simple_form_for Comment.new, remote: true, data: { controller: 'form' } do |f|
+      .d-flex.align-items-start.mt-2
+        = f.input :body,
+          label: false,
+          wrapper_html: { class: 'flex-fill' },
+          input_html: { class: 'js-comment-body-input', data: { action: 'input->form#disableSubmitIfEmpty' } }
+        = f.button :button, class: 'btn btn-link', data: { target: 'form.submit' }, disabled: true  do
+          %i.fas.fa-paper-plane.fa-2x
+          .sr-only Submit comment
+#comments
+  = render recipe.comments.order(created_at: :desc).includes(:user).first(100) # TODO pagination

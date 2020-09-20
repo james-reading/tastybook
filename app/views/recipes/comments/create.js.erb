@@ -1,0 +1,6 @@
+$('#commentCollapse').collapse('hide');
+document.querySelector('.js-comment-body-input').value = '';
+
+var commentContainer = document.getElementById('comments');
+var newComment = document.createRange().createContextualFragment("<%= j render 'comments/comment', comment: @comment %>");
+commentContainer.insertBefore(newComment, commentContainer.firstChild);

@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :recipes
-  has_many :friendships
+  has_many :recipes, dependent: :destroy
+  has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, dependent: :destroy
   has_many :friends_recipes, through: :friends, source: :recipes
+  has_many :comments, dependent: :nullify
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 

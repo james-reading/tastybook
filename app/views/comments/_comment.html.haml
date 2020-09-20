@@ -1,0 +1,10 @@
+.border-bottom{ id: "comment_#{comment.id}" }
+  .d-flex.justify-content-between.align-items-start.my-2
+    .font-weight-bold.mr-auto= comment.user.username
+    .text-muted #{time_ago_in_words(comment.created_at)} ago
+    - if policy(comment).destroy?
+      = button_to comment, method: :delete, remote: true, class: 'btn btn-link pt-0 pr-0' do
+        %i.fas.fa-trash-alt.text-primary
+        .sr-only Delete comment
+
+  %div= simple_format(comment.body)
