@@ -37,4 +37,4 @@
           .text-right.small.text-muted.mt-4
             %span by #{@recipe.user.username}
 
-    = render 'comments', recipe: @recipe
+    = render 'comments', comments: @recipe.comments.order(created_at: :desc).includes(:user).limit(100) #TODO pagination

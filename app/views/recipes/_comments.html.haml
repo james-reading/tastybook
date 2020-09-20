@@ -21,4 +21,4 @@
           %i.fas.fa-paper-plane.fa-2x
           .sr-only Submit comment
 #comments
-  = render recipe.comments.order(created_at: :desc).includes(:user).first(100) # TODO pagination
+  = render comments

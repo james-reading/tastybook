@@ -3,7 +3,11 @@
     .font-weight-bold.mr-auto= comment.user.username
     .text-muted #{time_ago_in_words(comment.created_at)} ago
     - if policy(comment).destroy?
-      = button_to comment, method: :delete, remote: true, class: 'btn btn-link pt-0 pr-0' do
+      = button_to comment,
+        method: :delete,
+        remote: true,
+        data: { confirm: 'Are you sure you want to remove this comment?' },
+        class: 'btn btn-link pt-0 pr-0' do
         %i.fas.fa-trash-alt.text-primary
         .sr-only Delete comment
 
