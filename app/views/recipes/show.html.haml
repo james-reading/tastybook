@@ -3,7 +3,7 @@
     .d-flex.justify-content-end.align-items-center.mb-2
       = render 'like_button', recipe: @recipe
       - if edit?(@recipe)
-        = form_with model: @recipe, class: 'ml-2' do |f|
+        = form_with model: @recipe, url: recipe_image_path(@recipe), class: 'ml-2' do |f|
           = f.file_field :image, onchange: 'form.submit()', accept: 'image/*', class: 'd-none'
           = f.label :image, class: 'btn btn-link btn-link-secondary p-0 mb-0' do
             %i.fas.fa-camera.fa-2x.px-2

@@ -18,6 +18,7 @@ class Recipe < ApplicationRecord
   validates :length, inclusion: { in: LENGTHS }, unless: -> { length.blank? }
   validates :course, inclusion: { in: COURSES }, unless: -> { course.blank? }
   validate :link_validator, unless: -> { link.blank? }
+  validate :image_content_type
 
   accepts_nested_attributes_for :ingredients, :steps, reject_if: :all_blank, allow_destroy: true
 
@@ -58,5 +59,14 @@ class Recipe < ApplicationRecord
     end
 
     errors.add(:link, :http_url) unless valid
+  end
+
+  def image_content_type
+    return unless image.attached?
+
+    unless image.blob.content_type.start_with? 'image/'
+      errors.add(:image, 'is an invalid file type')
+      image.purge if image.persisted?
+    end
   end
 end

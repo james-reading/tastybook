@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
     member do
       resource :notes, only: [:edit], module: 'recipes', as: 'recipe_notes'
-      resource :image, only: [:destroy], module: 'recipes', as: 'recipe_image'
+      resource :image, only: [:update, :destroy], module: 'recipes', as: 'recipe_image'
       resource :likes, only: [:create, :destroy], module: 'recipes', as: 'recipe_likes'
     end
   end

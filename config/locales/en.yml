@@ -58,6 +58,8 @@ en:
       image:
         destroy:
           success: 'Recipe image has been removed'
+        update:
+          success: 'Recipe image has been updated successfully'
     friendship:
       create:
         success: 'Friend request sent'
