@@ -3,7 +3,7 @@ FactoryBot.define do
     user
     friend
     sequence :invitation_email do |n|
-      "user-#{n}@local.host"
+      "invite-#{n}@local.host"
     end
 
     trait :accepted do
