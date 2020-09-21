@@ -4,7 +4,7 @@
     .card-body
       %legend= title 'Settings'
 
-      = f.input :username
+      = f.input :username, hint: 'Letters, numbers, dashes, and underscores only.'
       = f.input :email, autocomplete: 'email'
 
   .card.mb-4.shadow-sm

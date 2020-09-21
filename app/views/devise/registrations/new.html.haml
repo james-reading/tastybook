@@ -9,7 +9,7 @@
   .card.devise-card.shadow-sm
     .card-body
       .form-inputs
-        = f.input :username,  autofocus: true, input_html: { autocomplete: 'username' }
+        = f.input :username,  autofocus: true, input_html: { autocomplete: 'username' }, hint: 'Letters, numbers, dashes, and underscores only.'
         = f.input :email,  autofocus: true, input_html: { autocomplete: 'email' }
         = f.input :password, input_html: { autocomplete: 'new-password' }
         = f.input :password_confirmation, input_html: { autocomplete: 'new-password' }, label: 'Confirm password'

@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :nullify
   has_many :likes, dependent: :destroy
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+  validates :username, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9-_]+\Z/ }
 
   def remember_me
     true
