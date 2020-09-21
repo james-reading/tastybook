@@ -4,7 +4,7 @@
     = link_to 'New recipe', [:new, :recipe], class: 'btn btn-primary'
 
   - elsif params[:controller] == 'recipes/favourites'
-    %h3.mb-4 You haven't favourites any recipes yet! 😞
+    %h3.mb-4 You haven't favourited any recipes yet! 😞
     = link_to 'Go to my recipes', :recipes, class: 'btn btn-primary'
 
   - elsif params[:controller] == 'recipes/friends'
