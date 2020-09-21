@@ -4,7 +4,7 @@
 .row
   .col-lg-4
     = simple_form_for @search,
-      url: recipes_path,
+      url: url_for,
       method: :get,
       remote: true,
       html: { class: 'form-inline-' } do |f|
@@ -23,7 +23,6 @@
           %i.fas.fa-search.fa-fw
           .sr-only Search
 
-
       = link_to 'More options',
         '#filterCollapse',
         'aria-controls': 'filterCollapse',
@@ -41,7 +40,7 @@
 
             .d-flex.justify-content-around.mt-3.border-top
               = f.submit 'RANDOM',
-                formaction: im_feeling_lucky_recipes_path,
+                formaction: url_for(action: :im_feeling_lucky),
                 class: 'btn btn-link no-underline py-3',
                 data: { disable: true }
 
