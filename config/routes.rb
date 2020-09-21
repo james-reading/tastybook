@@ -35,4 +35,10 @@ Rails.application.routes.draw do
       get :accept
     end
   end
+
+  resources :users, only: [], param: :username do
+    resources :recipes, only: :index, module: :users do
+      get :im_feeling_lucky, on: :collection
+    end
+  end
 end

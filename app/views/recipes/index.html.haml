@@ -1,6 +1,3 @@
-- title 'All recipes'
-- description 'Search for a recipe'
-
 .row
   .col-lg-4
     = simple_form_for @search,
@@ -48,6 +45,8 @@
                 class: 'btn btn-link no-underline py-3',
                 data: { disable: true }
 
+.text-center
+  %h1= title recipe_count_heading
 
 .js-updateable-recipes.row
   = render 'recipes/results', recipes: @recipes, search: @search

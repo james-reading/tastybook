@@ -3,9 +3,8 @@
   = link_to 'Invite a friend', new_friendship_path, class: 'btn btn-primary'
 
 - if @friendships.any?
-  %table.table.mt-4
-    %tbody
-      = render @friendships
+  .list-group.mt-4
+    = render @friendships
 - else
   %div
     %span.text-muted.font-italic You have no friends

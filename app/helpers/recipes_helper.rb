@@ -11,13 +11,13 @@ module RecipesHelper
   end
 
   def recipe_count_heading
-    return 'Results' if params[:recipe_search]
-    
     case params[:controller]
     when 'recipes/friends'
       'All recipes'
     when 'recipes/favourites'
-      'Favourite recipes'
+      'Favourites'
+    when 'users/recipes'
+      @user.username
     else
       'My recipes'
     end
