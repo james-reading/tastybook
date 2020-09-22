@@ -4,7 +4,9 @@
     .card-body
       %legend= title 'Settings'
 
-      = f.input :username, hint: 'Letters, numbers, dashes, and underscores only.'
+      = f.input :username,
+        wrapper_html: { data: { controller: 'username', 'username-url': check_username_user_path } },
+        input_html: { autocomplete: 'username', data: { target: 'username.input', action: 'focusout->username#check' } }
       = f.input :email, autocomplete: 'email'
 
   .card.mb-4.shadow-sm

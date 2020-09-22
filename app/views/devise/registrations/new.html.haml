@@ -9,8 +9,11 @@
   .card.devise-card.shadow-sm
     .card-body
       .form-inputs
-        = f.input :username,  autofocus: true, input_html: { autocomplete: 'username' }, hint: 'Letters, numbers, dashes, and underscores only.'
-        = f.input :email,  autofocus: true, input_html: { autocomplete: 'email' }
+        = f.input :username,
+          autofocus: true,
+          wrapper_html: { data: { controller: 'username', 'username-url': check_username_user_path } },
+          input_html: { autocomplete: 'username', data: { target: 'username.input', action: 'focusout->username#check' } }
+        = f.input :email, input_html: { autocomplete: 'email' }
         = f.input :password, input_html: { autocomplete: 'new-password' }
         = f.input :password_confirmation, input_html: { autocomplete: 'new-password' }, label: 'Confirm password'
       .form-actions

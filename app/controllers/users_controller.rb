@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:check_username]
 
   def edit
   end
@@ -9,6 +9,18 @@ class UsersController < ApplicationController
       redirect_to authenticated_root_path
     else
       render :edit
+    end
+  end
+
+  def check_username
+    user = current_user || User.new
+    user.username = params[:username]
+    user.validate
+
+    if user.errors[:username].any?
+      render json: { error: user.errors.full_messages_for(:username) }, status: 422
+    else
+      head :ok
     end
   end
 

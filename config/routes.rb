@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     root 'devise/registrations#new'
   end
 
-  resource :user, only: [:edit, :update]
+  resource :user, only: [:edit, :update] do
+    collection do
+      get :check_username
+    end
+  end
 
   resources :recipes do
     collection do
