@@ -3,6 +3,10 @@
     %h3.mb-4 Your search didn't match any recipes 😞
     = link_to 'New recipe', [:new, :recipe], class: 'btn btn-primary'
 
+  - elsif params[:controller] == 'users/recipes'
+    %h3.mb-4 #{@user.username} doesn't have any recipes yet! 😞
+    = link_to 'Go to my recipes', :recipes, class: 'btn btn-primary'
+
   - elsif params[:controller] == 'recipes/favourites'
     %h3.mb-4 You haven't favourited any recipes yet! 😞
     = link_to 'Go to my recipes', :recipes, class: 'btn btn-primary'
