@@ -25,7 +25,7 @@
         - else
           %ul
             - ingredients.each do |ingredient|
-              %li= ingredient.name
+              %li{ class: ('tb-recipe-ingredient--heading' if ingredient.heading?) }= ingredient.name
 
       .tab-pane#steps{ role: 'tabpanel',
         class: "#{'active' if ingredients.empty?}",

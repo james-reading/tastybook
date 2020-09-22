@@ -16,6 +16,15 @@
         // padding-bottom: 0;
         border-bottom: 0;
       }
+
+      &.tb-recipe-ingredient--heading {
+        font-size: 1.25em;
+        font-weight: 700;
+      }
+    }
+
+    li + li.tb-recipe-ingredient--heading {
+      padding-top: 1rem;
     }
   }
 

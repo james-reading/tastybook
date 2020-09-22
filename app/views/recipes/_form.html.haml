@@ -27,8 +27,9 @@
       #ingredients.js-sortable-fields
         = f.simple_fields_for :ingredients do |ingredient|
           = render 'ingredient_fields', f: ingredient
-        .ingredients
+        .ingredients.d-flex.justify-content-between
           = link_to_add_association 'add ingredient', f, :ingredients
+          = link_to_add_association 'add section', f, :ingredients, partial: 'section_fields'
 
   .card.mb-4.shadow-sm
     .card-body
