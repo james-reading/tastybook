@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     user.validate
 
     if user.errors[:username].any?
-      render json: { error: user.errors.full_messages_for(:username) }, status: 422
+      render json: { error: user.errors.full_messages_for(:username).first }, status: 422
     else
       head :ok
     end

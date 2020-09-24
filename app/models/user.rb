@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :nullify
   has_many :likes, dependent: :destroy
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9-_]+\Z/, message: 'must contain only letters, numbers, dashes, and underscores' }
+  validates :username, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[a-zA-Z0-9-_]+\Z/, message: 'must contain only letters, numbers, dashes, and underscores', if: -> { username.present? } }
 
   def remember_me
     true
