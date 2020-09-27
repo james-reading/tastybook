@@ -67,7 +67,7 @@ class Recipe < ApplicationRecord
 
     unless image.blob.content_type.start_with? 'image/'
       errors.add(:image, 'is an invalid file type')
-      image.purge if image.persisted?
+      image.purge
     end
   end
 end

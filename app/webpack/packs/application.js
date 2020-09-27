@@ -3,6 +3,7 @@ import Turbolinks from 'turbolinks';
 
 Rails.start();
 Turbolinks.start();
+require('@rails/activestorage').start();
 
 import { Application } from 'stimulus';
 import { definitionsFromContext } from 'stimulus/webpack-helpers';
@@ -25,5 +26,7 @@ import '../javascript/modules/sideNav';
 import '../javascript/modules/confirmExitForm';
 import '../javascript/modules/turbolinksBeforeCache';
 import '../javascript/modules/sortable';
+import '../javascript/modules/directUploads';
+import '../javascript/modules/autoSubmitForm';
 
 require.context('../images', true);
