@@ -1,11 +1,25 @@
-.d-flex.justify-content-between.align-items-start
-  %h1= title 'My friends'
-  = link_to 'Invite a friend', new_friendship_path, class: 'btn btn-primary'
+- unless @friend_requests.load.empty?
+  %section
+    %h2= pluralize @friend_requests.size, 'friend request'
 
-- if @friendships.any?
+  .list-group.mb-5.mt-4
+    = render partial: 'friend_request', collection: @friend_requests, as: :friend_request
+
+.d-flex.justify-content-between.align-items-start
+  %h1.h2= title 'My friends'
+  = link_to 'Invite a friend', new_invitation_path, class: 'btn btn-primary'
+
+- unless @friendships.load.empty?
   .list-group.mt-4
     = render @friendships
 - else
   %div
     %span.text-muted.font-italic You have no friends
     %span 😞
+
+- unless @suggestions.load.empty?
+  %section.mt-5
+    %h2 People you may know
+
+    .list-group.mt-4
+      = render partial: 'suggestion', collection: @suggestions, as: :user

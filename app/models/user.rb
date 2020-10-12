@@ -25,7 +25,27 @@ class User < ApplicationRecord
     likeable.likes.where(user: self).destroy_all
   end
 
-  def friends
-    super.merge(friendships.accepted)
+  def friends(accepted: true)
+    if accepted
+      super().merge(friendships.accepted)
+    else
+      super()
+    end
+  end
+
+  def friend_suggestions
+    User
+      .left_joins(:friendships)
+      .where(friendships: { friend: friends })
+      .where.not(id: friends(accepted: false))
+      .where.not(id: self)
+      .group(:id)
+      .order('COUNT(friendships.id) DESC')
+  end
+
+  def friend_requests
+    Friendship.pending.where(invitation_email: email, friend: nil).or(
+      Friendship.pending.where(friend: self)
+    )
   end
 end

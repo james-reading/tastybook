@@ -5,7 +5,12 @@
       %li= link_to 'All recipes', friends_recipes_path
     %li= link_to 'Favourites', favourite_recipes_path
     %li= link_to 'New recipe', new_recipe_path
-    %li= link_to 'Friends', friendships_path
+    %li
+      = link_to friendships_path do
+        Friends
+        - if (friend_requests = current_user && current_user.friend_requests.count) && friend_requests > 0
+          .sidenav--friend-request= pluralize(friend_requests, 'friend request')
+
     %li= link_to 'Settings', edit_user_path
 
   - if user_signed_in?

@@ -1,65 +1,58 @@
 class FriendshipsController < ApplicationController
-  before_action :authenticate_user!, except: [:accept]
+  before_action :authenticate_user!
+  before_action :set_friendship, only: [:destroy, :accept]
 
   def index
     @friendships = current_user.friendships.includes(:friend)
-  end
-
-  def new
-    @friendship = Friendship.new
+    @suggestions = current_user.friend_suggestions
+    @friend_requests = current_user.friend_requests
   end
 
   def create
-    @friendship = Friendship.new(friendship_params.merge(user: current_user))
+    @friend_request_form = FriendRequestForm.new(
+      friend_request_params.merge(
+        user: current_user
+      )
+    )
 
-    if @friendship.save
-      redirect_to friendships_path, flash: { success: t('flashes.friendship.create.success') }
+    if @friend_request_form.submit
+      flash[:success] = t('flashes.friendship.create.success', username: @friend_request_form.friend.username)
+    elsif @friend_request_form.friend
+      flash[:alert] = t('flashes.friendship.create.already_friend', username: @friend_request_form.friend.username)
     else
-      render :new
-    end
-  end
-
-  def accept
-    @friendship = Friendship.find_by_uuid params[:uuid]
-
-    if @friendship.blank?
-      return redirect_to root_path, flash: { alert: 'That link has expired' }
-    elsif @friendship.accepted?
-      return redirect_to root_path, flash: { alert: 'That friend request has already been accepted' }
+      flash[:error] = t('flashes.friendship.create.error')
     end
 
-    friend =  @friendship.friend || User.find_by_email(@friendship.invitation_email)
-
-    if friend && current_user == friend
-      @friendship.friend ||= friend
-      @friendship.accept!
-
-      redirect_to root_path, flash: { success: "Your are now friends with #{@friendship.user.username}" }
-    else
-      cookies[:friendship_uuid] = { value: @friendship.uuid, expires: 1.hour }
-
-      if friend
-        redirect_to new_user_session_path, flash: { success: 'Please log in to accept the friend request' }
-      else
-        redirect_to new_user_registration_path
-      end
-    end
-
+    redirect_to friendships_path
   end
 
   def destroy
-    @friendship = Friendship.find_by_uuid! params[:uuid]
-
     authorize @friendship
 
-    @friendship.destroy
+    @friendship.destroy!
 
     redirect_back fallback_location: friendships_path, flash: { success: "Unfriended #{@friendship.name}" }
   end
 
+  def accept
+    authorize @friendship
+
+    if @friendship.accept!
+      flash[:success] = "Your are now friends with #{@friendship.user.username}"
+    else
+      flash[:error] = "Could not accpt friend request"
+    end
+
+    redirect_back fallback_location: friendships_path
+  end
+
   private
 
-  def friendship_params
-    params.require(:friendship).permit(:invitation_email)
+  def friend_request_params
+    params.require(:friend_request_form).permit(:friend_id)
+  end
+
+  def set_friendship
+    @friendship = Friendship.find_by_uuid! params[:uuid]
   end
 end

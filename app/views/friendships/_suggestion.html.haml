@@ -1,0 +1,5 @@
+.list-group-item.d-flex.align-items-center.justify-content-between
+  = user.username
+  = form_with model: FriendRequestForm.new, url: friendships_path do |f|
+    = f.hidden_field :friend_id, value: user.id
+    = f.submit 'Add friend', class: 'btn btn-primary btn-sm'

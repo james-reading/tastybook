@@ -1,0 +1,3 @@
+.list-group-item.d-flex.align-items-center.justify-content-between
+  = friend_request.user.username
+  = button_to 'Accept', accept_friendship_path(friend_request), class: 'btn btn-primary btn-sm'

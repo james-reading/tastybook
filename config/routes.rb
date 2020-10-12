@@ -34,9 +34,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :friendships, except: [:show], path: 'friends', param: :uuid do
+  resources :invitations, only: [:new, :create], param: :uuid do
     member do
       get :accept
+    end
+  end
+
+  resources :friendships, only: [:index, :destroy, :create], path: 'friends', param: :uuid do
+    member do
+      post :accept
     end
   end
 

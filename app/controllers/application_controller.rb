@@ -26,9 +26,10 @@ class ApplicationController < ActionController::Base
 
     if friendship && !friendship.accepted?
       friendship.friend = resource
-      friendship.accept!
 
-      flash[:success] = "Your are now friends with #{friendship.user.username}"
+      if friendship.accept!
+        flash[:success] = "Your are now friends with #{friendship.user.username}"
+      end
     end
   end
 end

@@ -30,7 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  activerecord:
+  activemodel:
     attributes:
       friendship:
         invitation_email: 'Email'
@@ -40,14 +40,16 @@ en:
           attributes:
             link:
               http_url: 'is not valid'
-        friendship:
+        invitation_form:
           attributes:
             invitation_email:
               friend: 'is you!'
-            invitation_email:
               is_self: 'is your own!'
-              taken: 'already belongs to one of your friends'
+              is_friend: 'is already one of your friends'
   flashes:
+    invitation:
+      create:
+        success: 'An invitation has been sent to %{email}'
     recipe:
       create:
         success: 'Recipe created successfully'
@@ -62,7 +64,9 @@ en:
           success: 'Recipe image has been updated successfully'
     friendship:
       create:
-        success: 'Friend request sent'
+        success: 'A request has been sent to %{username}'
+        error: 'Friend request could not be sent'
+        already_friend: '%{username} is already your friend'
     comment:
       create:
         success: 'Your comment has been added'

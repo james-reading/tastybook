@@ -110,3 +110,20 @@ $sidenav-width: 250px;
     }
   }
 }
+
+.sidenav--friend-request {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.5em;
+
+  &::before {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.5em;
+    content: '';
+    background-color: $danger;
+    border-radius: 50%;
+  }
+}
