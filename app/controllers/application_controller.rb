@@ -1,9 +1,17 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
+  before_action :http_basic_authenticate, if: -> { ENV['HTTP_AUTH_PASSWORD'].present? }
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
+
+  def http_basic_authenticate
+    authenticate_or_request_with_http_basic do |name, password|
+      name == 'tastybook' && password == ENV['HTTP_AUTH_PASSWORD']
+    end
+  end
 
   def user_not_authorized(exception)
     redirect_back fallback_location: root_path, alert: user_not_authorized_message
