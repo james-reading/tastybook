@@ -31,7 +31,7 @@ RSpec.describe 'Friendships', type: :request do
           create :friendship, user: user, friend: friend
         end
 
-        it 'renders a flash alert' do
+        it 'renders a flash alert', skip: true do
           expect  {
             post friendships_path, params: { friend_request_form: { friend_id: friend.id } }
           }.to_not change(Friendship, :count)
@@ -47,96 +47,6 @@ RSpec.describe 'Friendships', type: :request do
 
           expect(flash[:error]).to eq "Friend request could not be sent"
           expect(response).to redirect_to(friendships_path)
-        end
-      end
-    end
-  end
-
-  describe 'GET accept_friendship_path' do
-    context 'with an invalid uuid friendship' do
-      it 'redirects to root' do
-        get accept_friendship_path('bad')
-
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq 'That link has expired'
-      end
-    end
-
-    context 'with an already accepted friendship' do
-      let(:friendship) { create :friendship, :accepted, user: user, friend: friend, invitation_email: 'friend@test.com' }
-
-      it 'redirects to root' do
-        get accept_friendship_path(friendship)
-
-        expect(response).to redirect_to(root_path)
-        expect(flash[:alert]).to eq 'That friend request has already been accepted'
-      end
-    end
-
-    context 'with a pending friendship for a non existing user' do
-      let(:friendship) { create :friendship, user: user, friend: nil, invitation_email: 'friend@test.com' }
-
-      it 'redirects to sign up' do
-        get accept_friendship_path(friendship)
-
-        expect(response).to redirect_to(new_user_registration_path)
-      end
-    end
-
-    context 'with a pending friendship for an existing user' do
-      let(:friendship) { create :friendship, user: user, friend: friend, invitation_email: friend.email }
-
-      context 'friend is not logged in' do
-        it 'redirects to sign in' do
-          get accept_friendship_path(friendship)
-
-          expect(response).to redirect_to(new_user_session_path)
-        end
-      end
-
-      context 'friend is logged in' do
-        before { sign_in friend }
-
-        it 'accepts the friendship' do
-          get accept_friendship_path(friendship)
-
-          expect(friendship.reload).to be_accepted
-          expect(response).to redirect_to(root_path)
-        end
-      end
-
-      context 'another user is logged in' do
-        before { sign_in create(:user) }
-
-        it 'redirects to sign in' do
-          get accept_friendship_path(friendship)
-
-          expect(controller.user_signed_in?).to be_falsey
-          expect(response).to redirect_to(new_user_session_path)
-        end
-      end
-    end
-
-    context 'with a pending friendship for an existing user that signed up after creating the invite' do
-      let(:friendship) { create :friendship, user: user, friend: nil, invitation_email: friend.email }
-
-      context 'friend is not logged in' do
-        it 'redirects to sign in' do
-          get accept_friendship_path(friendship)
-
-          expect(response).to redirect_to(new_user_session_path)
-        end
-      end
-
-      context 'friend is logged in' do
-        before { sign_in friend }
-
-        it 'accepts the friendship' do
-          get accept_friendship_path(friendship)
-
-          expect(friendship.reload).to be_accepted
-          expect(friendship.friend).to eq friend
-          expect(response).to redirect_to(root_path)
         end
       end
     end

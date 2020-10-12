@@ -36,16 +36,21 @@ en:
         invitation_email: 'Email'
     errors:
       models:
-        recipe:
-          attributes:
-            link:
-              http_url: 'is not valid'
         invitation_form:
           attributes:
             invitation_email:
               friend: 'is you!'
               is_self: 'is your own!'
               is_friend: 'is already one of your friends'
+
+  activerecord:
+    errors:
+      models:
+        recipe:
+          attributes:
+            link:
+              http_url: 'is not valid'
+    
   flashes:
     invitation:
       create:

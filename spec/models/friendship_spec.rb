@@ -9,21 +9,6 @@ RSpec.describe Friendship, type: :model do
     it { should be_valid }
   end
 
-  describe 'friend' do
-    it 'assings the friend on create if the user exists already' do
-      friend = create :user
-      friendship = create :friendship, invitation_email: friend.email, friend: nil
-
-      expect(friendship.friend).to eq friend
-    end
-
-    it 'does not assign the friend if no user exists' do
-      friendship = create :friendship, invitation_email: 'test@example.com', friend: nil
-
-      expect(friendship.friend).to eq nil
-    end
-  end
-
   describe '#accept!' do
     it 'establishes a reciprocal friendship' do
       user = create :user
