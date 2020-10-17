@@ -50,7 +50,7 @@ en:
           attributes:
             link:
               http_url: 'is not valid'
-    
+
   flashes:
     invitation:
       create:
@@ -77,7 +77,3 @@ en:
         success: 'Your comment has been added'
       destroy:
         success: 'Your comment has been deleted'
-
-  friendships_mailer:
-    send_request:
-      subject: 'You have a friend request'

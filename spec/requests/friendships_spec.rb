@@ -31,7 +31,7 @@ RSpec.describe 'Friendships', type: :request do
           create :friendship, user: user, friend: friend
         end
 
-        it 'renders a flash alert', skip: true do
+        it 'renders a flash alert' do
           expect  {
             post friendships_path, params: { friend_request_form: { friend_id: friend.id } }
           }.to_not change(Friendship, :count)

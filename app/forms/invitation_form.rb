@@ -3,6 +3,8 @@ class InvitationForm
 
   attr_accessor :user, :invitation_email
 
+  attr_reader :friendship
+
   validates :invitation_email,
     presence: true,
     format: { with: Devise.email_regexp, if: -> { invitation_email.present? } }
@@ -13,14 +15,74 @@ class InvitationForm
   def submit
     return false if invalid?
 
-    friendship = user.friendships.new(
-      invitation_email: invitation_email
-    )
+    if sent_request
+      @friendship = sent_request
+      # TODO: could resent email here
+      friendship.friend_id = friend_id
+      friendship.save
 
-    friendship.save
+    elsif received_request
+      @friendship = received_request
+      friendship.friend = user
+      friendship.accept!
+
+    else
+      @friendship = Friendship.new(
+        user: user,
+        invitation_email: invitation_email
+      )
+
+      friendship.save
+    end
+  end
+
+  def friend
+    @friend ||= User.find_by_email invitation_email
   end
 
   private
+
+  def received_request
+    @received_request ||= received_friend_request.or(received_invitation_request).first
+  end
+
+  def sent_request
+    @sent_request ||= sent_friend_request.or(sent_invitation_request).first
+  end
+
+  def received_friend_request
+    Friendship.pending.where(
+      user: friend,
+      friend: user
+    )
+  end
+
+  def received_invitation_request
+    Friendship.pending.where(
+      user: friend,
+      friend: nil,
+      invitation_email: user.email
+    )
+  end
+
+  def sent_friend_request
+    Friendship.pending.where(
+      user: user,
+      friend: friend
+    )
+  end
+
+  def sent_invitation_request
+    return Friendship.none unless friend
+
+    Friendship.pending.where(
+      user: user,
+      friend: nil,
+      invitation_email: invitation_email
+    )
+  end
+
+  # Validations
 
   def cannot_invite_self
     if invitation_email == user.email

@@ -5,6 +5,10 @@ class FriendshipPolicy < ApplicationPolicy
   end
 
   def accept?
-    record.friend == user
+    if record.friend
+      record.friend == user
+    else
+      record.invitation_email == user.email
+    end
   end
 end

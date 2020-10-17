@@ -13,7 +13,13 @@ class InvitationsController < ApplicationController
     )
 
     if @invitation_form.submit
-      redirect_to friendships_path, flash: { success: t('flashes.invitation.create.success', email: @invitation_form.invitation_email) }
+      if @invitation_form.friendship.accepted?
+        flash[:success] = "You are now friends with #{@invitation_form.friend.username}"
+      else
+        flash[:success] = t('flashes.invitation.create.success', email: @invitation_form.invitation_email)
+      end
+
+      redirect_to friendships_path
     else
       render :new
     end

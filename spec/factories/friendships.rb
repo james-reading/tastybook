@@ -5,6 +5,10 @@ FactoryBot.define do
       "invite-#{n}@local.host"
     end
 
+    trait :pending do
+      accepted_at { nil }
+    end
+
     trait :accepted do
       friend
 

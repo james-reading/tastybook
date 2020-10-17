@@ -2,6 +2,8 @@ class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User', optional: true
 
+  validate :cannot_friend_self
+
   before_validation :sanitize_invitation_email
   before_create :set_uuid
   after_destroy :destroy_reciprocal_friendship
@@ -15,9 +17,14 @@ class Friendship < ApplicationRecord
   def accept!
     self.accepted_at = Time.now
 
-    if save
-      create_reciprocal_friendship
+    transaction do
+      if save
+        create_reciprocal_friendship
+      end
     end
+
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+    return false
   end
 
   def accepted?
@@ -62,6 +69,12 @@ class Friendship < ApplicationRecord
   def sanitize_invitation_email
     if invitation_email
       self.invitation_email = invitation_email.strip.downcase
+    end
+  end
+
+  def cannot_friend_self
+    if friend_id && user_id && friend_id == user_id
+      errors.add(:friend_id, :is_self)
     end
   end
 end

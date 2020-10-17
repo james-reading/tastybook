@@ -16,7 +16,14 @@ class FriendshipsController < ApplicationController
     )
 
     if @friend_request_form.submit
-      flash[:success] = t('flashes.friendship.create.success', username: @friend_request_form.friend.username)
+
+      if @friend_request_form.friendship.accepted?
+        flash[:success] = "You are now friends with #{@friend_request_form.friend.username}"
+      else
+        flash[:success] = t('flashes.friendship.create.success', username: @friend_request_form.friend.username)
+      end
+
+
     elsif @friend_request_form.friend
       flash[:alert] = t('flashes.friendship.create.already_friend', username: @friend_request_form.friend.username)
     else
@@ -37,10 +44,12 @@ class FriendshipsController < ApplicationController
   def accept
     authorize @friendship
 
+    @friendship.friend ||= current_user
+
     if @friendship.accept!
       flash[:success] = "Your are now friends with #{@friendship.user.username}"
     else
-      flash[:error] = "Could not accpt friend request"
+      flash[:error] = "Could not accept friend request"
     end
 
     redirect_back fallback_location: friendships_path

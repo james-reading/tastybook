@@ -25,11 +25,19 @@ class ApplicationController < ActionController::Base
     friendship = Friendship.find_by_uuid cookies.delete(:friendship_uuid)
 
     if friendship && !friendship.accepted?
+      if friendship.user == resource
+        flash[:alert] = 'You cannot accept your own friend request!'
+
+        return
+      end
+
       friendship.friend = resource
 
       if friendship.accept!
         flash[:success] = "Your are now friends with #{friendship.user.username}"
       end
     end
+  rescue ActiveRecord::RecordNotUnique
+    flash[:alert] = "Your are already friends with #{friendship.user.username}"
   end
 end
