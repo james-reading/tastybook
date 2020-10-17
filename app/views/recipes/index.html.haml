@@ -1,37 +1,37 @@
-.row
-  .col-lg-4
-    = simple_form_for @search,
-      url: url_for,
-      method: :get,
-      remote: true,
-      html: { class: 'form-inline-' } do |f|
+.card.border-0.shadow-sm.mb-5
+  .card-body
+    .row
+      .col-lg-4
+        = simple_form_for @search,
+          url: url_for,
+          method: :get,
+          remote: true,
+          html: { class: 'form-inline-' } do |f|
 
-      .d-flex
-        = f.input :q,
-          placeholder: 'Search',
-          label_html: { class: 'sr-only' },
-          wrapper_html: { class: 'flex-fill mr-2 mb-0' },
-          input_html: { class: 'flex-fill' }
+          .d-flex
+            = f.input :q,
+              placeholder: 'Search',
+              label_html: { class: 'sr-only' },
+              wrapper_html: { class: 'flex-fill mr-2 mb-0' },
+              input_html: { class: 'flex-fill tb-search-input' }
 
-        = f.button :button,
-          type: :submit,
-          class: 'btn btn-primary flex-center',
-          data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw'></i>".html_safe } do
-          %i.fas.fa-search.fa-fw
-          .sr-only Search
+            = f.button :button,
+              type: :submit,
+              class: 'btn btn-link p-0 flex-center text-decoration-none',
+              data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw fa-2x'></i>".html_safe } do
+              %i.fas.fa-search.fa-fw.fa-2x
+              .sr-only Search
 
-      = link_to 'More options',
-        '#filterCollapse',
-        'aria-controls': 'filterCollapse',
-        'aria-expanded': 'false',
-        'data-toggle': 'collapse',
-        role: 'button',
-        class: 'mt-1 d-inline-block chevron-toggle'
+          = link_to 'More options',
+            '#filterCollapse',
+            'aria-controls': 'filterCollapse',
+            'aria-expanded': 'false',
+            'data-toggle': 'collapse',
+            role: 'button',
+            class: 'mt-2 d-inline-block chevron-toggle'
 
-      #filterCollapse.collapse.js-turbolinks-collapse-before-cache
-        .card.border.my-4
-          .card-body.pb-0
-            .d-flex.rythmx-3
+          #filterCollapse.collapse.js-turbolinks-collapse-before-cache
+            .d-flex.rythmx-3.mt-3
               = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
               = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
 
@@ -45,11 +45,11 @@
                 class: 'btn btn-link no-underline py-3',
                 data: { disable: true }
 
-.text-center.my-4
-  - heading, explanation = recipe_heading
+    .text-center.mt-4
+      - heading, explanation = recipe_heading
 
-  %h1.font-weight-bold= title heading
-  %p= description explanation
+      %h1.font-weight-bold= title heading
+      %p.mb-0= description explanation
 
 .js-updateable-recipes.row
   = render 'recipes/results', recipes: @recipes, search: @search

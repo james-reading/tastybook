@@ -2,5 +2,5 @@
   = render 'recipes/no_results'
 - else
   .col-12
-    .h5.mb-3= pluralize(search.total_count, 'recipe')
+    .h5.mb-3 #{pluralize(search.total_count, 'recipe')} found
   = render partial: 'recipes/recipe', collection: @recipes
