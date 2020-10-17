@@ -1,17 +1,18 @@
 $sidenav-width: 250px;
+$shadow-width: 10px;
 
 /* The side navigation menu */
 .sidenav {
   position: fixed;
+  width: $sidenav-width;
   top: 0;
-  right: 0;
+  right: -($sidenav-width + $shadow-width);
   bottom: -56px; // to avoid gap when android chrome addressbar closes
   z-index: 100;
-  width: 0;
   padding-top: 15vh;
   overflow: hidden;
   background-color: $white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 $shadow-width rgba(0, 0, 0, 0.4);
   transition: 0.2s;
 
   .sidenav--bottom-center {
@@ -72,7 +73,7 @@ $sidenav-width: 250px;
   overflow: hidden;
 
   .sidenav {
-    width: $sidenav-width;
+    right: 0;
 
     + .hamburger {
       div {
