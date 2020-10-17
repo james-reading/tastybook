@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:comment) { build_stubbed :comment }
+
+  describe 'factory' do
+    subject { comment }
+
+    it { should be_valid }
+  end
 end

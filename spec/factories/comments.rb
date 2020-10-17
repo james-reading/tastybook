@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :comment do
-    user { nil }
+    user
+    recipe
     body { "MyText" }
   end
 end
