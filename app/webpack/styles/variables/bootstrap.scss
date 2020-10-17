@@ -19,12 +19,13 @@ $spacer: 1rem;
 
 // Body
 
-$body-bg: #f4f5f7;
+// $body-bg: #f4f5f7;
+$body-bg: $white;
 $body-color: $gray-700;
 
 // components
 
-$border-radius-lg: 0.3rem;
+$border-radius-lg: 0.75rem;
 
 // fonts
 
@@ -52,6 +53,7 @@ $navbar-padding-y: $spacer / 4;
 // forms
 
 $label-margin-bottom: 0.25rem;
+$input-border-color: $gray-200;
 
 // settings
 
@@ -70,6 +72,10 @@ $card-border-radius: $border-radius-lg;
 //
 
 $border-color: $gray-200;
+
+// List group
+
+$list-group-border-color: $border-color;
 
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';

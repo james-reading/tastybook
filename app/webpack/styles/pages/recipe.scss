@@ -69,8 +69,8 @@
   line-height: 0.75em;
   vertical-align: -0.0667em;
   background-color: $white;
+  border: 1px solid $gray-200;
   border-radius: 50%;
-  box-shadow: $box-shadow-sm;
 
   &:focus,
   &:hover {
