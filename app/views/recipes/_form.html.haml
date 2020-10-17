@@ -31,8 +31,8 @@
           - else
             = render 'ingredient_fields', f: ingredient
         .ingredients.d-flex.justify-content-between
-          = link_to_add_association 'add ingredient', f, :ingredients
           = link_to_add_association 'add section', f, :ingredients, partial: 'section_fields'
+          = link_to_add_association 'add ingredient', f, :ingredients
 
   .card.mb-4
     .card-body

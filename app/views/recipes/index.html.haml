@@ -26,10 +26,10 @@
         'aria-expanded': 'false',
         'data-toggle': 'collapse',
         role: 'button',
-        class: 'mt-1 d-inline-block chevron-toggle mb-4'
+        class: 'mt-1 d-inline-block chevron-toggle'
 
       #filterCollapse.collapse.js-turbolinks-collapse-before-cache
-        .card.tb-border-light.mb-4
+        .card.border.my-4
           .card-body.pb-0
             .d-flex.rythmx-3
               = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
@@ -45,8 +45,11 @@
                 class: 'btn btn-link no-underline py-3',
                 data: { disable: true }
 
-.text-center
-  %h1= title recipe_count_heading
+.text-center.my-4
+  - heading, explanation = recipe_heading
+
+  %h1.font-weight-bold= title heading
+  %p= description explanation
 
 .js-updateable-recipes.row
   = render 'recipes/results', recipes: @recipes, search: @search

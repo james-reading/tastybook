@@ -1,4 +1,4 @@
-.sidenav.d-flex.flex-column.justify-content-between.text-nowrap
+.sidenav.d-flex.flex-column.justify-content-between.text-nowrap.border-left.shadow
   %ul
     %li= link_to 'My recipes', recipes_path
     - if user_signed_in? && current_user.friends.exists?

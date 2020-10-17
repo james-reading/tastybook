@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @search = Recipe::Search.new(search_options)
+    @search = Recipe::Search.new(search_options.merge(include_liked_by_user: true))
     @recipes = @search.run
 
     respond_to :html, :js
