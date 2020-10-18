@@ -56,16 +56,55 @@ RSpec.describe Recipe::Search do
 
   describe '#run' do
     describe 'limiting by liked recipes' do
-      let(:options) { { liked_by_user: true, user: user } }
+      let(:options) { { liked_recipes: true, user: user } }
 
       it 'returns liked recipes' do
         unliked = create :recipe, user: user
-        liked_by_user = create :recipe, user: user, likes: [create(:like, user: user)]
-        liked_by_other = create :recipe, user: user, likes: [create(:like)]
+        liked_own = create :recipe, user: user, likes: [create(:like, user: user)]
+        liked_other = create :recipe, likes: [create(:like, user: user)]
+        liked_own_by_other = create :recipe, user: user, likes: [create(:like)]
+        liked_other_by_other = create :recipe, likes: [create(:like)]
 
         Recipe.reindex
 
-        expect(service.run.results).to eq [liked_by_user]
+        expect(service.run.results).to eq [liked_own, liked_other]
+      end
+    end
+
+    describe 'limiting by liked and user recipes' do
+      let(:options) { { liked_recipes: true, user_recipes: true, user: user } }
+
+      it 'returns liked recipes and user recipes' do
+        unliked = create :recipe, user: user
+        unliked_created_by_other = create :recipe
+
+        liked = create :recipe, user: user, likes: [create(:like, user: user)]
+        liked_by_other = create :recipe, user: user, likes: [create(:like)]
+
+        liked_created_by_other = create :recipe, likes: [create(:like, user: user)]
+        liked_by_other_created_by_other = create :recipe, likes: [create(:like)]
+
+        Recipe.reindex
+
+        expect(service.run.results).to match_array([
+          unliked,
+          liked,
+          liked_by_other,
+          liked_created_by_other
+        ])
+      end
+    end
+
+    describe 'limiting by user recipes' do
+      let(:options) { { user_recipes: true, user: user } }
+
+      it 'returns user recipes' do
+        user_recipe = create :recipe, user: user
+        other_recipe = create :recipe
+
+        Recipe.reindex
+
+        expect(service.run.results).to eq [user_recipe]
       end
     end
   end

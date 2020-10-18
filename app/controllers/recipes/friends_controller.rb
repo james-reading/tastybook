@@ -4,7 +4,9 @@ class Recipes::FriendsController < RecipesController
 
   def search_options
     super.merge(
-      include_friends: true
+      user_recipes: true,
+      friend_recipes: true,
+      liked_recipes: true
     )
   end
 end

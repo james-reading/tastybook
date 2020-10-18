@@ -9,7 +9,10 @@ class Users::RecipesController < RecipesController
 
   def search_options
     super.merge(
-      user: @user
+      user: @user,
+      user_recipes: true,
+      friend_recipes: false,
+      liked_recipes: false
     )
   end
 end

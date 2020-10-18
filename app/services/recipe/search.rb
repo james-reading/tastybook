@@ -7,9 +7,9 @@ class Recipe
     attribute :user
     attribute :length, default: Recipe::LENGTHS
     attribute :course, default: Recipe::COURSES
-    attribute :liked_by_user, :boolean, default: false
-    attribute :include_liked_by_user, :boolean, default: false
-    attribute :include_friends, :boolean, default: false
+    attribute :user_recipes, :boolean, default: false
+    attribute :friend_recipes, :boolean, default: false
+    attribute :liked_recipes, :boolean, default: false
     attribute :page, :integer, default: 1
     attribute :per_page, :integer, default: 25
 
@@ -57,30 +57,9 @@ class Recipe
     end
 
     def prepare_where
-      limit_to_user
       limit_by_length
       limit_by_course
-      limit_by_liked_by_user
-    end
-
-    def limit_to_user
-      if user.present?
-        user_ids = [user.id]
-      end
-
-      if include_friends
-        raise ArgumentError 'Please provide a user if using include_friends option' unless user.present?
-
-        user_ids += user.friends.pluck(:friend_id)
-      end
-
-      if include_liked_by_user
-        raise ArgumentError 'Please provide a user if using include_liked_by_user option' unless user.present?
-
-        where[:_or] = [{ user_id: user_ids }, { liked_user_ids: user.id} ]
-      else
-        where[:user_id] = user_ids
-      end
+      limit_by_user
     end
 
     def limit_by_length
@@ -95,11 +74,21 @@ class Recipe
       end
     end
 
-    def limit_by_liked_by_user
-      if liked_by_user
-        raise ArgumentError 'Please provide a user if using liked_by_user option' unless user.present?
+    def limit_by_user
+      user_ids = []
+      
+      if user_recipes
+        user_ids << user.id
+      end
 
-        where[:liked_user_ids] = user.id
+      if friend_recipes
+        user_ids += user.friends.pluck(:friend_id)
+      end
+
+      if liked_recipes
+        where[:_or] = [{ user_id: user_ids }, { liked_user_ids: user.id }]
+      else
+        where[:user_id] = user_ids
       end
     end
 
