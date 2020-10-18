@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
   include Likeable
 
-  searchkick word_start: [:name], searchable: [:name]
+  searchkick word_start: [:name, 'ingredients.name'], searchable: [:name, 'ingredients.name']
   has_rich_text :notes
 
   belongs_to :user
@@ -23,7 +23,7 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :ingredients, :steps, reject_if: :all_blank, allow_destroy: true
 
-  scope :search_import, -> { includes(:likes) }
+  scope :search_import, -> { includes(:likes, :ingredients) }
 
   delegate :name, to: :cuisine, prefix: true, allow_nil: true
 
@@ -46,7 +46,8 @@ class Recipe < ApplicationRecord
       length: length,
       course: course,
       user_id: user_id,
-      liked_user_ids: likes.pluck(:user_id)
+      liked_user_ids: likes.pluck(:user_id),
+      ingredients: ingredients.pluck(:name).map { |name| { name: name } }
     }
   end
 

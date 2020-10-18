@@ -38,7 +38,7 @@ class Recipe
 
       {
         where: where,
-        fields: [:name],
+        fields: ['name^10', 'ingredients.name^5'],
         match: :word_start,
         order: order,
         page: page,
