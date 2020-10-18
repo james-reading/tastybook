@@ -35,14 +35,15 @@
               = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
               = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
 
-            .d-flex.justify-content-around.mt-3.border-top
-              = f.submit 'RANDOM',
+            .d-flex.justify-content-end.rythmx-3.mt-4.pt-4.border-top.border-primary.mb-4
+              = link_to 'Clear', url_for, class: 'btn btn-outline-secondary mr-auto'
+              = f.submit 'Randomize',
                 formaction: url_for(action: :im_feeling_lucky),
-                class: 'btn btn-link no-underline py-3',
+                class: 'btn btn-outline-primary',
                 data: { disable: true }
 
-              = f.submit 'APPLY',
-                class: 'btn btn-link no-underline py-3',
+              = f.submit 'Apply',
+                class: 'btn btn-primary',
                 data: { disable: true }
 
     .text-center.mt-4
