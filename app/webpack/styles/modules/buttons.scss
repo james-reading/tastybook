@@ -19,3 +19,27 @@
     outline: none;
   }
 }
+
+.tb-search--clear {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 0.75rem;
+  color: $dark;
+  background: none;
+  border: none;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::after {
+    display: inline-block;
+    // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    content: '\f057';
+  }
+}

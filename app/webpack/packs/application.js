@@ -28,5 +28,6 @@ import '../javascript/modules/turbolinksBeforeCache';
 import '../javascript/modules/sortable';
 import '../javascript/modules/directUploads';
 import '../javascript/modules/autoSubmitForm';
+import '../javascript/modules/cocoon';
 
 require.context('../images', true);

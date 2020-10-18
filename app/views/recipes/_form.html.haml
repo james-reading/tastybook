@@ -42,7 +42,7 @@
       #steps.js-sortable-fields
         = f.simple_fields_for :steps do |step|
           = render 'step_fields', f: step
-        .steps
+        .steps.d-flex.justify-content-end
           = link_to_add_association 'add step', f, :steps
 
   .form-actions

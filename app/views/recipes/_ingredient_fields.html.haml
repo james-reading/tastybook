@@ -4,6 +4,6 @@
       %i.fas.fa-sort
       %span.sr-only Drag ingredient
     = f.hidden_field :position, class: 'js-position-input'
-    = f.input :name, wrapper_class: 'flex-fill', label_html: { class: 'sr-only' }
+    = f.input :name, wrapper_class: 'flex-fill', label_html: { class: 'sr-only' }, input_html: { class: 'js-cocoon-focus' }
     = link_to_remove_association f do
       %i.fas.fa-minus-circle.text-dark.ml-3{ style: 'margin-top: 10px' }
