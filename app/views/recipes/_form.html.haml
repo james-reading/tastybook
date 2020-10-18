@@ -1,7 +1,7 @@
 = simple_form_for recipe, html: { class: 'optional-flag js-confirm-exit' } do |f|
   = f.error_notification message: 'Please review the problems below'
 
-  .card.mb-4
+  .card.mb-4.shadow-sm
     .card-body
       %legend Details
 
@@ -11,7 +11,7 @@
       = f.association :cuisine, collection: Cuisine.all.order(:name)
       = f.input :servings
 
-  .card.mb-4
+  .card.mb-4.shadow-sm
     .card-body
       %legend.mb-3
         Bookmark
@@ -19,7 +19,7 @@
       %p Found a recipe that you love on another website? Just paste the link here and keep all your favourite recipes in one place. Smart!
       = f.input :link, label_html: { class: 'sr-only' }, placeholder: 'e.g. https://www.bbcgoodfood.com/recipes/cottage-pie'
 
-  .card.mb-4
+  .card.mb-4.shadow-sm
     .card-body
       %legend.mb-3
         Ingredients
@@ -34,7 +34,7 @@
           = link_to_add_association 'add section', f, :ingredients, partial: 'section_fields'
           = link_to_add_association 'add ingredient', f, :ingredients
 
-  .card.mb-4
+  .card.mb-4.shadow-sm
     .card-body
       %legend.mb-3
         Steps
@@ -47,5 +47,5 @@
 
   .form-actions
     - unless request.url == request.referer
-      = link_to 'Cancel', :back, class: 'btn btn-link text-dark'
+      = link_to 'Cancel', :back, class: 'btn btn-link btn-lg text-dark'
     = f.submit 'Save', class: 'btn btn-primary btn-lg ml-auto'
