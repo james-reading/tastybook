@@ -69,14 +69,14 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-      :name, :cuisine_id, :length, :servings, :link, :notes, :course,
+      :name, :cuisine_id, :length, :servings, :link, :notes, :course, :vegan, :vegetarian,
       ingredients_attributes: [:id, :position, :name, :heading, :_destroy],
       steps_attributes: [:id, :position, :description, :_destroy]
     )
   end
 
   def search_params
-    params.fetch(:recipe_search, {}).permit(:q, length: [], course: [])
+    params.fetch(:recipe_search, {}).permit(:q, :vegan, :vegetarian, length: [], course: [])
   end
 
   def search_options

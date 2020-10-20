@@ -41,6 +41,16 @@
   content: '\f00c';
 }
 
+.form-check label.tb-form-check--vegan::after {
+  top: 1px;
+  content: '\f4d8';
+}
+
+.form-check input:checked ~ label.tb-form-check--vegan::before {
+  background-color: $green;
+  border-color: $green;
+}
+
 /* Show the checkmark when checked */
 .form-check input:checked ~ label::after {
   display: block;

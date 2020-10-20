@@ -7,6 +7,8 @@ class Recipe
     attribute :user
     attribute :length, default: Recipe::LENGTHS
     attribute :course, default: Recipe::COURSES
+    attribute :vegetarian, :boolean, default: false
+    attribute :vegan, :boolean, default: false
     attribute :user_recipes, :boolean, default: false
     attribute :friend_recipes, :boolean, default: false
     attribute :liked_recipes, :boolean, default: false
@@ -59,6 +61,7 @@ class Recipe
     def prepare_where
       limit_by_length
       limit_by_course
+      limit_by_diet
       limit_by_user
     end
 
@@ -74,9 +77,19 @@ class Recipe
       end
     end
 
+    def limit_by_diet
+      if vegan
+        where[:vegan] = true
+      end
+
+      if vegetarian
+        where[:vegetarian] = true
+      end
+    end
+
     def limit_by_user
       user_ids = []
-      
+
       if user_recipes
         user_ids << user.id
       end

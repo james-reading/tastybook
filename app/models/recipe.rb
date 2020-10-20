@@ -42,10 +42,12 @@ class Recipe < ApplicationRecord
 
   def search_data
     {
+      user_id: user_id,
       name: name,
       length: length,
       course: course,
-      user_id: user_id,
+      vegan: vegan,
+      vegetarian: vegetarian,
       liked_user_ids: likes.pluck(:user_id),
       ingredients: ingredients.pluck(:name).map { |name| { name: name } }
     }

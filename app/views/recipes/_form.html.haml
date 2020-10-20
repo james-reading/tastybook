@@ -22,6 +22,21 @@
   .card.mb-4.shadow-sm
     .card-body
       %legend.mb-3
+        Diet
+      %div{ data: { controller: 'radioHierarchy' } }
+        = f.input :vegetarian,
+          as: :boolean,
+          input_html: { data: { hierarchy: 0, target: 'radioHierarchy.radio', action: 'input->radioHierarchy#set' } },
+          label_html: { class: 'tb-form-check--vegan' }
+
+        = f.input :vegan,
+          as: :boolean,
+          input_html: { data: { hierarchy: 1, target: 'radioHierarchy.radio', action: 'input->radioHierarchy#set' } },
+          label_html: { class: 'tb-form-check--vegan' }
+
+  .card.mb-4.shadow-sm
+    .card-body
+      %legend.mb-3
         Ingredients
         %span.text-muted.small - optional
       #ingredients.js-sortable-fields

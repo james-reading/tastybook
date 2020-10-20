@@ -8,7 +8,7 @@ form {
   justify-content: space-between;
 }
 
-.optional-flag label.optional::after {
+.optional-flag label:not(.form-check-label).optional::after {
   color: $text-muted;
   content: ' - optional';
 }

@@ -35,7 +35,18 @@
               = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
               = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
 
-            .d-flex.justify-content-end.rythmx-3.mt-4.pt-4.border-top.border-primary.mb-4
+              %fieldset.form-group
+                %legend.col-form-label.pt-0 Diet
+                = f.input :vegetarian,
+                  as: :boolean,
+                  label_html: { class: 'tb-form-check--vegan mb-1' },
+                  wrapper_html: { class: 'mb-0' }
+                = f.input :vegan,
+                  as: :boolean,
+                  label_html: { class: 'tb-form-check--vegan mb-1' },
+                  wrapper_html: { class: 'mb-0' }
+
+            .d-flex.justify-content-end.rythmx-3.mt-4.border-bottom.pb-4.mb-4
               = link_to 'Clear', url_for, class: 'btn btn-outline-secondary mr-auto'
               = f.submit 'Randomize',
                 formaction: url_for(action: :im_feeling_lucky),

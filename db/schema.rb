@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_075818) do
+ActiveRecord::Schema.define(version: 2020_10_18_163954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(version: 2020_10_17_075818) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "course"
+    t.boolean "vegetarian", default: false, null: false
+    t.boolean "vegan", default: false, null: false
     t.index ["cuisine_id"], name: "index_recipes_on_cuisine_id"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
