@@ -1,3 +1,9 @@
+class JsonConstraint
+  def matches?(request)
+    request.format.json?
+  end
+end
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
 
@@ -51,4 +57,6 @@ Rails.application.routes.draw do
       get :im_feeling_lucky, on: :collection
     end
   end
+
+  get :find_images, to: 'find_images#index'
 end

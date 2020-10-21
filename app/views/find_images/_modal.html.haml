@@ -1,0 +1,14 @@
+.modal#find-images-modal{ 'aria-hidden': 'true', role: 'dialog', tabindex: '-1' }
+  .modal-dialog{ role: 'document' }
+    .modal-content
+      .modal-header
+        %h3.modal-title Choose an image
+        %button.close{ 'aria-label': 'Close', 'data-dismiss': 'modal', type: 'button' }
+          %span{'aria-hidden': 'true'} ×
+      .modal-body
+        .row
+          - image_urls.to_a.in_groups_of(2).transpose.each do |col|
+            .col-6
+              - col.compact.each do |url|
+                .mb-3.border.rounded.p-2
+                  = image_tag(url, class: 'w-100')

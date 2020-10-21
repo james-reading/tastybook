@@ -26,6 +26,7 @@ gem 'cocoon'
 gem 'aws-sdk-s3', require: false
 gem 'meta-tags'
 gem 'image_processing'
+gem 'metainspector'
 
 group :development, :test do
   gem 'pry'

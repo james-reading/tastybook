@@ -17,7 +17,20 @@
         Bookmark
         %span.text-muted.small - optional
       %p Found a recipe that you love on another website? Just paste the link here and keep all your favourite recipes in one place. Smart!
-      = f.input :link, label_html: { class: 'sr-only' }, placeholder: 'e.g. https://www.bbcgoodfood.com/recipes/cottage-pie'
+
+      %div{ data: { controller: 'findImages form', 'findImages-path': find_images_path } }
+        = f.input :link,
+          placeholder: 'e.g. https://www.bbcgoodfood.com/recipes/cottage-pie',
+          label_html: { class: 'sr-only' },
+          input_html: { data: { target: 'findImages.input',
+              action: 'input->form#disableSubmitIfEmpty input->findImages#clearError' } }
+
+        = button_tag 'Grab image',
+          type: 'button',
+          class: 'btn btn-primary btn-sm',
+          data: { action: 'findImages#get', target: 'form.submit' },
+          disabled: true
+        %span.small.text-danger{ data: { target: 'findImages.error' } }
 
   .card.mb-4.shadow-sm
     .card-body

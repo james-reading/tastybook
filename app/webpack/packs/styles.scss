@@ -28,7 +28,7 @@
 @import '~bootstrap/scss/media';
 @import '~bootstrap/scss/list-group';
 @import '~bootstrap/scss/close';
-// @import '~bootstrap/scss/modal';
+@import '~bootstrap/scss/modal';
 // @import '~bootstrap/scss/tooltip';
 // @import '~bootstrap/scss/popover';
 // @import '~bootstrap/scss/carousel';
@@ -52,6 +52,7 @@
 @import '../styles/modules/flashes';
 @import '../styles/modules/links';
 @import '../styles/modules/images';
+@import '../styles/modules/modals';
 
 @import '../styles/utilities/appearance';
 @import '../styles/utilities/layout';
