@@ -2,7 +2,7 @@
   %section
     %h2= pluralize @friend_requests.size, 'friend request'
 
-  .list-group.mb-5.mt-4
+  .list-group.mb-5.mt-4.shadow-sm
     = render partial: 'friend_request', collection: @friend_requests, as: :friend_request
 
 .d-flex.justify-content-between.align-items-start
@@ -10,7 +10,7 @@
   = link_to 'Invite a friend', new_invitation_path, class: 'btn btn-primary'
 
 - unless @friendships.load.empty?
-  .list-group.mt-4
+  .list-group.mt-4.shadow-sm
     = render @friendships
 - else
   %div
@@ -21,5 +21,5 @@
   %section.mt-5
     %h2 People you may know
 
-    .list-group.mt-4
+    .list-group.mt-4.shadow-sm
       = render partial: 'suggestion', collection: @suggestions, as: :user

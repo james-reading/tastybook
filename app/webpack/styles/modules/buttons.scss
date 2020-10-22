@@ -49,18 +49,23 @@
   display: flex;
   align-items: center;
 
-  &:before {
-    margin-right: 0.5rem;
+  &::before {
     display: inline-block;
-    font-style: normal;
-    font-feature-settings: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
+    margin-right: 0.5rem;
     // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
     font-family: 'Font Awesome 5 Free';
+    font-style: normal;
     font-weight: 900;
+    font-variant: normal;
+    line-height: 1;
     content: '\f110';
     animation: fa-spin 2s infinite linear;
+    font-feature-settings: normal;
+    text-rendering: auto;
   }
+}
+
+.btn-link:focus {
+  outline: none;
+  box-shadow: none;
 }

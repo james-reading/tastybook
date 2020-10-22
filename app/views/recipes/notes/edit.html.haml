@@ -1,5 +1,5 @@
 = simple_form_for @recipe, html: { class: 'tb-recipe-notes' } do |f|
-  .card.mb-4
+  .card.mb-4.shadow-sm
     .card-body
       %legend Notes
 
@@ -7,4 +7,4 @@
 
   .form-actions
     = link_to 'Cancel', :back, class: 'btn btn-link btn-lg text-dark'
-    = f.submit 'Save', class: 'btn btn-primary'
+    = f.submit 'Save', class: 'btn btn-primary btn-lg'

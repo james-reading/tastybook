@@ -6,7 +6,7 @@
       'data-toggle' => 'dropdown',
       type: 'button'}
       %i.fas.fa-ellipsis-v.text-primary
-    .dropdown-menu{ 'aria-labelledby' => 'dropdown' }
+    .dropdown-menu.shadow-sm{ 'aria-labelledby' => 'dropdown' }
       = link_to 'Edit', [:edit, recipe], class: 'dropdown-item'
       - if recipe.image.attached?
         = link_to 'Remove image',
