@@ -2,7 +2,7 @@
   .modal-dialog{ role: 'document' }
     .modal-content
       .modal-header
-        %h3.modal-title Choose an image
+        %h2.modal-title Choose an image
         %button.close{ 'aria-label': 'Close', 'data-dismiss': 'modal', type: 'button' }
           %span{'aria-hidden': 'true'} ×
       .modal-body
@@ -10,5 +10,7 @@
           - image_urls.to_a.in_groups_of(2).transpose.each do |col|
             .col-6
               - col.compact.each do |url|
-                .mb-3.border.rounded.p-2
-                  = image_tag(url, class: 'w-100')
+                .tb-radio-image
+                  = radio_button_tag :image_url, url
+                  = label_tag "image_url_#{url}" do
+                    = image_tag(url, class: 'w-100', class: 'rounded mb-3 w-100 border')

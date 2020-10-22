@@ -1,0 +1,14 @@
+.tb-radio-image input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.tb-radio-image input:checked ~ label {
+  img {
+    border-color: $primary !important;
+    box-shadow: $box-shadow;
+  }
+}
