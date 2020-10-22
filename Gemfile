@@ -27,6 +27,7 @@ gem 'aws-sdk-s3', require: false
 gem 'meta-tags'
 gem 'image_processing'
 gem 'metainspector'
+gem 'down'
 
 group :development, :test do
   gem 'pry'
@@ -52,6 +53,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'pundit-matchers', '~> 1.6.0'
+  gem 'vcr'
 end
 
 group :development do

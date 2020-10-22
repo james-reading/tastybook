@@ -1,16 +1,24 @@
-.modal#find-images-modal{ 'aria-hidden': 'true', role: 'dialog', tabindex: '-1' }
+.modal#find-images-modal{ 'aria-hidden': 'true',
+  role: 'dialog',
+  tabindex: '-1',
+  data: { controller: 'find-images-modal', target: 'find-images.modal' } }
   .modal-dialog{ role: 'document' }
     .modal-content
       .modal-header
-        %h2.modal-title Choose an image
+        %h5.h1.modal-title Choose an image
         %button.close{ 'aria-label': 'Close', 'data-dismiss': 'modal', type: 'button' }
-          %span{'aria-hidden': 'true'} ×
+          %i.fas.fa-times-circle.fa-sm{ 'aria-hidden': 'true' }
       .modal-body
         .row
           - image_urls.to_a.in_groups_of(2).transpose.each do |col|
             .col-6
               - col.compact.each do |url|
                 .tb-radio-image
-                  = radio_button_tag :image_url, url
+                  = radio_button_tag :image_url, url, false, data: { target: 'find-images-modal.imageInput' }
                   = label_tag "image_url_#{url}" do
-                    = image_tag(url, class: 'w-100', class: 'rounded mb-3 w-100 border')
+                    = image_tag url, class: 'w-100', class: 'rounded mb-3 w-100 border'
+
+      .modal-footer.d-flex.justify-content-end
+        = button_tag 'Save',
+          class: 'btn btn-primary btn-lg',
+          data: { action: 'find-images-modal#selectImage' }

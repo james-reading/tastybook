@@ -22,3 +22,7 @@ hr {
 .text-decoration-none {
   text-decoration: none;
 }
+
+.tb-hide-siblings-when-empty:empty ~ * {
+  display: none;
+}

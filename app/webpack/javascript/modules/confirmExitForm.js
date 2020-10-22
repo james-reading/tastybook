@@ -20,7 +20,7 @@ document.addEventListener('turbolinks:visit', () => {
 function setConfirmExitForm() {
   const form = event.target.closest('form');
 
-  if (form.classList.contains(FORM_CLASS)) {
+  if (form && form.classList.contains(FORM_CLASS)) {
     confirmExitForm = true;
   }
 }

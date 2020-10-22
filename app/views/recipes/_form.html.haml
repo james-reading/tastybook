@@ -18,19 +18,32 @@
         %span.text-muted.small - optional
       %p Found a recipe that you love on another website? Just paste the link here and keep all your favourite recipes in one place. Smart!
 
-      %div{ data: { controller: 'findImages form', 'findImages-path': find_images_path } }
+      #find-images-controller{ data: { controller: 'find-images form', 'find-images-path': find_images_path } }
+        = f.hidden_field :grab_image_url, data: { target: 'find-images.imageUrlInput' }
+
         = f.input :link,
           placeholder: 'e.g. https://www.bbcgoodfood.com/recipes/cottage-pie',
           label_html: { class: 'sr-only' },
-          input_html: { data: { target: 'findImages.input',
-              action: 'input->form#disableSubmitIfEmpty input->findImages#clearError' } }
+          input_html: { data: { target: 'find-images.sourceInput',
+              action: 'input->form#disableSubmitIfEmpty input->find-images#clearError' } }
 
         = button_tag 'Grab image',
           type: 'button',
           class: 'btn btn-primary btn-sm',
-          data: { action: 'findImages#get', target: 'form.submit' },
-          disabled: f.object.link.blank?
-        %span.small.text-danger{ data: { target: 'findImages.error' } }
+          disabled: f.object.link.blank?,
+          data: { action: 'find-images#run', target: 'form.submit find-images.grabButton' }
+        %span.small.text-danger{ data: { target: 'find-images.errorSpan' } }
+
+        .d-flex.align-items-center.justify-content-between
+          .tb-hide-siblings-when-empty{ data: { target: 'find-images.imageReceiver' } }
+          = button_tag type: 'button',
+            class: 'btn btn-link text-dark',
+            data: { action: 'find-images#clearImage' } do
+            %i.fas.fa-trash-alt
+            .sr-only Clear image selection
+
+        - if f.object.errors[:image].any?
+          = f.full_error :image, class: 'mt-3 text-danger'
 
   .card.mb-4.shadow-sm
     .card-body

@@ -23,9 +23,13 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :ingredients, :steps, reject_if: :all_blank, allow_destroy: true
 
+  before_validation :grab_image, if: :grab_image_url
+
   scope :search_import, -> { includes(:likes, :ingredients) }
 
   delegate :name, to: :cuisine, prefix: true, allow_nil: true
+
+  attr_accessor :grab_image_url
 
   def link_host
     link_uri.host.gsub('www.', '') if link.present?
@@ -70,7 +74,16 @@ class Recipe < ApplicationRecord
 
     unless image.blob.content_type.start_with? 'image/'
       errors.add(:image, 'is an invalid file type')
-      image.purge
+      image.purge if image.persisted?
     end
+  end
+
+  def grab_image
+    downloaded_image = Down.download(grab_image_url)
+    self.grab_image_url = nil
+    image.attach(io: downloaded_image, filename: downloaded_image.original_filename)
+
+  rescue Down::Error
+    return true # For now we fail silently
   end
 end
