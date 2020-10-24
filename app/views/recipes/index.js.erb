@@ -6,3 +6,5 @@
 <% end %>
 
 $('.js-load-more-recipes').replaceWith("<%= j render 'recipes/load_more_link' %>")
+
+document.dispatchEvent(new Event('lazyload'));

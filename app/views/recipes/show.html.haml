@@ -12,7 +12,9 @@
     .card.border.shadow-sm.mb-4.js-recipe-card
       - if @recipe.image.attached?
         .card-img-top.embed-responsive.embed-responsive-21by9
-          .embed-responsive-item.recipe-image{ style: "background-image:url(#{rails_representation_url(@recipe.image.variant(resize_to_fill: [1200, 514]))});" }
+          %img.embed-responsive-item.tb-recipe-image.lazy{ alt: @recipe.name,
+            src: lowres_image_variant_url(@recipe.image),
+            data: { src: large_image_variant_url(@recipe.image) } }
       .card-body
         .d-flex.justify-content-between
           %h1= title @recipe.name

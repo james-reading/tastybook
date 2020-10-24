@@ -1,6 +1,5 @@
-.recipe-image {
+.tb-recipe-image {
   background-color: lighten($body-bg, 2%);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  object-position: center;
+  object-fit: cover;
 }

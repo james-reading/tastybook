@@ -30,5 +30,6 @@ import '../javascript/modules/sortable';
 import '../javascript/modules/directUploads';
 import '../javascript/modules/autoSubmitForm';
 import '../javascript/modules/cocoon';
+import '../javascript/modules/lazyLoad';
 
 require.context('../images', true);
