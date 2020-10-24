@@ -28,6 +28,7 @@ gem 'meta-tags'
 gem 'image_processing'
 gem 'metainspector'
 gem 'down'
+gem 'seedbank'
 
 group :development, :test do
   gem 'pry'
