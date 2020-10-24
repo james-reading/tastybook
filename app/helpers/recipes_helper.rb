@@ -25,7 +25,7 @@ module RecipesHelper
     when 'users/recipes'
       [
        @user.username,
-       "A collection of #{@user.username}'s recipes."
+       @user.bio.presence || "A collection of #{@user.username}'s recipes."
      ]
     else
       [

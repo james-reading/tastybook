@@ -1,5 +1,5 @@
 class Recipe < ApplicationRecord
-  include Likeable
+  include Likeable, HasImage
 
   searchkick word_start: [:name, 'ingredients.name'], searchable: [:name, 'ingredients.name']
   has_rich_text :notes
@@ -10,8 +10,6 @@ class Recipe < ApplicationRecord
   has_many :steps, -> { order(position: :asc) }, inverse_of: :recipe
   has_many :comments, dependent: :destroy
 
-  has_one_attached :image
-
   LENGTHS = ['Quick', 'Medium', 'Long'].freeze
   COURSES = ['Starter', 'Main', 'Dessert', 'Side', 'Other'].freeze
 
@@ -19,7 +17,6 @@ class Recipe < ApplicationRecord
   validates :length, inclusion: { in: LENGTHS }, unless: -> { length.blank? }
   validates :course, inclusion: { in: COURSES }, unless: -> { course.blank? }
   validate :link_validator, unless: -> { link.blank? }
-  validate :image_content_type
 
   accepts_nested_attributes_for :ingredients, :steps, reject_if: :all_blank, allow_destroy: true
 
@@ -67,15 +64,6 @@ class Recipe < ApplicationRecord
     end
 
     errors.add(:link, :http_url) unless valid
-  end
-
-  def image_content_type
-    return unless image.attached?
-
-    unless image.blob.content_type.start_with? 'image/'
-      errors.add(:image, 'is an invalid file type')
-      image.purge if image.persisted?
-    end
   end
 
   def grab_image

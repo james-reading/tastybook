@@ -1,13 +1,34 @@
+:ruby
+  title 'Settings'
+
 = simple_form_for current_user do |f|
   = f.error_notification message: 'Please review the problems below'
+
   .card.mb-4.shadow-sm
     .card-body
-      %legend= title 'Settings'
+      %div{ data: { controller: 'image-preview' } }
+        = f.hidden_field :image, value: f.object.image.signed_id if f.object.image.attached?
+        = f.file_field :image,
+          direct_upload: true,
+          accept: 'image/*',
+          class: 'd-none',
+          data: { target: 'image-preview.input', action: 'image-preview#readURL' }
+
+        .d-flex.justify-content-center
+          = f.label :image, class: 'btn btn-link position-relative' do
+            = image_tag current_user.image.attached? ? medium_profile_image_url(current_user) : asset_pack_path('media/images/user-circle.svg'),
+              class: 'tb-profile-image',
+              data: { target: 'image-preview.output' }
+            .sr-only Upload profile picture
+            %span.fa-stack.tb-profile-image--camera
+              %i.fas.fa-circle.fa-stack-2x
+              %i.fas.fa-camera.fa-stack-1x.fa-inverse
 
       = f.input :username,
         wrapper_html: { data: { controller: 'username', 'username-url': check_username_user_path } },
         input_html: { autocomplete: 'username', data: { target: 'username.input', action: 'focusout->username#check' } }
       = f.input :email, autocomplete: 'email'
+      = f.input :bio, hint: "Max #{User::MAX_BIO_LENGTH} characters", input_html: { maxlength: User::MAX_BIO_LENGTH }
 
   .card.mb-4.shadow-sm
     .card-body

@@ -30,4 +30,12 @@ module ImageHelper
   def large_image_variant_url(image)
     rails_representation_url(image.variant(resize_to_fill: [1200, ((1200/21.0) * 9).round]))
   end
+
+  # def small_profile_image_url(user)
+  #   rails_representation_url(user.image.variant(resize_to_fill: [1200, 1200]))
+  # end
+
+  def medium_profile_image_url(user)
+    rails_representation_url(user.image.variant(resize_to_fill: [200, 200]))
+  end
 end

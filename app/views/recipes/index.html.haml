@@ -58,10 +58,10 @@
                 data: { disable: true }
 
     .text-center.mt-4
-      - heading, explanation = recipe_heading
+      - heading, subheading = recipe_heading
 
       %h1.font-weight-bold= title heading
-      %p.mb-0= description explanation
+      %p.mb-0= description subheading
 
 .js-updateable-recipes.row
   = render 'recipes/results', recipes: @recipes, search: @search
