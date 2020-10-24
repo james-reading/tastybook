@@ -1,3 +1,6 @@
-.list-group-item.d-flex.align-items-center.justify-content-between
+.list-group-item.d-flex.align-items-center
+  = image_tag friend_request.user.image.attached? ? medium_profile_image_url(friend_request.user) : asset_pack_path('media/images/user-circle.svg'),
+    class: 'tb-profile-image tb-profile-image--xs mr-3'
   = friend_request.user.username
-  = button_to 'Accept', accept_friendship_path(friend_request), class: 'btn btn-primary btn-sm'
+  .ml-auto
+    = button_to 'Accept', accept_friendship_path(friend_request), class: 'btn btn-primary btn-sm'

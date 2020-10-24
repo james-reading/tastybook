@@ -60,6 +60,10 @@
     .text-center.mt-4
       - heading, subheading = recipe_heading
 
+      - if @user && @user.image.attached?
+        = image_tag medium_profile_image_url(@user),
+          class: 'tb-profile-image tb-profile-image mb-3'
+
       %h1.font-weight-bold= title heading
       %p.mb-0= description subheading
 

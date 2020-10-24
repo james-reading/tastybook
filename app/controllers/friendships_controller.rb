@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
   before_action :set_friendship, only: [:destroy, :accept]
 
   def index
-    @friendships = current_user.friendships.includes(:friend)
+    @friendships = current_user.friendships.includes(friend: :image_attachment)
     @suggestions = current_user.friend_suggestions
     @friend_requests = current_user.friend_requests
   end
