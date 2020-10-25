@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_pack_tag 'trix', 'data-turbolinks-track': 'reload', defer: true
+
 = simple_form_for @recipe, html: { class: 'tb-recipe-notes' } do |f|
   .card.mb-4.shadow-sm
     .card-body
@@ -6,5 +9,5 @@
       = f.rich_text_area :notes
 
   .form-actions
-    = link_to 'Cancel', :back, class: 'btn btn-link btn-lg text-dark'
-    = f.submit 'Save', class: 'btn btn-primary btn-lg'
+    = link_to 'Cancel', @recipe, class: 'btn btn-link btn-lg text-dark'
+    = f.submit 'Save', class: 'btn btn-primary btn-lg ml-auto'
