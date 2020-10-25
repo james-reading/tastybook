@@ -8,6 +8,8 @@
     %meta{ content: 'width=device-width, initial-scale=1, shrink-to-fit=no', name: 'viewport' }
     = render 'favicon'
     = display_meta_tags site: 'Tastybook'
+    = preload_pack_asset 'media/webfonts/fa-regular-400.woff2'
+    = preload_pack_asset 'media/webfonts/fa-solid-900.woff2'
     = stylesheet_pack_tag 'styles', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true
     = csrf_meta_tags
