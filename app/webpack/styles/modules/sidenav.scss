@@ -10,6 +10,7 @@ $shadow-width: 10px;
   z-index: 100;
   width: $sidenav-width;
   padding-top: 15vh;
+  padding-bottom: 130px;
   overflow: hidden;
   background-color: $white;
   transition: 0.2s;
@@ -98,6 +99,7 @@ $shadow-width: 10px;
 .sidenav ul {
   padding: 0;
   padding-top: 2rem;
+  overflow-y: auto;
   font-size: 1.5rem;
   text-align: right;
   list-style: none;
