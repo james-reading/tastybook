@@ -14,6 +14,7 @@ application.load(definitionsFromContext(context));
 
 import 'jquery';
 import 'cocoon';
+import 'trix';
 import '@rails/actiontext';
 
 import 'bootstrap/js/src/collapse';

@@ -1,3 +1,7 @@
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+
 @import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
 @import '../styles/variables/bootstrap';
 
@@ -36,10 +40,6 @@
 @import '~bootstrap/scss/utilities';
 @import '~bootstrap/scss/print';
 // @import '~bootstrap/scss/toasts';
-
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/regular';
 
 @import '../styles/actiontext';
 
