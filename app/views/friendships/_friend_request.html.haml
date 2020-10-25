@@ -1,6 +1,9 @@
 .list-group-item.d-flex.align-items-center
-  = image_tag friend_request.user.image.attached? ? medium_profile_image_url(friend_request.user) : asset_pack_path('media/images/user-circle.svg'),
-    class: 'tb-profile-image tb-profile-image--xs mr-3'
-  = friend_request.user.username
+  = image_tag medium_profile_image_url(friend_request.user),
+    width: '30px',
+    height: '30px',
+    class: 'tb-profile-image mr-3'
+
+  .tb-overflow-ellipsis= friend_request.user.username
   .ml-auto
     = button_to 'Accept', accept_friendship_path(friend_request), class: 'btn btn-primary btn-sm'

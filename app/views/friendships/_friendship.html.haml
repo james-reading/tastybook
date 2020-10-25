@@ -1,9 +1,12 @@
 .list-group-item
   .d-flex.align-items-center
-    = image_tag friendship.friend.image.attached? ? medium_profile_image_url(friendship.friend) : asset_pack_path('media/images/user-circle.svg'),
-      class: 'tb-profile-image tb-profile-image--sm mr-3'
-    %div
-      %h3= friendship.name.truncate(20)
+    = image_tag medium_profile_image_url(friendship.friend),
+      width: '50px',
+      height: '50px',
+      class: 'tb-profile-image mr-3'
+
+    %div.tb-overflow-ellipsis
+      %h3.tb-overflow-ellipsis= friendship.name
       - if friendship.accepted?
         = link_to pluralize(friendship.friend.recipes.count, 'recipe'), user_recipes_path(friendship.friend.username)
       - else

@@ -26,3 +26,9 @@ hr {
 .tb-hide-siblings-when-empty:empty ~ * {
   display: none;
 }
+
+.tb-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

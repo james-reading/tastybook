@@ -16,7 +16,9 @@
 
         .d-flex.justify-content-center
           = f.label :image, class: 'btn btn-link position-relative' do
-            = image_tag current_user.image.attached? ? medium_profile_image_url(current_user) : asset_pack_path('media/images/user-circle.svg'),
+            = image_tag medium_profile_image_url(current_user),
+              width: '100px',
+              height: '100px',
               class: 'tb-profile-image',
               data: { target: 'image-preview.output' }
             .sr-only Upload profile picture

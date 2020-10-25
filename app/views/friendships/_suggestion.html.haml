@@ -1,7 +1,10 @@
 .list-group-item.d-flex.align-items-center
-  = image_tag user.image.attached? ? medium_profile_image_url(user) : asset_pack_path('media/images/user-circle.svg'),
-    class: 'tb-profile-image tb-profile-image--xs mr-3'
-  = user.username
+  = image_tag medium_profile_image_url(user),
+    width: '30px',
+    height: '30px',
+    class: 'tb-profile-image mr-3'
+
+  .tb-overflow-ellipsis= user.username
   .ml-auto
     = form_with model: FriendRequestForm.new, url: friendships_path do |f|
       = f.hidden_field :friend_id, value: user.id

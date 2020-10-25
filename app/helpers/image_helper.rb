@@ -31,11 +31,11 @@ module ImageHelper
     rails_representation_url(image.variant(resize_to_fill: [1200, ((1200/21.0) * 9).round]))
   end
 
-  # def small_profile_image_url(user)
-  #   rails_representation_url(user.image.variant(resize_to_fill: [1200, 1200]))
-  # end
-
   def medium_profile_image_url(user)
-    rails_representation_url(user.image.variant(resize_to_fill: [200, 200]))
+    if user && user.image.attached?
+      rails_representation_url(user.image.variant(resize_to_fill: [200, 200]))
+    else
+      asset_pack_path('media/images/user-circle.svg')
+    end
   end
 end
