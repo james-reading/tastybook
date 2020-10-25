@@ -7,7 +7,6 @@
   .card.mb-4.shadow-sm
     .card-body
       %div{ data: { controller: 'image-preview' } }
-        = f.hidden_field :image, value: f.object.image.signed_id if f.object.image.attached?
         = f.file_field :image,
           direct_upload: true,
           accept: 'image/*',
@@ -25,6 +24,8 @@
             %span.fa-stack.tb-profile-image--camera
               %i.fas.fa-circle.fa-stack-2x
               %i.fas.fa-camera.fa-stack-1x.fa-inverse
+
+        = f.hidden_field :image, value: f.object.image.signed_id if f.object.image.attached?
 
       = f.input :username,
         wrapper_html: { data: { controller: 'username', 'username-url': check_username_user_path } },
