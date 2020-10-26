@@ -65,12 +65,13 @@
       %legend.mb-3
         Ingredients
         %span.text-muted.small - optional
-      #ingredients.js-sortable-fields
-        = f.simple_fields_for :ingredients do |ingredient|
-          - if ingredient.object.heading?
-            = render 'section_fields', f: ingredient
-          - else
-            = render 'ingredient_fields', f: ingredient
+      #ingredients
+        .js-sortable-fields
+          = f.simple_fields_for :ingredients do |ingredient|
+            - if ingredient.object.heading?
+              = render 'section_fields', f: ingredient
+            - else
+              = render 'ingredient_fields', f: ingredient
         .ingredients.d-flex.justify-content-between
           = link_to_add_association 'add section', f, :ingredients, partial: 'section_fields'
           = link_to_add_association 'add ingredient', f, :ingredients
@@ -80,9 +81,10 @@
       %legend.mb-3
         Steps
         %span.text-muted.small - optional
-      #steps.js-sortable-fields
-        = f.simple_fields_for :steps do |step|
-          = render 'step_fields', f: step
+      #steps
+        .js-sortable-fields
+          = f.simple_fields_for :steps do |step|
+            = render 'step_fields', f: step
         .steps.d-flex.justify-content-end
           = link_to_add_association 'add step', f, :steps
 
