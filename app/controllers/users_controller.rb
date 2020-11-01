@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update_with_password(user_params)
-      redirect_to authenticated_root_path
+      redirect_to edit_profile_path, flash: { success: t('flashes.settings.update.success') }
     else
       render :edit
     end
@@ -27,6 +27,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :current_password, :password, :password_confirmation, :bio, :image)
+    params.require(:user).permit(:email, :current_password, :password)
   end
 end

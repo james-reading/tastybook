@@ -1,2 +1,7 @@
 %nav.navbar.navbar-light.shadow-sm.border-bottom
-  = link_to 'tastybook', root_path, class: 'navbar-brand'
+  = link_to root_path, class: 'navbar-brand d-inline-flex align-items-center' do
+    - if params[:controller] == 'recipes' && params[:action] == 'index'
+      Tastybook
+    - else
+      %i.fas.fa-arrow-left.mr-3.text-primary
+      My Recipes

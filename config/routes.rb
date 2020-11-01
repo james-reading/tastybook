@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :profile, only: [:edit, :update]
+
   resources :recipes do
     collection do
       get :im_feeling_lucky

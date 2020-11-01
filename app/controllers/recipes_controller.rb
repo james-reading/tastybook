@@ -39,7 +39,7 @@ class RecipesController < ApplicationController
 
     authorize @recipe
 
-    if @recipe.update_attributes(recipe_params)
+    if @recipe.update(recipe_params)
       redirect_to @recipe, flash: { success: t('flashes.recipe.update.success') }
     else
       render :edit

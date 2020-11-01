@@ -1,6 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
 
+  def edit
+    redirect_to edit_user_path
+  end
+
   private
 
   def sign_up(resource_name, resource)

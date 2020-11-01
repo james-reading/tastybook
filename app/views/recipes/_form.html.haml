@@ -89,6 +89,4 @@
           = link_to_add_association 'add step', f, :steps
 
   .form-actions
-    - unless request.url == request.referer
-      = link_to 'Cancel', :back, class: 'btn btn-link btn-lg text-dark'
     = f.submit 'Save', class: 'btn btn-primary btn-lg ml-auto'

@@ -77,3 +77,9 @@ en:
         success: 'Your comment has been added'
       destroy:
         success: 'Your comment has been deleted'
+    profile:
+      update:
+        success: 'Your profile has been updated successfully'
+    settings:
+      update:
+        success: 'Your settings have been updated successfully'

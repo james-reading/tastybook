@@ -1,7 +1,15 @@
-%h1=title 'Invite a friend'
-%p Your friend will receive an email, and once they accept you'll be able to view each other's recipes. Cool!
 
 = simple_form_for @invitation_form, url: invitations_path do |f|
   = f.error_notification message: 'Please review the problems below'
-  = f.input :invitation_email, label_html: { class: 'sr-only' }, placeholder: 'Email'
-  = f.submit 'Send request', class: 'btn btn-primary'
+
+  .card.mb-4.shadow-sm
+    .card-body
+      %h1=title 'Invite a friend'
+      %p Your friend will receive an email, and once they accept you'll be able to view each other's recipes. Cool!
+      = f.input :invitation_email,
+        input_html: { autofocus: true, autocomplete: "email" },
+        label_html: { class: 'sr-only' },
+        placeholder: 'Email'
+
+  .form-actions
+    = f.submit 'Send request', class: 'btn btn-primary btn-lg ml-auto shadow-sm'

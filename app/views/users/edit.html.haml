@@ -1,51 +1,25 @@
 :ruby
-  title 'Settings'
+  title "Settings"
 
 = simple_form_for current_user do |f|
-  = f.error_notification message: 'Please review the problems below'
+  = f.error_notification message: "Please review the problems below"
 
   .card.mb-4.shadow-sm
     .card-body
-      %div{ data: { controller: 'image-preview' } }
-        = f.file_field :image,
-          direct_upload: true,
-          accept: 'image/*',
-          class: 'd-none',
-          data: { target: 'image-preview.input', action: 'image-preview#readURL' }
+      = f.input :email, autocomplete: "email"
 
-        .d-flex.justify-content-center
-          = f.label :image, class: 'btn btn-link position-relative' do
-            .tb-profile-image-wraper
-              = image_tag medium_profile_image_url(current_user),
-                layout: 'fill',
-                width: '100%',
-                height: '100%',
-                class: 'tb-profile-image',
-                data: { target: 'image-preview.output' }
-            .sr-only Upload profile picture
-            %span.fa-stack.tb-profile-image--camera
-              %i.fas.fa-circle.fa-stack-2x
-              %i.fas.fa-camera.fa-stack-1x.fa-inverse
+      = f.input :password,
+        wrapper: :password,
+        label: "New password",
+        hint: "Leave blank if you don't want to change it",
+        wrapper_html: { data: { controller: "password" } },
+        input_html: { autocomplete: "new-password", data: { target: "password.input" } }
 
-        = f.hidden_field :image, value: f.object.image.signed_id if f.object.image.attached?
-
-      = f.input :username,
-        wrapper_html: { data: { controller: 'username', 'username-url': check_username_user_path } },
-        input_html: { autocomplete: 'username', data: { target: 'username.input', action: 'focusout->username#check' } }
-      = f.input :email, autocomplete: 'email'
-      = f.input :bio, hint: "Max #{User::MAX_BIO_LENGTH} characters", input_html: { maxlength: User::MAX_BIO_LENGTH }
-
-  .card.mb-4.shadow-sm
-    .card-body
-      %legend Change password
-      = f.input :password, autocomplete: 'new-password', label: 'New password'
-      = f.input :password_confirmation, autocomplete: 'new-password'
-
-  .card.mb-4.shadow-sm
-    .card-body
-      %legend Current password
-      = f.input :current_password, autocomplete: "current-password", hint: 'We need your current password to confirm your changes', label_html: { class: 'sr-only' }
+      = f.input :current_password,
+        wrapper: :password,
+        hint: "We need your current password to confirm your changes",
+        wrapper_html: { data: { controller: "password" } },
+        input_html: { autocomplete: "current-password", data: { target: "password.input" } }
 
   .form-actions
-    = link_to 'Cancel', :back, class: 'btn btn-link btn-lg text-dark'
-    = f.submit 'Save', class: 'btn btn-primary btn-lg'
+    = f.submit "Save", class: "btn btn-primary btn-lg ml-auto shadow-sm"
