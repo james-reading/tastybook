@@ -15,7 +15,7 @@
     = csrf_meta_tags
     = csp_meta_tag
 
-  %body
+  %body{ class: "#{'d-flex flex-column' if devise_controller?}"}
     - unless devise_controller?
       = render 'navbar'
       = render 'sidenav'

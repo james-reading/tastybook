@@ -1,20 +1,23 @@
-- content_for :extra_container_class, 'justify-content-center'
+- content_for :extra_container_class, "justify-content-center"
 
 .d-flex.justify-content-center.align-items-center.mb-5
   .mr-2 Already have an account?
-  = link_to "Log in", new_session_path(resource_name), class: 'btn btn-outline-primary'
+  = link_to "Log in", new_session_path(resource_name), class: "btn btn-outline-primary"
 
-%h1.text-center.mb-3= title 'Sign up for FREE'
+%h1.text-center.mb-3= title "Sign up for FREE"
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   .card.devise-card.shadow-sm
     .card-body
       .form-inputs
         = f.input :username,
           autofocus: true,
-          wrapper_html: { data: { controller: 'username', 'username-url': check_username_user_path } },
-          input_html: { autocomplete: 'username', data: { target: 'username.input', action: 'focusout->username#check' } }
-        = f.input :email, input_html: { autocomplete: 'email' }
-        = f.input :password, input_html: { autocomplete: 'new-password' }
-        = f.input :password_confirmation, input_html: { autocomplete: 'new-password' }, label: 'Confirm password'
+          wrapper_html: { data: { controller: "username", "username-url": check_username_user_path } },
+          input_html: { autocomplete: "username", data: { target: "username.input", action: "focusout->username#check" } }
+        = f.input :email, input_html: { autocomplete: "email" }
+        = f.input :password,
+          wrapper: :password,
+          wrapper_html: { data: { controller: "password" } },
+          input_html: { autocomplete: "new-password", data: { target: "password.input" } }
+
       .form-actions
-        = f.button :submit, 'Sign up', class: 'btn btn-primary w-100'
+        = f.button :submit, "Sign up", class: "btn btn-primary w-100 mt-4"
