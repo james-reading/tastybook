@@ -1,37 +1,43 @@
 .sidenav.d-flex.flex-column.justify-content-between.text-nowrap.border-left.shadow
   %ul
     %li
-      = link_to recipes_path do
+      = link_to recipes_path, class: 'd-flex align-items-center justify-content-end' do
         My Recipes
-        %i.fas.fa-utensils.fa-fw
+        %i.fas.fa-utensils.fa-fw.ml-3
     - if user_signed_in? && current_user.friends.exists?
       %li
-        = link_to friends_recipes_path do
+        = link_to friends_recipes_path, class: 'd-flex align-items-center justify-content-end' do
           All Recipes
-          %i.fas.fa-users.fa-fw
+          %i.fas.fa-users.fa-fw.ml-3
     %li.pb-0
-      = link_to favourite_recipes_path do
+      = link_to favourite_recipes_path, class: 'd-flex align-items-center justify-content-end' do
         Favourites
-        %i.fas.fa-star.fa-fw
+        %i.fas.fa-star.fa-fw.ml-3
     %li.border-top.mt-4.pt-4.pb-0
-      = link_to new_recipe_path do
+      = link_to new_recipe_path, class: 'd-flex align-items-center justify-content-end' do
         New Recipe
-        %i.fas.fa-plus.fa-fw
+        %i.fas.fa-plus.fa-fw.ml-3
     %li.border-top.mt-4.pt-4
-      = link_to friendships_path do
+      = link_to friendships_path, class: 'd-flex align-items-center justify-content-end' do
         Friends
-        %i.fas.fa-user-friends.fa-fw
+        %i.fas.fa-user-friends.fa-fw.ml-3
         - if (friend_requests = current_user && current_user.friend_requests.count) && friend_requests > 0
           .sidenav--friend-request= pluralize(friend_requests, 'friend request')
 
     %li
-      = link_to edit_profile_path do
+      = link_to edit_profile_path, class: 'd-flex align-items-center justify-content-end' do
         Profile
-        %i.fas.fa-user-circle.fa-fw
+        - if current_user.image.attached?
+          = image_tag medium_profile_image_url(current_user),
+            width: '24px',
+            height: '24px',
+            class: 'tb-profile-image ml-3'
+        - else
+          %i.fas.fa-user-circle.fa-fw.ml-3
     %li
-      = link_to edit_user_path do
+      = link_to edit_user_path, class: 'd-flex align-items-center justify-content-end' do
         Settings
-        %i.fas.fa-cog.fa-fw
+        %i.fas.fa-cog.fa-fw.ml-3
 
   - if user_signed_in?
     = button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary d-block mb-4 sidenav--bottom-center'

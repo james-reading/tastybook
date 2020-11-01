@@ -5,6 +5,7 @@ document.addEventListener('turbolinks:load', () => {
 
   sortableFields.forEach(fields => {
     new Sortable(fields, {
+      animation: 150,
       handle: '.js-sortable-handle',
       draggable: '.nested-fields',
       onEnd: () => {

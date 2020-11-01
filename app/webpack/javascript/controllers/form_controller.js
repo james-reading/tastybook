@@ -14,55 +14,58 @@ const validations = [
   'typeMismatch',
   'valid',
   'valueMissing'
-]
+];
 
 export default class extends Controller {
   connect() {
     console.log('Connected to form-controller');
 
-    this.element.addEventListener('blur', this.onBlur, true)
-    this.element.addEventListener('input', this.onInput, true)
-    this.element.addEventListener('ajax:beforeSend', this.onSubmit)
+    this.element.addEventListener('blur', this.onBlur, true);
+    this.element.addEventListener('input', this.onInput, true);
+    this.element.addEventListener('ajax:beforeSend', this.onSubmit);
   }
 
   disconnect() {
-    this.element.removeEventListener('blur', this.onBlur)
-    this.element.removeEventListener('input', this.onInput)
-    this.element.removeEventListener('ajax:beforeSend', this.onSubmit)
+    this.element.removeEventListener('blur', this.onBlur);
+    this.element.removeEventListener('input', this.onInput);
+    this.element.removeEventListener('ajax:beforeSend', this.onSubmit);
   }
 
-  onBlur = (event) => {
-    this.validateField(event.target)
-  }
+  onBlur = event => {
+    this.validateField(event.target);
+  };
 
-  onInput = (event) => {
+  onInput = event => {
     if (event.target.classList.contains('is-invalid')) {
-      this.reValidateField(event.target)
+      this.reValidateField(event.target);
     }
-  }
+  };
 
-  onSubmit = (event) => {
+  onSubmit = event => {
     if (!this.validateForm()) {
-      event.preventDefault()
-      this.firstInvalidField.focus()
+      event.preventDefault();
+      this.firstInvalidField.focus();
     }
-  }
+  };
 
   validateForm() {
-    let isValid = true
+    let isValid = true;
 
-    this.formFields.forEach((field) => {
-      if (this.shouldValidateField(field) && !this.validateField(field, false)) {
-        isValid = false
+    this.formFields.forEach(field => {
+      if (
+        this.shouldValidateField(field) &&
+        !this.validateField(field, false)
+      ) {
+        isValid = false;
       }
-    })
+    });
 
-    return isValid
+    return isValid;
   }
 
   validateField(field, performServerValidations = true) {
     if (!this.shouldValidateField(field)) {
-      return true
+      return true;
     }
 
     let isValid = field.checkValidity();
@@ -71,7 +74,7 @@ export default class extends Controller {
       if (performServerValidations && field.dataset.validationUrl) {
         this.validateOnServer(field);
       } else {
-        formHelper.clearError(field)
+        formHelper.clearError(field);
       }
     } else {
       formHelper.addError(field, field.validationMessage);
@@ -107,8 +110,12 @@ export default class extends Controller {
     }
   }
 
-  shouldValidateField (field) {
-    return !field.disabled && !['file', 'reset', 'submit', 'button'].includes(field.type)
+  shouldValidateField(field) {
+    return (
+      !field.disabled &&
+      !['file', 'reset', 'submit', 'button', 'hidden'].includes(field.type) &&
+      !['A'].includes(field.tagName)
+    );
   }
 
   validateOnServer(field) {
@@ -117,7 +124,7 @@ export default class extends Controller {
       type: 'get',
       dataType: 'json',
       success: () => {
-        formHelper.clearError(field)
+        formHelper.clearError(field);
       },
       error: data => {
         formHelper.addError(field, data.error);
@@ -126,11 +133,11 @@ export default class extends Controller {
   }
 
   get formFields() {
-    return Array.from(this.element.elements)
+    return Array.from(this.element.elements);
   }
 
   get firstInvalidField() {
-    return this.formFields.find(field => !field.checkValidity())
+    return this.formFields.find(field => !field.checkValidity());
   }
 
   failedValidations(field) {
@@ -139,7 +146,7 @@ export default class extends Controller {
 
     validations.forEach(validation => {
       if (validity[validation]) {
-        failedValidations.push(validation)
+        failedValidations.push(validation);
       }
     });
 

@@ -1,0 +1,7 @@
+document
+  .querySelector('.js-updateable-form')
+  .innerHTML = "<%= j render 'profiles/form' %>";
+
+document
+  .querySelector('.form-control.is-invalid')
+  ?.focus();

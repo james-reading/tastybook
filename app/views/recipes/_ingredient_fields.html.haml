@@ -1,9 +1,9 @@
-.nested-fields
-  .d-flex.mb-3
-    %button.text-muted.pr-3.tb-button-reset.js-sortable-handle{ type: 'button', draggable: 'true', style: 'padding-top: 10px' }
+.nested-fields.tb-ingredient-fields
+  .d-flex
+    %button.text-muted.pr-3.tb-button-reset.js-sortable-handle{ type: 'button', style: 'padding-top: 10px' }
       %i.fas.fa-sort
       %span.sr-only Drag ingredient
     = f.hidden_field :position, class: 'js-position-input'
-    = f.input :name, wrapper_class: 'flex-fill', label_html: { class: 'sr-only' }, input_html: { class: 'js-cocoon-focus' }
+    = f.input :name, wrapper_class: 'flex-fill form-group', label_html: { class: 'sr-only' }, input_html: { class: 'js-cocoon-focus' }
     = link_to_remove_association f do
       %i.fas.fa-trash-alt.text-dark.ml-3{ style: 'margin-top: 10px' }

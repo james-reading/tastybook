@@ -1,5 +1,5 @@
 - if flash.any?
-  .flashes.js-turbolinks-empty-before-cache
+  .flashes.js-turbolinks-empty-before-cache{ data: { controller: 'flashes' } }
     - user_facing_flashes.each do |key, value|
       .alert.alert-dismissible.fade.show{ role: 'alert', class: bootstrap_class_for(key) }
         .mr-3= value

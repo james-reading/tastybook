@@ -8,6 +8,7 @@ form {
   justify-content: space-between;
 }
 
+/* stylelint-disable-next-line  selector-no-qualifying-type */
 .optional-flag label:not(.form-check-label).optional::after {
   color: $text-muted;
   content: ' - optional';
@@ -20,11 +21,13 @@ form {
 }
 
 .tb-recipe-notes {
+  /* stylelint-disable selector-type-no-unknown */
   trix-toolbar [data-trix-attribute='quote'],
   trix-toolbar [data-trix-attribute='code'],
   trix-toolbar [data-trix-button-group='file-tools'] {
     display: none;
   }
+  /* stylelint-enable selector-type-no-unknown */
 
   .trix-content {
     min-height: 200px;
@@ -43,4 +46,8 @@ legend .small {
 
 .form-group-invalid > .invalid-feedback {
   display: block;
+}
+
+.tb-ingredient-fields ~ .tb-section-fields {
+  margin-top: 1.5rem;
 }

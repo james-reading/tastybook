@@ -4,16 +4,24 @@ const WARNING_TEXT =
 let confirmExitForm = false;
 
 document.addEventListener('turbolinks:before-visit', event => {
+  window.ev = event;
   if (confirmExitForm && document.querySelector('.' + FORM_CLASS)) {
     if (confirm(WARNING_TEXT)) {
       confirmExitForm = false;
     } else {
       event.preventDefault();
     }
+  } else {
+    confirmExitForm = false;
   }
 });
 
 document.addEventListener('turbolinks:visit', () => {
+  confirmExitForm = false;
+});
+
+document.addEventListener('ajax:send', () => {
+  // When we submit the form
   confirmExitForm = false;
 });
 

@@ -1,0 +1,7 @@
+document
+  .querySelector('.js-updateable-form')
+  .innerHTML = "<%= j render 'recipes/form', recipe: @recipe %>";
+
+document
+  .querySelector('.form-control.is-invalid')
+  ?.focus();

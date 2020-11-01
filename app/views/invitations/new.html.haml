@@ -12,4 +12,5 @@
         placeholder: 'Email'
 
   .form-actions
+    = link_to 'Cancel', friendships_path, class: 'btn btn-link btn-lg text-dark'
     = f.submit 'Send request', class: 'btn btn-primary btn-lg ml-auto shadow-sm'

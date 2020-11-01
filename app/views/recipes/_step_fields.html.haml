@@ -1,6 +1,6 @@
 .nested-fields
-  .d-flex.mb-4
-    %button.text-muted.pr-3.tb-button-reset.js-sortable-handle{ type: 'button', draggable: 'true', style: 'padding-top: 10px' }
+  .d-flex
+    %button.text-muted.pr-3.tb-button-reset.js-sortable-handle{ type: 'button', style: 'padding-top: 10px' }
       %i.fas.fa-sort
       %span.sr-only Drag step
     = f.hidden_field :position, class: 'js-position-input'
@@ -9,7 +9,7 @@
       hint_tag: 'span',
       hint_html: { class: 'tb-recipe-description-field--span' },
       label_html: { class: 'sr-only' },
-      wrapper_html: { class: 'flex-fill tb-recipe-description-field' },
+      wrapper_html: { class: 'flex-fill form-group tb-recipe-description-field' },
       input_html: { rows: '3',
         class: 'tb-recipe-description-field--textarea js-cocoon-focus',
         data: { controller: 'textarea',

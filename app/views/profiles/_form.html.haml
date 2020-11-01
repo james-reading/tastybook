@@ -1,0 +1,41 @@
+= simple_form_for current_user, url: profile_path, remote: true, data: { controller: 'form'} do |f|
+  = f.error_notification message: 'Please review the problems below'
+
+  .card.mb-4.shadow-sm
+    .card-body
+      %div{ data: { controller: 'image-preview' } }
+        = f.file_field :image,
+          direct_upload: true,
+          accept: 'image/*',
+          class: 'd-none',
+          data: { target: 'image-preview.input', action: 'image-preview#readURL' }
+
+        .d-flex.justify-content-center
+          = f.label :image, class: 'btn btn-link position-relative' do
+            .tb-profile-image-wraper
+              = image_tag medium_profile_image_url(current_user),
+                layout: 'fill',
+                width: '100%',
+                height: '100%',
+                class: 'tb-profile-image',
+                data: { target: 'image-preview.output' }
+            .sr-only Upload profile picture
+            %span.fa-stack.tb-profile-image--camera
+              %i.fas.fa-circle.fa-stack-2x
+              %i.fas.fa-camera.fa-stack-1x.fa-inverse
+
+        = f.hidden_field :image, value: f.object.image.signed_id if f.object.image.attached?
+
+      = f.input :username,
+        required: true,
+        input_html: { autocomplete: "username", data: { validation_url: check_username_user_path } }
+
+      = f.input :bio,
+        hint: "Max #{User::MAX_BIO_LENGTH} characters",
+        input_html: { maxlength: User::MAX_BIO_LENGTH,
+          data: { controller: 'textarea',
+              target: 'textarea.input',
+              action: 'resize@window->textarea#debouncedResize input->textarea#resize' } }
+
+  .form-actions
+    = f.submit "Save", class: "btn btn-primary btn-lg ml-auto shadow-sm"
