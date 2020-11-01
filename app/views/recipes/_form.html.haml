@@ -73,8 +73,8 @@
             - else
               = render 'ingredient_fields', f: ingredient
         .ingredients.d-flex.justify-content-between
-          = link_to_add_association 'add section', f, :ingredients, partial: 'section_fields'
-          = link_to_add_association 'add ingredient', f, :ingredients
+          = link_to_add_association 'Add section', f, :ingredients, partial: 'section_fields'
+          = link_to_add_association 'Add ingredient', f, :ingredients
 
   .card.mb-4.shadow-sm
     .card-body
@@ -86,7 +86,7 @@
           = f.simple_fields_for :steps do |step|
             = render 'step_fields', f: step
         .steps.d-flex.justify-content-end
-          = link_to_add_association 'add step', f, :steps
+          = link_to_add_association 'Add step', f, :steps
 
   .form-actions
-    = f.submit 'Save', class: 'btn btn-primary btn-lg ml-auto'
+    = f.submit 'Save', class: 'btn btn-primary btn-lg ml-auto shadow-sm'
