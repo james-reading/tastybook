@@ -12,13 +12,12 @@
 
         .d-flex.justify-content-center
           = f.label :image, class: 'btn btn-link position-relative' do
-            .tb-profile-image-wraper
-              = image_tag medium_profile_image_url(current_user),
-                layout: 'fill',
-                width: '100px',
-                height: '100px',
-                class: 'tb-profile-image',
-                data: { target: 'image-preview.output' }
+            = image_tag medium_profile_image_url(current_user),
+              layout: 'fill',
+              width: '100px',
+              height: '100px',
+              class: 'tb-profile-image',
+              data: { target: 'image-preview.output' }
             .sr-only Upload profile picture
             %span.fa-stack.tb-profile-image--camera
               %i.fas.fa-circle.fa-stack-2x
