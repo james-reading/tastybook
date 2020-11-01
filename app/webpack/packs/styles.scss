@@ -57,6 +57,7 @@ $theme-colors: map-remove($theme-colors, 'info', 'light');
 @import '../styles/modules/images';
 @import '../styles/modules/modals';
 @import '../styles/modules/password_toggle';
+@import '../styles/modules/pulse';
 @import '../styles/modules/radio_buttons/find_images';
 
 @import '../styles/utilities/appearance';
