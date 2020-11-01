@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def check_username
     user = current_user || User.new
-    user.username = params[:username]
+    user.username = params[:value]
     user.validate
 
     if user.errors[:username].any?

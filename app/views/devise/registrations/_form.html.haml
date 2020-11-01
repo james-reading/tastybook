@@ -1,0 +1,22 @@
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, data: { controller: 'form'}) do |f|
+  .card.devise-card.shadow-sm
+    .card-body
+      .form-inputs
+        = f.input :username,
+          autofocus: true,
+          required: true,
+          input_html: { autocomplete: "username",
+            data: { validation_url: check_username_user_path } }
+        = f.input :email,
+          required: true,
+          input_html: { autocomplete: "email" }
+        = f.input :password,
+          required: true,
+          wrapper: :password,
+          minlength: @minimum_password_length,
+          hint: "#{@minimum_password_length} characters minimum",
+          wrapper_html: { data: { controller: "password" } },
+          input_html: { autocomplete: "new-password", data: { target: "password.input" } }
+
+      .form-actions
+        = f.button :submit, "Sign up", class: "btn btn-primary w-100 mt-4"

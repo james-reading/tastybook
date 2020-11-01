@@ -1,0 +1,8 @@
+<% if resource.errors.any? %>
+  document
+    .querySelector('.js-updateable-form')
+    .innerHTML = "<%= j render 'devise/registrations/form' %>";
+<% else %>
+  <% flash[:success] = t('devise.registrations.signed_up') %>
+  Turbolinks.visit("<%= after_sign_up_path_for(resource) %>")
+<% end %>

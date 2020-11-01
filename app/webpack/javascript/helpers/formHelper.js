@@ -6,18 +6,27 @@ const addError = function addError(input, message) {
   errorSpan.textContent = message;
   errorSpan.classList.add('invalid-feedback');
   input.classList.add('is-invalid');
-  input.insertAdjacentElement('afterend', errorSpan);
+  input.closest('.form-group')?.classList?.add('form-group-invalid');
+
+  if (input.parentElement.classList.contains('position-relative')) {
+    input.parentElement.insertAdjacentElement('afterend', errorSpan);
+  } else {
+    input.insertAdjacentElement('afterend', errorSpan);
+  }
 };
 
 const clearError = function clearError(input) {
   input
-    .parentNode
+    .closest('.form-group')
     .querySelector('.invalid-feedback')
     ?.remove();
   input
-    .parentNode
+    .closest('.form-group')
     .querySelector('.is-invalid')
     ?.classList.remove('is-invalid');
+  input
+    .closest('.form-group')
+    ?.classList.remove('form-group-invalid');
 };
 
 const formHelper = {
