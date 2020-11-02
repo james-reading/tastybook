@@ -3,7 +3,6 @@
     .card-body
       .form-inputs
         = f.input :username,
-          autofocus: true,
           required: true,
           input_html: { autocomplete: "username",
             data: { validation_url: check_username_user_path } }

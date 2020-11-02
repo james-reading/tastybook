@@ -7,7 +7,6 @@
       .form-inputs
         = f.input :email,
           required: true,
-          autofocus: true,
           input_html: { autocomplete: "email" }
       .form-actions
         = f.button :submit, "Send reset link", class: 'btn btn-primary float-right'
