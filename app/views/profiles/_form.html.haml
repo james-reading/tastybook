@@ -4,6 +4,7 @@
   .card.mb-4.shadow-sm
     .card-body
       %div{ data: { controller: 'image-preview' } }
+        = f.hidden_field :image, value: f.object.image.signed_id, id: 'user_image_hidden' if f.object.image.attached?
         = f.file_field :image,
           direct_upload: true,
           accept: 'image/*',
@@ -13,7 +14,6 @@
         .d-flex.justify-content-center
           = f.label :image, class: 'btn btn-link position-relative' do
             = image_tag medium_profile_image_url(current_user),
-              layout: 'fill',
               width: '100px',
               height: '100px',
               class: 'tb-profile-image',
@@ -23,7 +23,6 @@
               %i.fas.fa-circle.fa-stack-2x
               %i.fas.fa-camera.fa-stack-1x.fa-inverse
 
-        = f.hidden_field :image, value: f.object.image.signed_id if f.object.image.attached?
 
       = f.input :username,
         required: true,
