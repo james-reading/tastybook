@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
-  static targets = ['input', 'output'];
+  static targets = ['input', 'output', 'img'];
 
   readURL() {
     const input = this.inputTarget;
@@ -11,10 +11,12 @@ export default class extends Controller {
       var reader = new FileReader();
 
       reader.onload = () => {
-       output.src = reader.result;
-     }
+        this.imgTarget.style.display = 'none';
 
-     reader.readAsDataURL(input.files[0]);
-   }
- }
+        output.style.backgroundImage = `url("${reader.result}")`;
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
 }
