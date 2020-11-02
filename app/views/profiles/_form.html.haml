@@ -1,7 +1,7 @@
 = simple_form_for current_user, url: profile_path, remote: true, data: { controller: 'form'} do |f|
   = f.error_notification message: 'Please review the problems below'
 
-  .card.mb-4.shadow-sm
+  .card.mb-4.shadow-sm.js-profile-card
     .card-body
       %div{ data: { controller: 'image-preview' } }
         = f.hidden_field :image, value: f.object.image.signed_id, id: 'user_image_hidden' if f.object.image.attached?

@@ -6,10 +6,27 @@ document.addEventListener('direct-upload:initialize', () => {
       'beforebegin',
       `
       <div class="progress mb-3">
-        <div class="js-upload-progress progress-bar progress-bar-striped" role="progressbar" style="width:10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="js-upload-progress progress-bar progress-bar-striped" role="progressbar" style="width:5%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
     `
     );
+
+    return;
+  }
+
+  const profileElement = document.querySelector('.js-profile-card');
+
+  if (profileElement) {
+    profileElement.insertAdjacentHTML(
+      'afterend',
+      `
+      <div class="progress mb-3">
+        <div class="js-upload-progress progress-bar progress-bar-striped" role="progressbar" style="width:5%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    `
+    );
+
+    return;
   }
 });
 
