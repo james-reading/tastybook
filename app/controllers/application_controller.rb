@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   before_action :http_basic_authenticate, if: -> { ENV['HTTP_AUTH_PASSWORD'].present? }
+  before_action :set_last_seen, if: :user_signed_in?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -39,5 +40,11 @@ class ApplicationController < ActionController::Base
     end
   rescue ActiveRecord::RecordNotUnique
     flash[:alert] = "Your are already friends with #{friendship.user.username}"
+  end
+
+  def set_last_seen
+    return if current_user.last_seen == Date.today
+
+    current_user.touch :last_seen
   end
 end

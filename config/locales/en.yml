@@ -30,6 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    formats:
+      default: '%d %b %Y'
+      
   activemodel:
     attributes:
       friendship:
