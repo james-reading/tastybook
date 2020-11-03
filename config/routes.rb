@@ -61,4 +61,9 @@ Rails.application.routes.draw do
   end
 
   get :find_images, to: 'find_images#index'
+
+  namespace :admin do
+    resource :dashboard, only: :show, controller: 'dashboard'
+    resources :users, only: :index
+  end
 end

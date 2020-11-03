@@ -39,6 +39,12 @@
         Settings
         %i.fas.fa-cog.fa-fw.ml-3
 
+    - if user_signed_in? && current_user.admin?
+      %li
+        = link_to admin_dashboard_path, class: 'd-flex align-items-center justify-content-end' do
+          Admin
+          %i.fas.fa-user-lock.fa-fw.ml-3
+
   - if user_signed_in?
     = button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary d-block mb-4 sidenav--bottom-center'
 
