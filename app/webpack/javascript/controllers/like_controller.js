@@ -1,7 +1,7 @@
 import Rails from 'rails-ujs';
 import { Controller } from 'stimulus';
 
-const LIKED_CLASS = 'like-btn--liked';
+const LIKED_CLASS = 'tb-like-btn--liked';
 
 export default class extends Controller {
   toggle(event) {

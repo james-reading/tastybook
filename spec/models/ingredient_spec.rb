@@ -6,7 +6,7 @@ RSpec.describe Ingredient, type: :model do
 
   describe 'factory' do
     subject { ingredient }
-    
+
     it { should be_valid }
   end
 end

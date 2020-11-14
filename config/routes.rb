@@ -60,6 +60,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :collections, except: :show
+
   get :find_images, to: 'find_images#index'
 
   namespace :admin do

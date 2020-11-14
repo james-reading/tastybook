@@ -1,7 +1,9 @@
 :ruby
   liked = liked?(recipe)
-  
-%div{ data: { controller: 'like' } }
-  %button.btn.btn-link.like-btn{ data: { action: 'click->like#toggle', url: recipe_likes_path(recipe) }, class: "#{'like-btn--liked' if liked}" }
-    %i.far.fa-star
-    .sr-only= liked ? 'Unlike recipe' : 'Like recipe'
+
+%button.btn.btn-link.btn-link-secondary.tb-like-btn{ data: { controller: 'like',
+  action: 'click->like#toggle',
+  url: recipe_likes_path(recipe) },
+  class: "#{'tb-like-btn--liked' if liked} #{local_assigns[:btn_class]}" }
+  %i.far.fa-star{ class: local_assigns[:icon_class] }
+  .sr-only= liked ? 'Unlike recipe' : 'Like recipe'

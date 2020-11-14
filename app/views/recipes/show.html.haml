@@ -1,12 +1,15 @@
 .row.recipe-show
   .col-lg-6.offset-lg-3
-    .d-flex.justify-content-end.align-items-center.mb-2
-      = render 'like_button', recipe: @recipe
+    .d-flex.justify-content-end.align-items-center
+      = render 'recipes/like_button', recipe: @recipe, icon_class: 'fa-2x', btn_class: 'px-2'
+      %button.btn.btn-link.btn-link-secondary.px-2{ data: { toggle: 'modal', target: '#collections-modal' } }
+        %i.fas.fa-plus.fa-2x
+        .sr-only Save to a collection
       - if edit?(@recipe)
-        = form_with model: @recipe, url: recipe_image_path(@recipe), class: 'ml-2' do |f|
+        = form_with model: @recipe, url: recipe_image_path(@recipe) do |f|
           = f.file_field :image, accept: 'image/*', class: 'd-none js-auto-submit-on-change', direct_upload: true
-          = f.label :image, class: 'btn btn-link btn-link-secondary p-0 mb-0' do
-            %i.fas.fa-camera.fa-2x.px-2
+          = f.label :image, class: 'btn btn-link btn-link-secondary mb-0 px-2' do
+            %i.fas.fa-camera.fa-2x
             .sr-only Upload image
 
     .card.border.shadow-sm.mb-4.js-recipe-card
@@ -40,3 +43,21 @@
             %span by #{@recipe.user.username}
 
     = render 'comments', comments: @recipe.comments.order(created_at: :desc).includes(:user).limit(100) #TODO pagination
+
+.modal#collections-modal{ 'aria-hidden': 'true',
+  role: 'dialog',
+  tabindex: '-1' }
+  .modal-dialog{ role: 'document' }
+    .modal-content
+      .modal-header
+        %h5.h1.modal-title Save to a collection
+        %button.close{ 'aria-label': 'Close', 'data-dismiss': 'modal', type: 'button' }
+          %i.fas.fa-times-circle.fa-sm{ 'aria-hidden': 'true' }
+      .modal-body
+        = link_to 'Create a new collection', new_collection_path, class: 'btn btn-outline-primary btn-lg w-100'
+
+      .modal-footer.d-flex.justify-content-end.border-top
+        = button_tag 'Done',
+          type: 'button',
+          class: 'btn btn-primary btn-lg',
+          data: { dismiss: 'modal' }

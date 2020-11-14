@@ -29,6 +29,7 @@ gem 'image_processing'
 gem 'metainspector'
 gem 'down'
 gem 'seedbank'
+gem 'friendly_id'
 
 group :development, :test do
   gem 'pry'

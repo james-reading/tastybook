@@ -45,16 +45,11 @@
   }
 }
 
-.like-btn {
-  color: $primary;
+.tb-like-btn {
   transition: none;
-
-  &:hover {
-    color: $primary;
-  }
 }
 
-.recipe-card .like-btn {
+.recipe-card .tb-like-btn {
   position: absolute;
   top: -21px;
   right: 1rem;
@@ -67,6 +62,7 @@
   padding: 0;
   font-size: 1.33333em;
   line-height: 0.75em;
+  color: $primary;
   vertical-align: -0.0667em;
   background-color: $white;
   border-radius: 50%;
@@ -78,15 +74,7 @@
   }
 }
 
-.recipe-show .like-btn {
-  padding: 0;
-
-  i {
-    font-size: 2em;
-  }
-}
-
-.like-btn--liked {
+.tb-like-btn--liked {
   color: $yellow;
 
   i {

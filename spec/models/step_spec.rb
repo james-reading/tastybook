@@ -6,7 +6,7 @@ RSpec.describe Step, type: :model do
 
   describe 'factory' do
     subject { step }
-    
+
     it { should be_valid }
   end
 end
