@@ -73,6 +73,69 @@ RSpec.describe InvitationForm do
     end
   end
 
+  context 'user has pending invites for other emails' do
+    let!(:friend_request) { create :friendship, :pending, user: james, friend: nil, invitation_email: 'bob@test.com' }
+
+    it 'should create a pending friend request' do
+      expect {
+        form.submit
+      }.to change(Friendship, :count).by(1)
+
+      friend_request = Friendship.last
+
+      expect(friend_request).to_not be_accepted
+      expect(friend_request.user).to eq james
+      expect(friend_request.friend).to be_blank
+      expect(friend_request.invitation_email).to eq holly.email
+    end
+
+    it 'should return truthy' do
+      expect(form.submit).to be_truthy
+    end
+  end
+
+  context 'user has pending friends requests' do
+    let!(:friend_request) { create :friendship, :pending, user: james, friend: create(:friend) }
+
+    it 'should create a pending friend request' do
+      expect {
+        form.submit
+      }.to change(Friendship, :count).by(1)
+
+      friend_request = Friendship.last
+
+      expect(friend_request).to_not be_accepted
+      expect(friend_request.user).to eq james
+      expect(friend_request.friend).to be_blank
+      expect(friend_request.invitation_email).to eq holly.email
+    end
+
+    it 'should return truthy' do
+      expect(form.submit).to be_truthy
+    end
+  end
+
+  context 'user invited the email already but then they signed up with another email' do
+    let!(:friend_request) { create :friendship, :accepted, user: james, friend: create(:friend), invitation_email: holly.email }
+
+    it 'should create a pending friend request' do
+      expect {
+        form.submit
+      }.to change(Friendship, :count).by(1)
+
+      friend_request = Friendship.last
+
+      expect(friend_request).to_not be_accepted
+      expect(friend_request.user).to eq james
+      expect(friend_request.friend).to be_blank
+      expect(friend_request.invitation_email).to eq holly.email
+    end
+
+    it 'should return truthy' do
+      expect(form.submit).to be_truthy
+    end
+  end
+
   context 'user has already friend requested the friend' do
     let!(:friend_request) { create :friendship, :pending, user: james, friend: holly }
 
