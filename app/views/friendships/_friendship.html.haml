@@ -1,4 +1,4 @@
-.list-group-item
+- content = capture_haml do
   .d-flex.align-items-center
     = image_tag medium_profile_image_url(friendship.friend),
       width: '50px',
@@ -8,19 +8,32 @@
     %div.tb-overflow-ellipsis
       %h3.tb-overflow-ellipsis= friendship.name
       - if friendship.accepted?
-        = link_to pluralize(friendship.friend.recipes.count, 'recipe'), user_recipes_path(friendship.friend.username)
+        .text-primary= pluralize(friendship.friend.recipes.count, 'recipe')
       - else
         .font-italic.text-muted Pending
-    .dropleft.mb-auto.ml-auto
-      %button.btn.btn-link.pr-0.pt-0{ id: 'dropdown',
-        'aria-expanded' => 'false',
-        'aria-haspopup' => 'true',
-        'data-toggle' => 'dropdown',
-        type: 'button'}
-        %i.fas.fa-ellipsis-v.text-primary
-      .dropdown-menu.shadow-sm{ 'aria-labelledby' => 'dropdown' }
-        = link_to 'Unfriend',
-          friendship,
-          class: 'dropdown-item text-danger',
-          method: :delete,
-          data: { confirm: "Are you sure you want to unfriend #{friendship.name}?" }
+
+- dropdown = capture_haml do
+  .dropleft.tb-friendship-dropdown
+    %button.btn.btn-link.btn-lg{ id: 'dropdown',
+      'aria-expanded' => 'false',
+      'aria-haspopup' => 'true',
+      'data-toggle' => 'dropdown',
+      type: 'button'}
+      %i.fas.fa-ellipsis-v.text-primary
+    .dropdown-menu.shadow-sm{ 'aria-labelledby' => 'dropdown' }
+      = link_to 'Unfriend',
+        friendship,
+        class: 'dropdown-item text-danger',
+        method: :delete,
+        data: { confirm: "Are you sure you want to unfriend #{friendship.name}?" }
+
+- if friendship.accepted?
+  .list-group-item.list-group-item--wrapper
+    = link_to user_recipes_path(friendship.friend.username),
+      class: 'list-group-item-action list-group-item--container' do
+      = content
+    = dropdown
+- else
+  .list-group-item
+    = content
+    = dropdown

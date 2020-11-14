@@ -45,6 +45,7 @@ $theme-colors: map-remove($theme-colors, 'info', 'light');
 // @import '~bootstrap/scss/toasts';
 
 @import '../styles/actiontext';
+@import '../styles/bootstrap_overrides';
 
 @import '../styles/modules/forms';
 @import '../styles/modules/check_boxes';
@@ -67,3 +68,4 @@ $theme-colors: map-remove($theme-colors, 'info', 'light');
 @import '../styles/pages/devise';
 @import '../styles/pages/homepage';
 @import '../styles/pages/recipe';
+@import '../styles/pages/friendships';
