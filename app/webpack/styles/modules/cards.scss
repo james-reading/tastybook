@@ -21,4 +21,27 @@
       text-decoration: none;
     }
   }
+
+  --base-elevation: 0.125rem;
+  --up-elevation: 0.25rem;
+  --down-elevation: 0.075rem;
+  --elevation: var(--base-elevation);
+
+  --shadow-elevation: 0 var(--elevation) 0.25rem #{rgba($gray-900, 0.075)};
+  --transform-elevation: translateY(
+    calc(var(--base-elevation) - var(--elevation))
+  );
+
+  box-shadow: var(--shadow-elevation);
+  transform: var(--transform-elevation);
+  transition: transform 0.15s;
+}
+
+.recipe-card:hover,
+.recipe-card:focus {
+  --elevation: var(--up-elevation);
+}
+
+.recipe-card:active {
+  --elevation: var(--down-elevation);
 }
