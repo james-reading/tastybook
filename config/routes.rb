@@ -66,4 +66,7 @@ Rails.application.routes.draw do
     resource :dashboard, only: :show, controller: 'dashboard'
     resources :users, only: :index
   end
+
+  get '/500', to: 'errors#internal_error'
+  get '/404', to: 'errors#not_found'
 end

@@ -44,5 +44,7 @@ module Recipes
       image/vnd.adobe.photoshop
       image/vnd.microsoft.icon
     )
+
+    config.exceptions_app = self.routes
   end
 end
