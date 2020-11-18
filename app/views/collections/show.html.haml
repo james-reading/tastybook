@@ -1,0 +1,7 @@
+.text-center
+  %h1= title @collection.name
+
+.row.mt-5
+  = render partial: 'recipes/recipe', collection: @collection.recipes.order(:name)
+
+= button_to 'Delete', collection_path(@collection.id), method: :delete, class: 'btn btn-outline-danger mt-5 w-100'

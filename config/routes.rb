@@ -60,7 +60,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :collections, except: :show
+  resources :collections, only: :create, constraints: JsonConstraint.new do
+    resources :recipes, only: [:update, :destroy], module: :collections
+  end
+
+  resources :collections, only: [:index, :show, :destroy]
 
   get :find_images, to: 'find_images#index'
 

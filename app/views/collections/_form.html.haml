@@ -1,0 +1,14 @@
+= simple_form_for collection, url: collections_path(recipe_id: recipe, format: :json),
+  remote: true,
+  data: { action: 'ajax:success->collections#createSuccess ajax:error->collections#createError' } do |f|
+  .modal-body
+    = f.input :name,
+      hint: "Max #{Collection::MAX_NAME_LENGTH} characters",
+      input_html: { maxlength: Collection::MAX_NAME_LENGTH, data: { target: 'collections.nameInput' } }
+  .modal-footer.d-flex.justify-content-between.border-top
+    = button_tag 'Cancel',
+      type: 'button',
+      class: 'btn btn-link btn-lg text-dark',
+      style: 'display:none',
+      data: { action: 'collections#cancelNew', target: 'collections.cancelNew' }
+    = f.submit 'save', class: 'btn btn-primary btn-lg ml-auto'

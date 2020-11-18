@@ -8,5 +8,5 @@ class Collection < ApplicationRecord
   has_many :collection_recipes, dependent: :destroy
   has_many :recipes, through: :collection_recipes
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: MAX_NAME_LENGTH = 50 }
 end

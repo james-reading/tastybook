@@ -9,10 +9,14 @@
         = link_to friends_recipes_path, class: 'd-flex align-items-center justify-content-end' do
           All Recipes
           %i.fas.fa-users.fa-fw.ml-3
-    %li.pb-0
+    %li
       = link_to favourite_recipes_path, class: 'd-flex align-items-center justify-content-end' do
         Favourites
         %i.fas.fa-star.fa-fw.ml-3
+    %li.pb-0
+      = link_to collections_path, class: 'd-flex align-items-center justify-content-end' do
+        Collections
+        %i.fas.fa-folder-open.fa-fw.ml-3
     %li.border-top.mt-4.pt-4.pb-0
       = link_to new_recipe_path, class: 'd-flex align-items-center justify-content-end' do
         New Recipe

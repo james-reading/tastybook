@@ -1,0 +1,9 @@
+.d-flex.align-items-center.justify-content-between.py-2
+  .h3.mb-0.font-weight-bold= collection.name
+  - saved_class = 'tb-toggle-collection-btn--saved'
+  - saved = collection.recipes.exists?(recipe.id)
+  = button_tag class: "btn btn-link tb-toggle-collection-btn #{saved_class if saved}",
+      data: { action: 'collections#toggle',
+        saved_class: saved_class,
+        url: collection_recipe_path(collection.id, recipe) } do
+    %i.fas.fa-2x.tb-toggle-collection-btn__icon

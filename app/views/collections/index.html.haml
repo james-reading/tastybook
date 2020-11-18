@@ -1,0 +1,3 @@
+.list-group
+  - @collections.each do |collection|
+    = link_to collection.name, collection_path(collection.id), class: 'list-group-item list-group-item-action'

@@ -1,0 +1,11 @@
+.tb-toggle-collection-btn__icon::before {
+  color: $primary;
+  content: '\f055';
+}
+
+.tb-toggle-collection-btn--saved {
+  .tb-toggle-collection-btn__icon::before {
+    color: $dark;
+    content: '\f056';
+  }
+}
