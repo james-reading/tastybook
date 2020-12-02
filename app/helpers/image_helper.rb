@@ -1,7 +1,8 @@
 module ImageHelper
   def recipe_image_attributes(recipe)
     img_attributes = {
-      alt: recipe.name
+      alt: recipe.name,
+      src: asset_pack_path('media/images/placeholder-recipe.svg')
     }
 
     if recipe.image.attached?
@@ -11,12 +12,9 @@ module ImageHelper
           src: medium_image_variant_url(recipe.image),
         }
       )
-    else
-      img_attributes.merge!(
-        data: { src: asset_pack_path('media/images/placeholder-recipe.svg') }
-      )
     end
 
+    img_attributes
   end
 
   def lowres_image_variant_url(image)
