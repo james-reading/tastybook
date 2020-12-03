@@ -96,6 +96,12 @@
   border: 1px solid $gray-200;
   border-radius: 50%;
   box-shadow: $box-shadow-sm;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    box-shadow: $box-shadow-sm;
+  }
 }
 
 .recipe-filter--liked,

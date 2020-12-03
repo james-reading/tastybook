@@ -1,5 +1,5 @@
 - if @collections.any?
-  .list-group
+  .list-group.shadow-sm
     - @collections.each do |collection|
       = link_to collection.name, collection, class: 'list-group-item list-group-item-action'
 - else
