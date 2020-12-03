@@ -5,8 +5,11 @@
   .card.devise-card.shadow-sm
     .card-body
       .form-inputs
-        = f.input :email, input_html: { autocomplete: "email" }
-        = f.input :password, input_html: { autocomplete: "current-password" }
+        = f.input :email, input_html: { autocomplete: 'email' }
+        = f.input :password,
+        wrapper: :password,
+        wrapper_html: { data: { controller: 'password' } },
+        input_html: { autocomplete: 'current-password', data: { target: 'password.input' } }
       .form-actions
         = f.button :submit, 'Log in', class: 'btn btn-primary w-100 mt-4'
 

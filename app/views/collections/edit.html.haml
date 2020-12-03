@@ -1,0 +1,13 @@
+:ruby
+  title "Edit #{@collection.name}"
+
+= simple_form_for @collection do |f|
+  = f.error_notification message: 'Please review the problems below'
+
+  .card.mb-4.shadow-sm
+    .card-body
+      = f.input :name
+      = f.input :description
+
+  .form-actions
+    = f.submit 'Save', class: 'btn btn-primary btn-lg ml-auto shadow-sm'

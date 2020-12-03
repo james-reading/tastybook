@@ -1,3 +1,12 @@
-.list-group
-  - @collections.each do |collection|
-    = link_to collection.name, collection_path(collection.id), class: 'list-group-item list-group-item-action'
+- if @collections.any?
+  .list-group
+    - @collections.each do |collection|
+      = link_to collection.name, collection, class: 'list-group-item list-group-item-action'
+- else
+  .text-center.my-5
+    %h3 You don't have any colections!
+    %p.mb-4
+      To create one, find a recipe and click the
+      %i.fas.fa-plus
+      icon.
+    = link_to 'Go to my recipes', :recipes, class: 'btn btn-primary'

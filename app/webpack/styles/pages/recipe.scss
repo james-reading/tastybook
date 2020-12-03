@@ -86,6 +86,17 @@
   }
 }
 
+.tb-circle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: $white;
+  border-radius: 50%;
+  box-shadow: $box-shadow-sm;
+}
+
 .recipe-filter--liked,
 .recipe-filter--friends {
   position: absolute;

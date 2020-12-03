@@ -11,7 +11,7 @@ export default class extends Controller {
     'cancelNew'
   ];
 
-  initialize() {
+  connect() {
     console.log('Connected to collections controller');
   }
 

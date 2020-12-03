@@ -1,7 +1,33 @@
-.text-center
-  %h1= title @collection.name
+.card.border.shadow-sm.mb-5
+  .card-body
+    .row
+      .col-8.offset-2
+        .text-center
+          %h1.font-weight-bold= title @collection.name
+          - if @collection.description.present?
+            = simple_format(description @collection.description)
+          .small by #{@collection.user.username}
+      .col-2
+        - if policy(@collection).edit?
+          .dropleft
+            %button.btn.btn-link.pr-0.pt-0{ id: 'dropdown',
+              'aria-expanded' => 'false',
+              'aria-haspopup' => 'true',
+              'data-toggle' => 'dropdown',
+              type: 'button'}
+              %i.fas.fa-ellipsis-v.text-primary
+            .dropdown-menu.shadow-sm{ 'aria-labelledby' => 'dropdown' }
+              = link_to 'Edit', [:edit, @collection], class: 'dropdown-item'
+              .dropdown-divider
+              = link_to 'Delete',
+                @collection,
+                class: 'dropdown-item text-danger',
+                method: :delete,
+                data: { confirm: 'Are you sure you want to delete this collection?' }
 
-.row.mt-5
-  = render partial: 'recipes/recipe', collection: @collection.recipes.order(:name)
-
-= button_to 'Delete', collection_path(@collection.id), method: :delete, class: 'btn btn-outline-danger mt-5 w-100'
+- if @collection.recipes.any?
+  .row
+    = render partial: 'recipes/recipe', collection: @collection.recipes.order(:name)
+- else
+  .text-center.my-5
+    %h3 This collection is empty 😢

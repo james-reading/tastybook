@@ -33,7 +33,7 @@ en:
   date:
     formats:
       default: '%d %b %Y'
-      
+
   activemodel:
     attributes:
       friendship:
@@ -56,6 +56,9 @@ en:
               http_url: 'is not valid'
 
   flashes:
+    collection:
+      update:
+        success: 'Collection has been updated'
     invitation:
       create:
         success: 'An invitation has been sent to %{email}'

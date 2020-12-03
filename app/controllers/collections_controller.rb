@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_collection, only: [:show, :destroy]
+  before_action :set_collection, only: [:show, :edit, :update, :destroy]
 
   def index
     @collections = current_user.collections.order(created_at: :desc)
@@ -28,6 +28,17 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @collection.update(collection_params)
+      redirect_to @collection, flash: { success: t('flashes.collection.update.success') }
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @collection.destroy
 
@@ -37,10 +48,10 @@ class CollectionsController < ApplicationController
   private
 
   def collection_params
-    params.require(:collection).permit(:name)
+    params.require(:collection).permit(:name, :description)
   end
 
   def set_collection
-    @collection = current_user.collections.find params[:id]
+    @collection = current_user.collections.friendly.find params[:id]
   end
 end

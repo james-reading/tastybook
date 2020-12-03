@@ -64,7 +64,7 @@ Rails.application.routes.draw do
     resources :recipes, only: [:update, :destroy], module: :collections
   end
 
-  resources :collections, only: [:index, :show, :destroy]
+  resources :collections, only: [:index, :show, :edit, :update, :destroy]
 
   get :find_images, to: 'find_images#index'
 

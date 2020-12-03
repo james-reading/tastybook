@@ -1,15 +1,15 @@
 .row.recipe-show
   .col-lg-6.offset-lg-3
-    .d-flex.justify-content-end.align-items-center
-      = render 'recipes/like_button', recipe: @recipe, icon_class: 'fa-2x', btn_class: 'px-2'
-      %button.btn.btn-link.btn-link-secondary.px-2{ data: { toggle: 'modal', target: '#collections-modal' } }
-        %i.fas.fa-plus.fa-2x
+    .d-flex.justify-content-end.align-items-center.rythmx-2.mb-2
+      = render 'recipes/like_button', recipe: @recipe, btn_class: 'tb-circle-btn'
+      %button.btn.btn-link.btn-link-secondary.tb-circle-btn{ data: { toggle: 'modal', target: '#collections-modal' } }
+        %i.fas.fa-plus
         .sr-only Save to a collection
       - if edit?(@recipe)
         = form_with model: @recipe, url: recipe_image_path(@recipe) do |f|
           = f.file_field :image, accept: 'image/*', class: 'd-none js-auto-submit-on-change', direct_upload: true
-          = f.label :image, class: 'btn btn-link btn-link-secondary mb-0 px-2' do
-            %i.fas.fa-camera.fa-2x
+          = f.label :image, class: 'btn btn-link btn-link-secondary tb-circle-btn mb-0' do
+            %i.fas.fa-camera
             .sr-only Upload image
 
     .card.border.shadow-sm.mb-4.js-recipe-card
