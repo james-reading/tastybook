@@ -1,7 +1,7 @@
 :ruby
   title "Edit #{@collection.name}"
 
-= simple_form_for @collection do |f|
+= simple_form_for @collection, url: collection_path(@collection.id) do |f|
   = f.error_notification message: 'Please review the problems below'
 
   .card.mb-4.shadow-sm

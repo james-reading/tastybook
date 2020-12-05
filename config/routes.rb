@@ -54,17 +54,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [], param: :username do
+  resources :users, only: [], param: :username, path: '/' do
     resources :recipes, only: :index, module: :users do
       get :im_feeling_lucky, on: :collection
     end
+    resources :collections, only: :show
   end
 
   resources :collections, only: :create, constraints: JsonConstraint.new do
     resources :recipes, only: [:update, :destroy], module: :collections
   end
 
-  resources :collections, only: [:index, :show, :edit, :update, :destroy]
+  resources :collections, only: [:index, :edit, :update, :destroy]
 
   get :find_images, to: 'find_images#index'
 

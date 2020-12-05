@@ -1,7 +1,7 @@
 - if @collections.any?
   .list-group.shadow-sm
     - @collections.each do |collection|
-      = link_to collection.name, collection, class: 'list-group-item list-group-item-action'
+      = link_to collection.name, user_collection_path(collection.user.username, collection), class: 'list-group-item list-group-item-action'
 - else
   .text-center.my-5
     %h3 You don't have any colections!

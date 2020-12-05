@@ -1,12 +1,14 @@
 class CollectionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection, only: [:edit, :update, :destroy]
 
   def index
     @collections = current_user.collections.order(created_at: :desc)
   end
 
   def show
+    @user = User.find_by! 'lower(username) = ?', params[:user_username].downcase
+    @collection = @user.collections.friendly.find params[:id]
   end
 
   def create
@@ -33,7 +35,7 @@ class CollectionsController < ApplicationController
 
   def update
     if @collection.update(collection_params)
-      redirect_to @collection, flash: { success: t('flashes.collection.update.success') }
+      redirect_to user_collection_path(@collection.user.username, @collection), flash: { success: t('flashes.collection.update.success') }
     else
       render :edit
     end
@@ -52,6 +54,6 @@ class CollectionsController < ApplicationController
   end
 
   def set_collection
-    @collection = current_user.collections.friendly.find params[:id]
+    @collection = current_user.collections.find params[:id]
   end
 end
