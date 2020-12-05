@@ -1,0 +1,10 @@
+:ruby
+  heading, subheading = recipe_heading
+.text-center.mt-4
+  - if @user && @user.image.attached?
+    = image_tag medium_profile_image_url(@user),
+      width: '100px',
+      height: '100px',
+      class: 'tb-profile-image mb-3'
+  %h1.font-weight-bold= title heading
+  %p.mb-0= description subheading

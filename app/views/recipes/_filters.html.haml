@@ -1,0 +1,48 @@
+= simple_form_for search,
+  url: url_for,
+  method: :get,
+  remote: true,
+  html: { class: 'form-inline-' } do |f|
+  .row
+    .col-lg-4.d-flex
+      = f.input :q,
+        placeholder: 'Search',
+        label_html: { class: 'sr-only' },
+        wrapper_html: { class: 'flex-fill mr-2 mb-0 position-relative' },
+        input_html: { class: 'flex-fill tb-search-input', data: { controller: 'search', target: 'search.input' } }
+      = f.button :button,
+        type: :submit,
+        class: 'btn btn-link p-0 flex-center text-decoration-none',
+        data: { 'disable-with': "<i class='fa fa-spinner fa-spin fa-fw fa-2x'></i>".html_safe } do
+        %i.fas.fa-search.fa-fw.fa-2x
+        .sr-only Search
+  = link_to 'More options',
+    '#filterCollapse',
+    'aria-controls': 'filterCollapse',
+    'aria-expanded': 'false',
+    'data-toggle': 'collapse',
+    role: 'button',
+    class: 'mt-2 d-inline-block chevron-toggle'
+  #filterCollapse.collapse.js-turbolinks-collapse-before-cache
+    .d-flex.rythmx-3.mt-3
+      = f.input :length, as: :check_boxes, collection: Recipe::LENGTHS, wrapper_html: { class: 'mb-0' }
+      = f.input :course, as: :check_boxes, collection: Recipe::COURSES, wrapper_html: { class: 'mb-0' }
+      %fieldset.form-group
+        %legend.col-form-label.pt-0 Diet
+        = f.input :vegetarian,
+          as: :boolean,
+          label_html: { class: 'tb-form-check--vegan mb-1' },
+          wrapper_html: { class: 'mb-0' }
+        = f.input :vegan,
+          as: :boolean,
+          label_html: { class: 'tb-form-check--vegan mb-1' },
+          wrapper_html: { class: 'mb-0' }
+    .d-flex.justify-content-end.rythmx-3.mt-4.border-bottom.pb-4
+      = link_to 'Clear', url_for, class: 'btn btn-outline-secondary mr-auto'
+      = f.submit 'Randomize',
+        formaction: url_for(action: :im_feeling_lucky),
+        class: 'btn btn-outline-primary',
+        data: { disable: true }
+      = f.submit 'Apply',
+        class: 'btn btn-primary',
+        data: { disable: true }
