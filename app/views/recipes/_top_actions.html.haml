@@ -5,7 +5,7 @@
     .sr-only Save to a collection
   - if edit?(recipe)
     = form_with model: recipe, url: recipe_image_path(recipe) do |f|
-      = f.file_field :image, accept: 'image/*', class: 'd-none js-auto-submit-on-change', direct_upload: true
+      = f.file_field :image, accept: 'image/*', class: 'tb-hidden-with-focus-on-label js-auto-submit-on-change', direct_upload: true
       = f.label :image, class: 'btn btn-link btn-link-secondary tb-circle-btn mb-0' do
         %i.fas.fa-camera
         .sr-only Upload image

@@ -7,7 +7,7 @@
           - if @collection.description.present?
             = simple_format(description @collection.description)
           .small by #{@collection.user.username}
-      .col-2
+      .col-2.text-right
         - if policy(@collection).edit?
           .dropleft
             %button.btn.btn-link.pr-0.pt-0{ id: 'dropdown',

@@ -14,10 +14,6 @@
   color: inherit;
   background: inherit;
   border: inherit;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 .tb-search--clear {
@@ -30,10 +26,6 @@
   background: none;
   border: none;
   appearance: none;
-
-  &:focus {
-    outline: none;
-  }
 
   &::after {
     display: inline-block;
@@ -65,7 +57,24 @@
   }
 }
 
-.btn-link:focus {
-  outline: none;
-  box-shadow: none;
+.btn-link {
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+    box-shadow: none;
+  }
+  &.focus-visible {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+}
+
+.tb-hidden-with-focus-on-label {
+  position: absolute;
+  left: -99vw;
+
+  &.focus-visible + label {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
 }

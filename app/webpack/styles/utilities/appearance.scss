@@ -41,3 +41,7 @@ select {
   background-size: 5px 5px, 5px 5px;
   appearance: none;
 }
+
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}

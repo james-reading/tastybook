@@ -16,6 +16,7 @@ import 'jquery';
 import 'cocoon';
 import 'trix';
 import '@rails/actiontext';
+import 'focus-visible';
 
 import 'bootstrap/js/src/collapse';
 import 'bootstrap/js/src/dropdown';

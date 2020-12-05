@@ -52,5 +52,5 @@
   - if user_signed_in?
     = button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-outline-secondary d-block mb-4 sidenav--bottom-center'
 
-%btn.hamburger
+%button.hamburger{ aria: { label: 'toggle navigation menu' } }
   %div
