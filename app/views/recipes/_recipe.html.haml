@@ -1,7 +1,7 @@
 :ruby
   url = @collection ?
     user_collection_recipe_path(@collection.user.username, @collection, recipe) :
-    recipes_path(recipe)
+    recipe_path(recipe)
 
 .col-md-6.col-lg-4.d-flex
   .card.recipe-card.shadow-sm.mb-4.flex-fill
