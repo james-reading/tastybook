@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
   before_action :set_collection, only: [:edit, :update, :destroy]
 
   def index

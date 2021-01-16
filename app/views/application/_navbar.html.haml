@@ -1,7 +1,13 @@
 %nav.navbar.navbar-light.shadow-sm.border-bottom
-  = link_to root_path, class: 'navbar-brand d-inline-flex align-items-center' do
-    - if params[:controller] == 'recipes' && params[:action] == 'index'
-      Tastybook
-    - else
+  - if @collection && @recipe
+    = link_to user_collection_path(@collection.user.username, @collection),
+      class: 'navbar-brand d-inline-flex align-items-center' do
       %i.fas.fa-arrow-left.mr-3.text-primary
-      My Recipes
+      = @collection.name
+  - else
+    = link_to root_path, class: 'navbar-brand d-inline-flex align-items-center' do
+      - if params[:controller] == 'recipes' && params[:action] == 'index'
+        Tastybook
+      - else
+        %i.fas.fa-arrow-left.mr-3.text-primary
+        My Recipes

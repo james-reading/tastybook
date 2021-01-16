@@ -1,24 +1,24 @@
 .mb-4
   .d-flex.justify-content-between
     %h3 Comments
-
-    = link_to 'Add a comment',
-      '#commentCollapse',
-      'aria-controls': 'commentCollapse',
-      'aria-expanded': 'false',
-      'data-toggle': 'collapse',
-      role: 'button',
-    class: 'mt-1 d-inline-block chevron-toggle'
-
-  #commentCollapse.collapse.js-turbolinks-collapse-before-cache
-    = simple_form_for Comment.new, remote: true, data: { controller: 'auto-disable' } do |f|
-      .d-flex.align-items-start.mt-2
-        = f.input :body,
-          label: false,
-          wrapper_html: { class: 'flex-fill' },
-          input_html: { class: 'js-comment-body-input', data: { action: 'input->auto-disable#toggle' } }
-        = f.button :button, class: 'btn btn-link', data: { target: 'auto-disable.button' }, disabled: true  do
-          %i.fas.fa-paper-plane.fa-2x
-          .sr-only Submit comment
+    - if user_signed_in?
+      = link_to 'Add a comment',
+        '#commentCollapse',
+        'aria-controls': 'commentCollapse',
+        'aria-expanded': 'false',
+        'data-toggle': 'collapse',
+        role: 'button',
+      class: 'mt-1 d-inline-block chevron-toggle'
+  - if user_signed_in?
+    #commentCollapse.collapse.js-turbolinks-collapse-before-cache
+      = simple_form_for Comment.new, remote: true, data: { controller: 'auto-disable' } do |f|
+        .d-flex.align-items-start.mt-2
+          = f.input :body,
+            label: false,
+            wrapper_html: { class: 'flex-fill' },
+            input_html: { class: 'js-comment-body-input', data: { action: 'input->auto-disable#toggle' } }
+          = f.button :button, class: 'btn btn-link', data: { target: 'auto-disable.button' }, disabled: true  do
+            %i.fas.fa-paper-plane.fa-2x
+            .sr-only Submit comment
 #comments
-  = render comments
+  = render(comments) || content_tag(:div, 'No comments yet', class: 'text-muted font-italic')

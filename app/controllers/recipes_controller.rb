@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
 
   def index
     @search = Recipe::Search.new(search_options)
@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find params[:id]
+    @collection = Collection.friendly.find params[:collection_id] if params[:collection_id]
 
     authorize @recipe
   end

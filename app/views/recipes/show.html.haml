@@ -1,6 +1,7 @@
 .row.recipe-show
   .col-lg-6.offset-lg-3
-    = render 'recipes/top_actions', recipe: @recipe
+    - if user_signed_in?
+      = render 'recipes/top_actions', recipe: @recipe
     .card.border.shadow-sm.mb-4.js-recipe-card
       - if @recipe.image.attached?
         .card-img-top.embed-responsive.embed-responsive-21by9
@@ -24,6 +25,7 @@
         - unless @recipe.user == current_user
           .text-right.small.text-muted.mt-4
             %span by #{@recipe.user.username}
-    -# TODO pagination    
+    -# TODO pagination
     = render 'comments', comments: @recipe.comments.order(created_at: :desc).includes(:user).limit(100)
-= render 'recipes/collection_modal', recipe: @recipe
+- if user_signed_in?
+  = render 'recipes/collection_modal', recipe: @recipe

@@ -58,7 +58,9 @@ Rails.application.routes.draw do
     resources :recipes, only: :index, module: :users do
       get :im_feeling_lucky, on: :collection
     end
-    resources :collections, only: :show
+    resources :collections, only: :show do
+      resources :recipes, only: :show
+    end
   end
 
   resources :collections, only: :create, constraints: JsonConstraint.new do

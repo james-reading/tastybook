@@ -3,3 +3,4 @@
   %td= l(user.created_at.to_date)
   %td= l(user.last_seen) if user.last_seen
   %td= user.recipes.size
+  %td= user.collections.size

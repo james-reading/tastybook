@@ -1,9 +1,7 @@
 class RecipePolicy < ApplicationPolicy
 
   def show?
-    return true if record.user == user
-    return true if user.friends.where(id: record.user).exists?
-    return true if user.email == 'jamesreading473@gmail.com'
+    true
   end
 
   def edit?

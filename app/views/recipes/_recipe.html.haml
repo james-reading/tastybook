@@ -1,10 +1,16 @@
+:ruby
+  url = @collection ?
+    user_collection_recipe_path(@collection.user.username, @collection, recipe) :
+    recipes_path(recipe)
+
 .col-md-6.col-lg-4.d-flex
   .card.recipe-card.shadow-sm.mb-4.flex-fill
-    = link_to recipe, class: 'card-img-top embed-responsive embed-responsive-21by9' do
+    = link_to url, class: 'card-img-top embed-responsive embed-responsive-21by9' do
       %img.embed-responsive-item.tb-recipe-image.lazy{ recipe_image_attributes(recipe)  }
       .sr-only View recipe
-    = link_to recipe, class: 'card-body p-3 position-relative' do
-      = render 'recipes/like_button', recipe: recipe
+    = link_to url, class: 'card-body p-3 position-relative' do
+      - if user_signed_in?
+        = render 'recipes/like_button', recipe: recipe
       %h2.pr-5= recipe.name
       = render 'recipes/information', recipe: recipe
 
