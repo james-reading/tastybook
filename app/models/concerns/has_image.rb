@@ -1,6 +1,8 @@
 module HasImage
   extend ActiveSupport::Concern
 
+  ALLOWED_TYPES = %w[image/jpeg, image/png, image/webp].freeze
+
   included do
     has_one_attached :image
 
@@ -12,7 +14,7 @@ module HasImage
   def image_content_type
     return unless image.attached?
 
-    unless image.blob.content_type.start_with? 'image/'
+    unless image.blob.content_type.in?(allowed_types)
       errors.add(:image, 'is an invalid file type')
       image.purge if image.persisted?
     end
