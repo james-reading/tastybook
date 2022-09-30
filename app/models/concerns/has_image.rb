@@ -1,7 +1,7 @@
 module HasImage
   extend ActiveSupport::Concern
 
-  ALLOWED_TYPES = %w[image/jpeg, image/png, image/webp].freeze
+  ALLOWED_TYPES = %w[image/jpeg image/png image/webp].freeze
 
   included do
     has_one_attached :image
