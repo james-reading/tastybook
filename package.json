@@ -1,6 +1,9 @@
 {
   "name": "questions-web-app",
   "private": true,
+  "engines": {
+    "node": "13.x"
+  },
   "scripts": {
     "lint:js": "eslint 'app/webpack/**/*.js'",
     "lint:css": "stylelint 'app/webpack/**/*.scss'"
