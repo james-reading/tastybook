@@ -22,7 +22,6 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
@@ -46,7 +45,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -56,15 +55,15 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "recipes_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST"), protocol: "https" }
+  config.action_mailer.default_url_options = { host: ENV.fetch('APPLICATION_HOST'), protocol: 'https' }
   config.action_mailer.smtp_settings = {
-    address:              'smtp.sendgrid.net',
-    port:                 587,
-    authentication:       :plain,
-    user_name:            'apikey',
-    password:             ENV.fetch('SENDGRID_API_KEY'),
-    domain:               ENV.fetch('APPLICATION_HOST'),
-    enable_starttls_auto: true,
+    address: 'smtp.mailgun.org',
+    port: 587,
+    authentication: :plain,
+    user_name: ENV.fetch('MAILGUN_USERNAME'),
+    password: ENV.fetch('MAILGUN_PASSWORD'),
+    domain: ENV.fetch('MAILGUN_DOMAIN'),
+    enable_starttls_auto: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -85,7 +84,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
@@ -115,9 +114,9 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
+  config.middleware.use Rack::CanonicalHost, ENV.fetch('APPLICATION_HOST')
   config.middleware.use Rack::Deflater
   config.public_file_server.headers = {
-    "Cache-Control" => "public, max-age=31557600",
+    'Cache-Control' => 'public, max-age=31557600'
   }
 end
