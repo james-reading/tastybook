@@ -5,7 +5,7 @@ ruby '2.6.5'
 
 gem 'rails', '~> 6.0.3.1'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.12.6'
+gem 'puma', '~> 4.3.12'
 gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'webpacker'
